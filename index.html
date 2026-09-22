@@ -314,12 +314,11 @@ body.auth-locked{overflow:hidden}
 
 <button class="chat-launch" onclick="toggleChat()">💬</button>
 <div class="chat" id="chat"><div class="chat-head"><div><strong>LT Parduotuvė • Pagalba</strong><small>● Prisijungę • 24/7</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div>
-<div class="ai-mode"><span>🤖 <b>LT Parduotuvės AI</b> • automatinė pagalba</span><button class="ai-admin-btn" onclick="requestHumanSupport()">👤 Administratorius</button></div>
 <div class="chat-body" id="chatBody">
 <div class="bubble">Sveiki! 👋 Kaip galime padėti?</div>
-<div class="bubble">Parašykite savo klausimą — žinutė bus išsaugota ir perduota administratoriui.</div>
+<div class="bubble">Pasirinkite dažną klausimą arba parašykite savo klausimą. Žinutė bus išsaugota ir matoma administratoriui.</div>
 </div>
-<div class="quick"><button onclick="quick('Turiu klausimą apie prekę')">Apie prekę</button><button onclick="quick('Kur mano užsakymas?')">Užsakymas</button><button onclick="quick('Noriu pagalbos')">Pagalba</button><button onclick="startStoreAI()">🤖 AI pagalba</button></div>
+<div class="quick"><button onclick="quick('Kur mano užsakymas?')">📦 Kur mano užsakymas?</button><button onclick="quick('Kokia tai prekė?')">🛍️ Kokia tai prekė?</button><button onclick="quick('Kiek kainuoja pristatymas?')">🚚 Pristatymas</button><button onclick="quick('Kaip galiu apmokėti užsakymą?')">💳 Apmokėjimas</button><button onclick="quick('Kaip panaudoti nuolaidos kuponą?')">🎟️ Kuponas</button><button onclick="quick('Noriu susisiekti su administratoriumi.')">👤 Administratorius</button></div>
 <div class="chat-input"><input id="msg" placeholder="Parašykite žinutę..."><button onclick="send()">Siųsti</button></div></div>
 
 
@@ -570,70 +569,6 @@ async function initChat(){
     console.error("Chat error:", error);
     setChatStatus("Nepavyko prisijungti");
     bubble("Nepavyko prisijungti prie pokalbio. Pabandykite perkrauti puslapį.");
-  }
-}
-
-let storeAIActive=true;
-let aiEscalated=false;
-
-async function startStoreAI(){
-  storeAIActive=true;
-  const input=document.getElementById("msg");
-  if(input){ input.placeholder="Klausk apie LT Parduotuvę..."; input.focus(); }
-  if(!document.querySelector("#chatBody .ai-welcome")){
-    const d=document.createElement("div");d.className="bubble ai-welcome";d.textContent="🤖 Sveiki! Esu LT Parduotuvės AI. Pirmiausia pabandysiu pats padėti su prekėmis, kainomis, pristatymu, kuponais, užsakymų informacija ir apmokėjimu. Jei klausimo neišspręsiu, perduosiu pokalbį administratoriui.";document.getElementById("chatBody").appendChild(d);
-  }
-}
-
-async function requestHumanSupport(reason="Klientas paprašė administratoriaus"){
-  try{
-    await ensureChatUser();
-    const text=`[AI → ADMIN] ${reason}`;
-    const {error}=await supabaseClient.from("messages").insert({session_id:chatUser.id,sender:"customer",message:text});
-    if(error) throw error;
-    aiEscalated=true;
-    bubble("👤 Gerai — perduodu pokalbį administratoriui. Jis galės tęsti pokalbį čia.");
-    setChatStatus("Laukiama administratoriaus",false);
-  }catch(error){
-    console.error("Escalation error:",error);
-    bubble("Nepavyko perduoti administratoriui. Pabandykite dar kartą.");
-  }
-}
-
-function aiNeedsHuman(answer){
-  const t=String(answer||"").toLowerCase();
-  return !t || /negaliu atsakyti|nežinau|nezinau|neturiu informacijos|susisiekite su administrator|kreipkitės į administratori|negaliu padėti|negaliu padeti|administrator/i.test(t);
-}
-
-async function askStoreAI(message){
-  const clean=String(message||"").trim();
-  if(!clean)return;
-  await initChat();
-  bubble(clean,"user");
-  const loading=document.createElement("div");loading.className="bubble ai-loading";loading.textContent="🤖 Tikrinu informaciją...";document.getElementById("chatBody").appendChild(loading);
-  try{
-    const [{data:products,error:pErr},{data:cats,error:cErr}]=await Promise.all([
-      supabaseClient.from("products").select("name,price,category,description,badge,discount_percent,active").eq("active",true).order("created_at",{ascending:false}).limit(100),
-      supabaseClient.from("categories").select("name,description").eq("active",true).order("sort_order",{ascending:true})
-    ]);
-    if(pErr)throw pErr;if(cErr)throw cErr;
-    const context={store:"LT Parduotuvė",shipping:[{name:"LP EXPRESS",price:2.40},{name:"DPD",price:2.80},{name:"OMNIVA",price:2.80}],categories:cats||[],products:(products||[]).map(p=>({name:p.name,price:Number(p.price||0),category:p.category,description:p.description||"",badge:p.badge||"",discount_percent:Number(p.discount_percent||0)})),rules:["Atsakyk tik apie LT Parduotuvę ir jos prekes bei paslaugas.","Naudok tik pateiktą katalogo informaciją; nesugalvok kainų, prekių ar taisyklių.","Jei klausimas nesusijęs su LT Parduotuve, trumpai pasakyk, kad gali padėti tik parduotuvės klausimais.","Niekada neprašyk slaptažodžio, kortelės numerio, CVV ar kitų slaptų duomenų.","Jei klientas klausia apie konkretų jo užsakymą ar mokėjimo būseną, neapsimesk matantis privačius duomenis — nukreipk į Mano užsakymai arba administratorių."]};
-    const res=await fetch("https://ibeumlqcrjxafnatlhtx.supabase.co/functions/v1/store-ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:clean,context})});
-    const data=await res.json().catch(()=>({}));
-    if(!res.ok)throw new Error(data.error||"AI serveris nepasiekiamas");
-    loading.remove();
-    const answer=String(data.answer||"").trim();
-    if(!answer || aiNeedsHuman(answer)){
-      bubble(answer||"🤖 Šio klausimo negaliu patikimai išspręsti.");
-      await requestHumanSupport(`AI negalėjo patikimai atsakyti į: ${clean}`);
-      return;
-    }
-    bubble(answer);
-  }catch(err){
-    console.error("Store AI error:",err);
-    loading.remove();
-    bubble("🤖 Šiuo metu negaliu patikimai atsakyti į šį klausimą.");
-    await requestHumanSupport(`AI klaida / nepavyko atsakyti į: ${clean}`);
   }
 }
 
@@ -1230,17 +1165,16 @@ function bubble(t,who){
 }
 
 function quick(t){
-  if(storeAIActive){ askStoreAI(t); } else { startStoreAI(); setTimeout(()=>askStoreAI(t),50); }
+  sendChatMessage(t);
 }
 
 async function send(){
-  const i=document.getElementById("msg"); const t=i.value.trim(); if(!t)return; i.value=""; await askStoreAI(t);
+  const i=document.getElementById("msg"); const t=i.value.trim(); if(!t)return; i.value=""; await sendChatMessage(t);
 }
 
 document.getElementById("msg").addEventListener("keydown",e=>{
   if(e.key==="Enter") send();
 });
-startStoreAI();
 renderCart();
 </script>
 </body></html>
