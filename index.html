@@ -143,11 +143,6 @@ body.auth-locked{overflow:hidden}
           <label>SLAPTAŽODIS</label>
           <input id="loginPassword" type="password" autocomplete="current-password" required>
         </div>
-        <label class="robot-check">
-          <input id="loginRobot" type="checkbox" required>
-          <span>☑ Patvirtinu, kad nesu robotas</span>
-          <span class="robot-status">✓</span>
-        </label>
         <button class="auth-submit" type="submit">PRISIJUNGTI →</button>
         <div class="auth-msg" id="loginMsg"></div>
       </form>
@@ -165,11 +160,6 @@ body.auth-locked{overflow:hidden}
           <label>PAKARTOK SLAPTAŽODĮ</label>
           <input id="registerPassword2" type="password" minlength="6" autocomplete="new-password" required>
         </div>
-        <label class="robot-check">
-          <input id="registerRobot" type="checkbox" required>
-          <span>☑ Patvirtinu, kad nesu robotas</span>
-          <span class="robot-status">✓</span>
-        </label>
         <button class="auth-submit" type="submit">SUKURTI PASKYRĄ →</button>
         <div class="auth-msg" id="registerMsg"></div>
       </form>
@@ -399,8 +389,6 @@ async function sendChatMessage(text){
     bubble("Žinutės išsiųsti nepavyko. Pabandykite dar kartą.");
   }
 }
-
-<script>
 
 setTimeout(()=>{const intro=document.getElementById("intro"); if(intro) intro.remove()},4300);
 
