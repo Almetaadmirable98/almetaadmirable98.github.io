@@ -2,184 +2,200 @@
 <html lang="lt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LT PARDUOTUVĖ</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-:root{--bg:#06080f;--panel:#0d111b;--panel2:#111725;--line:#202a3d;--blue:#397dff;--violet:#8657ff;--text:#f5f7fb;--muted:#8b96aa}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-5;background:radial-gradient(circle at 15% 15%,#1c4dff22,transparent 27%),radial-gradient(circle at 85% 30%,#914cff18,transparent 28%),radial-gradient(circle at 50% 100%,#005eff15,transparent 35%)}
-body:after{content:"";position:fixed;inset:0;z-index:-4;opacity:.22;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 70%,transparent);animation:gridMove 18s linear infinite}
-@keyframes gridMove{to{background-position:70px 70px}}
-a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
-#intro{position:fixed;inset:0;z-index:9999;background:#03050b;display:grid;place-items:center;animation:introOut .8s ease 3s forwards}
-#intro .orb{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,#1e63ff55,transparent 62%);filter:blur(10px);animation:orb 2.5s ease-in-out infinite}
-#intro .brand{position:relative;text-align:center}
-#intro .brand small{display:block;color:#7ea9ff;letter-spacing:8px;font-weight:800;font-size:12px;opacity:0;animation:up .7s .2s forwards}
-#intro .brand h1{font-size:clamp(55px,11vw,125px);letter-spacing:-7px;line-height:.8;margin:20px 0;color:white;text-shadow:0 0 20px #397dff,0 0 70px #397dff77;transform:scale(.7);opacity:0;animation:logo 1s .45s forwards}
-#intro .brand h1 span{color:#4e8bff}
-#intro .brand .bar{height:3px;width:0;margin:auto;background:linear-gradient(90deg,var(--blue),var(--violet));box-shadow:0 0 30px #397dff;animation:bar 1s 1.2s forwards}
-#intro .brand p{margin-top:20px;color:#77849a;letter-spacing:4px;font-size:11px;opacity:0;animation:up .7s 1.5s forwards}
-@keyframes logo{to{transform:scale(1);opacity:1}}@keyframes bar{to{width:330px}}@keyframes up{to{opacity:1;transform:translateY(0)}}@keyframes orb{50%{transform:scale(1.2);opacity:.7}}@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-header{position:sticky;top:0;z-index:100;background:#070a11e8;border-bottom:1px solid var(--line);backdrop-filter:blur(20px)}
-.top{height:76px;display:flex;align-items:center;gap:25px;padding:0 5%}.logo{font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap}.logo span{color:#4c8cff;text-shadow:0 0 20px #397dff}
-nav{display:flex;gap:23px;margin-left:25px}nav a{font-size:13px;color:#9da8bb}nav a:hover{color:white}
-.search{margin-left:auto;width:235px;border:1px solid #28344a;background:#0b101a;color:white;padding:11px 15px;border-radius:12px;outline:none}.search:focus{border-color:#397dff;box-shadow:0 0 20px #397dff22}
-.cart{border:1px solid #344765;background:#0d1420;color:white;border-radius:12px;padding:11px 14px}.cart b{color:#65a1ff}
-.notice{border-top:1px solid #182237;background:#080c14;padding:8px;text-align:center;font-size:11px;color:#76849b}
-.hero{max-width:1400px;margin:auto;min-height:590px;padding:70px 5%;position:relative;display:flex;align-items:center;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:url("background.png") center/cover;opacity:.2;mask-image:linear-gradient(90deg,black,transparent 80%)}
-.hero:after{content:"";position:absolute;width:600px;height:600px;right:-150px;top:-80px;border-radius:50%;background:radial-gradient(circle,#326fff33,transparent 65%);filter:blur(5px)}
-.hero-content{position:relative;z-index:2;max-width:760px}.eyebrow{color:#6ea2ff;font-size:11px;font-weight:800;letter-spacing:3px}.hero h2{font-size:clamp(48px,7vw,92px);line-height:.9;letter-spacing:-6px;margin:18px 0}.hero h2 span{background:linear-gradient(90deg,#fff,#5794ff,#a066ff);-webkit-background-clip:text;color:transparent}.hero p{color:#8f9bb0;max-width:600px;font-size:16px;line-height:1.7}.hero-btns{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}.btn{padding:13px 19px;border-radius:11px;background:linear-gradient(135deg,#367eff,#674cff);border:1px solid #6597ff;color:white;font-weight:800;box-shadow:0 0 30px #397dff22}.btn.alt{background:#0b1019;border-color:#2c394e;box-shadow:none}
-.floating{position:absolute;z-index:1;border:1px solid #ffffff14;background:#ffffff08;backdrop-filter:blur(10px);border-radius:18px;padding:20px;font-size:34px;box-shadow:0 15px 50px #0006;animation:float 5s ease-in-out infinite}.f1{right:18%;top:15%}.f2{right:8%;bottom:20%;animation-delay:1s}.f3{right:30%;bottom:12%;animation-delay:2s}@keyframes float{50%{transform:translateY(-18px) rotate(4deg)}}
-.quick{max-width:1200px;margin:-35px auto 0;position:relative;z-index:5;padding:0 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick .q{background:#0c121de8;border:1px solid #202d42;border-radius:15px;padding:18px;backdrop-filter:blur(15px)}.q strong{display:block;font-size:13px}.q span{color:#707d91;font-size:11px}
-section{max-width:1250px;margin:auto;padding:80px 5%}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px}.section-head h2{font-size:32px}.section-head p{color:#738097;font-size:13px}
-.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.filter{background:#0b1019;color:#8e9ab0;border:1px solid #26344a;padding:9px 15px;border-radius:24px}.filter.active,.filter:hover{color:white;border-color:#4b8cff;background:#101b30}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:linear-gradient(180deg,#101724,#0a0e16);border:1px solid #1f2b3f;border-radius:17px;padding:10px;transition:.25s;position:relative}.product:hover{transform:translateY(-6px);border-color:#397dff;box-shadow:0 20px 55px #397dff16}.pic{height:225px;width:100%;object-fit:cover;border-radius:12px;display:block;background:#101723}.tag{position:absolute;top:20px;left:20px;background:#397dff;color:white;border-radius:8px;padding:5px 8px;font-size:9px;font-weight:800}.product h3{font-size:15px;margin:13px 3px 4px}.desc{font-size:11px;color:#718097;margin:0 3px 12px}.bottom{display:flex;align-items:center;justify-content:space-between;margin:0 3px}.price{font-size:19px;font-weight:900}.add{border:1px solid #3c82ff;background:#0e1d34;color:#75aaff;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:800}.add:hover{background:#1b4e99;color:white}
-.banners{display:grid;grid-template-columns:1.4fr .6fr;gap:14px}.banner{min-height:210px;border:1px solid #202d42;border-radius:18px;padding:28px;display:flex;align-items:end;position:relative;overflow:hidden;background:linear-gradient(120deg,#101a31,#0a0e16)}.banner:after{content:"";position:absolute;width:280px;height:280px;right:-80px;top:-80px;background:radial-gradient(circle,#397dff44,transparent 65%)}.banner h3{font-size:27px;position:relative;z-index:2}.banner p{color:#8490a4;position:relative;z-index:2;margin-top:7px}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.contact{border:1px solid #202d42;border-radius:17px;background:#0c121c;padding:26px}.contact p{color:#7d8a9f;margin:9px 0 16px}.contact a{color:#69a0ff;font-weight:800}
-footer{border-top:1px solid #172235;padding:30px;text-align:center;color:#65738a;font-size:12px}
-.backdrop{position:fixed;inset:0;background:#000b;z-index:500;display:none}.drawer{position:absolute;right:0;top:0;width:min(430px,100%);height:100%;overflow:auto;background:#080e17;border-left:1px solid #293b56;padding:24px}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{background:#101a29;color:white;border:1px solid #2a3b55;border-radius:8px;padding:8px 10px}.cart-item{padding:14px 0;border-bottom:1px solid #192638;display:flex;justify-content:space-between;gap:10px}.total{font-size:22px;font-weight:900;margin:23px 0}.checkout{width:100%;border:0;background:linear-gradient(135deg,#397fff,#714cff);color:white;border-radius:10px;padding:13px;font-weight:900}
-.toast{position:fixed;right:20px;bottom:20px;z-index:600;background:#0d1726;border:1px solid #397dff;padding:13px 17px;border-radius:11px;transform:translateY(130px);transition:.25s}.toast.show{transform:translateY(0)}
-@media(max-width:1000px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(2,1fr)}.banners{grid-template-columns:1fr}}
-@media(max-width:600px){.search{width:130px}.grid,.quick,.contact-grid{grid-template-columns:1fr}.hero h2{letter-spacing:-3px}.floating{display:none}}
+
+:root{
+  --bg:#050812;--panel:#0b111c;--panel2:#101827;--line:#26334a;
+  --blue:#3b82ff;--blue2:#6ea5ff;--green:#20e6a0;--muted:#8491a7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:
+radial-gradient(circle at 50% 0%,#17346b44,transparent 28%),
+radial-gradient(circle at 10% 45%,#432a9b22,transparent 25%),
+var(--bg);color:#fff;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+background-size:90px 90px;opacity:.025;mask-image:linear-gradient(#000,transparent 85%)}
+a{text-decoration:none;color:inherit}button,input{font:inherit}
+
+header{position:sticky;top:0;z-index:100;background:#050912ee;backdrop-filter:blur(18px);border-bottom:1px solid #202c40}
+.nav{height:68px;max-width:1500px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
+.logo{font-size:21px;font-weight:900;white-space:nowrap}.logo span{font-size:30px;color:#fff;text-shadow:0 0 15px #4288ff}.logo em{font-style:normal;color:#dce7ff}
+nav{display:flex;gap:26px}nav a{font-size:13px;color:#b9c4d7;padding:25px 0;position:relative}nav a.active,nav a:hover{color:#fff}nav a.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#4d8dff;box-shadow:0 0 12px #4d8dff}
+.search{margin-left:auto;width:315px;height:38px;border:1px solid #2c394d;border-radius:22px;background:#0b111c;color:#fff;padding:0 17px;outline:none}.search:focus{border-color:#4a8dff}
+.iconbtn{width:40px;height:40px;border:0;background:transparent;color:#e6edff;font-size:22px}.cart{position:relative}.cart b{position:absolute;right:-2px;top:1px;background:#4d82ff;width:19px;height:19px;border-radius:50%;font-size:10px;display:grid;place-items:center}
+
+.hero{min-height:440px;position:relative;overflow:hidden;border-bottom:1px solid #202c40;
+background:
+radial-gradient(circle at 50% 45%,#4b8fff2b,transparent 23%),
+linear-gradient(135deg,#080e1c,#10172b 45%,#080b13)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.7}
+.hero:before{width:480px;height:480px;left:-90px;top:-140px;background:radial-gradient(circle,#496cff44,transparent 65%)}
+.hero:after{width:600px;height:600px;right:-150px;top:-220px;background:radial-gradient(circle,#8d45ff35,transparent 65%)}
+.hero-inner{max-width:1500px;margin:auto;min-height:440px;padding:45px 28px;display:grid;grid-template-columns:1fr 1.3fr 1fr;align-items:center;gap:20px;position:relative;z-index:2}
+.hero-side{display:flex;flex-direction:column;gap:10px}.side-card{background:#080e18cc;border:1px solid #33425a;border-radius:12px;padding:15px;backdrop-filter:blur(10px);box-shadow:0 10px 35px #0006}.side-card strong{font-size:13px}.side-card p{font-size:11px;color:#8e9bb0;margin-top:4px}.green{color:#25e9a0}
+.hero-main{text-align:center}.crown{font-size:46px;filter:drop-shadow(0 0 18px #6fa0ff);animation:float 3s ease-in-out infinite}
+.hero-main .lt{font-size:110px;line-height:.75;font-weight:900;letter-spacing:-10px;color:#f4f7ff;text-shadow:0 0 14px #fff,0 0 40px #3d83ff,0 0 80px #3d83ff66}
+.hero-main h1{font-size:53px;letter-spacing:-3px;font-weight:900;margin:13px 0 7px;text-shadow:0 0 15px #fff,0 0 35px #397dff}
+.hero-main p{font-size:11px;letter-spacing:7px;color:#d7e1f6}
+.hero-main .cta{display:inline-block;margin-top:20px;border:2px solid #5b9aff;border-radius:28px;padding:12px 30px;color:#fff;font-weight:800;box-shadow:0 0 25px #3b82ff66;background:#0a1730aa}
+.hero-main .cta:hover{background:#15366b}
+.hero-deco{position:absolute;font-size:55px;filter:drop-shadow(0 0 15px #538fff);opacity:.9;animation:float 4s ease-in-out infinite}
+.d1{left:7%;top:25%}.d2{left:23%;bottom:10%;animation-delay:.7s}.d3{right:7%;top:23%;animation-delay:1.2s}.d4{right:25%;bottom:8%;animation-delay:1.8s}
+@keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
+
+.servicebar{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative;z-index:5}
+.service-inner{display:grid;grid-template-columns:repeat(5,1fr);background:#080e17;border:1px solid #42516b;border-radius:16px;overflow:hidden;box-shadow:0 15px 50px #0007}
+.service{padding:16px 18px;border-right:1px solid #202c40;display:flex;gap:12px;align-items:center}.service:last-child{border:0}
+.service .ico{width:38px;height:38px;border-radius:50%;background:#121b2c;border:1px solid #2d3e5c;display:grid;place-items:center}.service strong{display:block;font-size:11px}.service small{display:block;color:#7d8ba1;font-size:10px;margin-top:3px}
+.stars{color:#ffd35a;letter-spacing:2px;font-size:15px}
+
+main{max-width:1500px;margin:auto;padding:0 28px 70px}
+.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+.cat{height:135px;border:1px solid #32415a;border-radius:13px;position:relative;overflow:hidden;padding:17px;background:linear-gradient(145deg,#111b2d,#080d16);transition:.25s}
+.cat:hover{transform:translateY(-4px);border-color:#538fff;box-shadow:0 12px 35px #2d73ff1c}
+.cat:after{content:"";position:absolute;width:150px;height:150px;right:-40px;bottom:-50px;background:radial-gradient(circle,#397dff44,transparent 65%)}
+.cat h3{font-size:16px;position:relative;z-index:2}.cat p{font-size:11px;color:#8d99ab;margin-top:5px;position:relative;z-index:2}.cat button{position:absolute;left:14px;bottom:12px;background:#07101e;border:1px solid #6c82a4;color:#fff;border-radius:18px;padding:6px 13px;font-size:10px;z-index:3}
+
+.products-head{display:flex;align-items:center;justify-content:space-between;margin-top:30px;margin-bottom:18px}.title h2{font-size:25px}.title p{font-size:12px;color:#718097;margin-top:4px}
+.fire{font-size:29px;vertical-align:-4px;margin-right:5px}.tabs{display:flex;border:1px solid #26354c;border-radius:10px;overflow:hidden}.tab{background:#090f19;color:#8794a9;border:0;border-right:1px solid #202d42;padding:10px 17px;font-size:11px}.tab.active,.tab:hover{color:#fff;background:#10234a;box-shadow:inset 0 -2px #4b8cff}.view{border:1px solid #2d405d;background:#0b1220;color:#6ea2ff;border-radius:10px;padding:10px 15px;font-size:11px}
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.product{background:linear-gradient(180deg,#0e1623,#080d15);border:1px solid #202e43;border-radius:11px;overflow:hidden;position:relative;min-width:0;transition:.2s}.product:hover{transform:translateY(-5px);border-color:#4a86e8;box-shadow:0 15px 40px #0008}.photo{height:170px;background:linear-gradient(145deg,#172338,#070b12);display:grid;place-items:center;font-size:65px;position:relative}.photo:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,#4c8fff22,transparent 55%)}
+.badge{position:absolute;top:9px;left:9px;background:#246cff;color:#fff;border-radius:8px;padding:4px 7px;font-size:8px;font-weight:800;z-index:2}.badge.new{background:#0e9d78}.badge.sale{background:#e34a4a}.heart{position:absolute;right:8px;top:7px;background:transparent;border:0;color:#dbe5f7;font-size:18px;z-index:3}
+.info{padding:11px}.info h3{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.info p{font-size:9px;color:#7c899e;margin-top:3px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.price{color:#21e8a1;font-size:17px;font-weight:900}.addsmall{width:32px;height:32px;border:1px solid #64789b;background:#0b1220;color:#fff;border-radius:8px}
+
+.contact{margin-top:45px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-card{border:1px solid #25344b;background:#0a111b;border-radius:14px;padding:22px}.contact-card h3{font-size:16px}.contact-card p{color:#7f8ca0;font-size:12px;margin:7px 0 13px}.contact-card a{color:#6fa5ff;font-size:13px;font-weight:800}
+footer{text-align:center;border-top:1px solid #1a2639;padding:28px;color:#65738a;font-size:11px}
+
+#cartBg{display:none;position:fixed;inset:0;background:#000b;z-index:500}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#080e17;border-left:1px solid #31445f;padding:24px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center}.close{border:1px solid #2c3c55;background:#101a29;color:#fff;border-radius:8px;padding:7px 10px}.cart-item{padding:14px 0;border-bottom:1px solid #1d293a;display:flex;justify-content:space-between;gap:10px;font-size:13px}.total{font-size:21px;font-weight:900;margin:22px 0}.checkout{width:100%;padding:13px;border:0;border-radius:10px;background:linear-gradient(135deg,#3b82ff,#7c4dff);color:#fff;font-weight:800}
+#toast{position:fixed;right:20px;bottom:20px;background:#0c1726;border:1px solid #397dff;padding:13px 17px;border-radius:10px;transform:translateY(120px);transition:.25s;z-index:600}#toast.show{transform:translateY(0)}
+
+@media(max-width:1200px){.grid{grid-template-columns:repeat(4,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.hero-inner{grid-template-columns:1fr}.hero-side{display:none}.hero-main{padding:20px}}
+@media(max-width:800px){nav{display:none}.search{width:180px}.service-inner{grid-template-columns:repeat(2,1fr)}.service:nth-child(2),.service:nth-child(4){border-right:0}.service:last-child{grid-column:1/-1}.grid{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
+@media(max-width:500px){.nav{padding:0 14px;gap:10px}.search{width:125px}.logo{font-size:16px}.logo span{font-size:23px}.hero-main .lt{font-size:78px}.hero-main h1{font-size:36px}.hero-main p{letter-spacing:4px}.service-inner{grid-template-columns:1fr}.service{border-right:0;border-bottom:1px solid #202c40}.categories{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.photo{height:145px}.products-head{display:block}.tabs{margin-top:15px;overflow:auto}}
 </style>
 </head>
 <body>
 
-<div id="intro">
-<div class="orb"></div>
-<div class="brand">
-<small>WELCOME TO</small>
-<h1><span>LT</span> PARDUOTUVĖ</h1>
-<div class="bar"></div>
-<p>MODERN • FAST • 24/7</p>
-</div>
-</div>
-
 <header>
-<div class="top">
-<a class="logo" href="#top"><span>LT</span> PARDUOTUVĖ</a>
-<nav><a href="#top">Pagrindinis</a><a href="#prekes">Parduotuvė</a><a href="#kategorijos">Kategorijos</a><a href="#kontaktai">Kontaktai</a></nav>
+<div class="nav">
+<a class="logo" href="#top"><span>LT</span> <em>PARDUOTUVĖ</em></a>
+<nav>
+<a class="active" href="#top">Pagrindinis</a>
+<a href="#prekes">-----</a>
+<a href="#prekes">-----</a>
+<a href="#prekes">Rūbai</a>
+<a href="#prekes">Elektronika</a>
+<a href="#prekes">Aksesuarai</a>
+<a href="#prekes">Kita</a>
+</nav>
 <input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
-<button class="cart" onclick="openCart()">🛒 <b id="count">0</b></button>
+<button class="iconbtn">♙</button><button class="iconbtn">♡</button>
+<button class="iconbtn cart" onclick="openCart()">🛒<b id="count">0</b></button>
 </div>
-<div class="notice">⚡ PAGALBA 24/7 &nbsp; • &nbsp; 📧 nedasliubinas4@gmail.com &nbsp; • &nbsp; 🎫 Discord ticket sistema</div>
 </header>
 
-<main id="top">
-<section class="hero">
-<div class="hero-content">
-<div class="eyebrow">LT PARDUOTUVĖ / 2026 EDITION</div>
-<h2>ATRASK<br><span>KAŽKĄ NAUJO.</span></h2>
-<p>Moderni internetinė parduotuvė, kurioje rasi elektronikos, rūbų, aksesuarų ir kitų prekių. Greita, patogu ir sukurta šiuolaikiniam apsipirkimui.</p>
-<div class="hero-btns"><a class="btn" href="#prekes">PERŽIŪRĖTI PREKES →</a><a class="btn alt" href="#kontaktai">SUSISIEKTI</a></div>
+<section class="hero" id="top">
+<div class="hero-inner">
+<div class="hero-side">
+<div class="side-card"><strong><span class="green">●</span> &nbsp;24/7 Pagalba</strong><p>Visada pasiekiami</p></div>
+<div class="side-card"><strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small></div>
+<div class="side-card"><strong>💬 El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small></div>
 </div>
-<div class="floating f1">⌚</div><div class="floating f2">🎧</div><div class="floating f3">👟</div>
-</section>
-
-<div class="quick">
-<div class="q"><strong>⚡ Greitas aptarnavimas</strong><span>Patogus susisiekimas</span></div>
-<div class="q"><strong>🛡️ Saugus apsipirkimas</strong><span>Aiškus katalogas</span></div>
-<div class="q"><strong>💎 Naujos prekės</strong><span>Reguliariai atnaujinamas pasirinkimas</span></div>
-<div class="q"><strong>💬 Pagalba 24/7</strong><span>Email + Discord</span></div>
+<div class="hero-main">
+<div class="crown">♛</div>
+<div class="lt">LT</div>
+<h1>PARDUOTUVĖ</h1>
+<p>DAUGIAU NEI TIK PARDUOTUVĖ</p>
+<a class="cta" href="#prekes">APSIPIRKTI DABAR&nbsp; →</a>
 </div>
-
-<section id="prekes">
-<div class="section-head"><div><h2>Populiarios prekės</h2><p>Pasirink kategoriją arba naudok paiešką.</p></div></div>
-<div class="filters" id="kategorijos">
-<button class="filter active" data-cat="all">Visos</button>
-<button class="filter" data-cat="rubai">Rūbai</button>
-<button class="filter" data-cat="elektronika">Elektronika</button>
-<button class="filter" data-cat="aksesuarai">Aksesuarai</button>
-<button class="filter" data-cat="namai">Namai</button>
+<div class="hero-side">
+<div class="side-card"><strong>🚚 Greitas pristatymas</strong><p>1–3 darbo dienos</p></div>
+<div class="side-card"><strong>🛡️ Saugūs mokėjimai</strong><p>100% saugu</p></div>
+<div class="side-card"><strong>🎁 Diskretiškas pakavimas</strong><p>Jokių nereikalingų žymėjimų</p></div>
+<div class="side-card"><strong>◉ Klientų palaikymas 24/7</strong><p>Visada pasiruošę padėti</p></div>
 </div>
-
-<div class="grid">
-
-<article class="product" data-cat="rubai" data-name="Premium džemperis"><span class="tag">NEW</span><img class="pic" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"><h3>Premium džemperis</h3><p class="desc">Modernus kasdienis stilius</p><div class="bottom"><b class="price">39.99 €</b><button class="add" onclick="add('Premium džemperis',39.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="rubai" data-name="Oversize marškinėliai"><img class="pic" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"><h3>Oversize marškinėliai</h3><p class="desc">Laisvalaikio modelis</p><div class="bottom"><b class="price">24.99 €</b><button class="add" onclick="add('Oversize marškinėliai',24.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="rubai" data-name="Miesto striukė"><span class="tag">HOT</span><img class="pic" src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=800&q=80"><h3>Miesto striukė</h3><p class="desc">Universalus stilius</p><div class="bottom"><b class="price">69.99 €</b><button class="add" onclick="add('Miesto striukė',69.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="elektronika" data-name="Belaidės ausinės"><span class="tag">TOP</span><img class="pic" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"><h3>Belaidės ausinės</h3><p class="desc">Muzikai ir kasdienai</p><div class="bottom"><b class="price">49.99 €</b><button class="add" onclick="add('Belaidės ausinės',49.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="elektronika" data-name="Išmanusis laikrodis"><img class="pic" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"><h3>Išmanusis laikrodis</h3><p class="desc">Moderniam gyvenimui</p><div class="bottom"><b class="price">89.99 €</b><button class="add" onclick="add('Išmanusis laikrodis',89.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="elektronika" data-name="Bluetooth kolonėlė"><img class="pic" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"><h3>Bluetooth kolonėlė</h3><p class="desc">Garsas namams ir kelionėms</p><div class="bottom"><b class="price">59.99 €</b><button class="add" onclick="add('Bluetooth kolonėlė',59.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="elektronika" data-name="USB-C įkroviklis"><img class="pic" src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80"><h3>USB-C įkroviklis</h3><p class="desc">Kompaktiškas ir patogus</p><div class="bottom"><b class="price">19.99 €</b><button class="add" onclick="add('USB-C įkroviklis',19.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="aksesuarai" data-name="Miesto kuprinė"><span class="tag">NEW</span><img class="pic" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"><h3>Miesto kuprinė</h3><p class="desc">Kasdienai ir kelionėms</p><div class="bottom"><b class="price">34.99 €</b><button class="add" onclick="add('Miesto kuprinė',34.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="aksesuarai" data-name="Klasikinė piniginė"><img class="pic" src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80"><h3>Klasikinė piniginė</h3><p class="desc">Minimalistinis aksesuaras</p><div class="bottom"><b class="price">29.99 €</b><button class="add" onclick="add('Klasikinė piniginė',29.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="aksesuarai" data-name="Akiniai nuo saulės"><img class="pic" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80"><h3>Akiniai nuo saulės</h3><p class="desc">Modernus aksesuaras</p><div class="bottom"><b class="price">27.99 €</b><button class="add" onclick="add('Akiniai nuo saulės',27.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="namai" data-name="Stalo lempa"><img class="pic" src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"><h3>Stalo lempa</h3><p class="desc">Moderniai darbo vietai</p><div class="bottom"><b class="price">32.99 €</b><button class="add" onclick="add('Stalo lempa',32.99)">+ Krepšelis</button></div></article>
-
-<article class="product" data-cat="namai" data-name="Terminis puodelis"><img class="pic" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"><h3>Terminis puodelis</h3><p class="desc">Kasdieniam naudojimui</p><div class="bottom"><b class="price">21.99 €</b><button class="add" onclick="add('Terminis puodelis',21.99)">+ Krepšelis</button></div></article>
-
+<div class="hero-deco d1">📱</div><div class="hero-deco d2">👟</div><div class="hero-deco d3">🎧</div><div class="hero-deco d4">⌚</div>
 </div>
 </section>
 
-<section>
-<div class="banners">
-<div class="banner"><div><h3>Modernus pasirinkimas.</h3><p>Vienoje vietoje surinktos populiarios kategorijos.</p></div></div>
-<div class="banner"><div><h3>Pagalba 24/7</h3><p>Visada gali susisiekti.</p></div></div>
+<div class="servicebar">
+<div class="service-inner">
+<div class="service"><div class="ico">🚚</div><div><strong>GREITAS PRISTATYMAS</strong><small>1–3 darbo dienos</small></div></div>
+<div class="service"><div class="ico">🛡️</div><div><strong>SAUGŪS MOKĖJIMAI</strong><small>100% saugūs</small></div></div>
+<div class="service"><div class="ico">🎁</div><div><strong>DISKRETIŠKAS PAKAVIMAS</strong><small>Jokių nereikalingų žymėjimų</small></div></div>
+<div class="service"><div class="ico">🔔</div><div><strong>24/7 PAGALBA</strong><small>Visada pasiekiami</small></div></div>
+<div class="service"><div><div class="stars">★★★★★</div><small>Klientų įvertinimas<br>4.9/5 (1000+ atsiliepimų)</small></div></div>
 </div>
-</section>
+</div>
 
-<section id="kontaktai">
-<div class="contact-grid">
-<div class="contact"><h2>📧 El. paštas</h2><p>Klausimams ir pagalbai.</p><a href="mailto:nedasliubinas4@gmail.com">nedasliubinas4@gmail.com</a></div>
-<div class="contact"><h2>🎫 Discord Ticket</h2><p>Prisijunk ir susisiek per ticket sistemą.</p><a class="btn" href="https://dsc.gg/ltparduotuve" target="_blank">ATIDARYTI DISCORD</a></div>
+<main>
+<div class="categories">
+<div class="cat"><h3>-----</h3><p>Platus pasirinkimas</p><button onclick="setCat('-----')">Žiūrėti →</button></div>
+<div class="cat"><h3>-----</h3><p>Populiariausi modeliai</p><button onclick="setCat('-----')">Žiūrėti →</button></div>
+<div class="cat"><h3>RŪBAI</h3><p>Stilius kiekvienam</p><button onclick="setCat('Rūbai')">Žiūrėti →</button></div>
+<div class="cat"><h3>ELEKTRONIKA</h3><p>Telefonai, ausinės, kita</p><button onclick="setCat('Elektronika')">Žiūrėti →</button></div>
+<div class="cat"><h3>AKSESUARAI</h3><p>Viskas, ko reikia</p><button onclick="setCat('Aksesuarai')">Žiūrėti →</button></div>
+<div class="cat"><h3>KITA</h3><p>Įvairios prekės</p><button onclick="setCat('Kita')">Žiūrėti →</button></div>
 </div>
-</section>
+
+<div class="products-head" id="prekes">
+<div class="title"><h2><span class="fire">🔥</span>Populiariausios prekės</h2><p>Peržiūrėk mūsų populiariausias prekes</p></div>
+<div class="tabs">
+<button class="tab active" data-cat="all">Visos</button><button class="tab" data-cat="-----">-----</button><button class="tab" data-cat="-----2">-----</button><button class="tab" data-cat="rubai">Rūbai</button><button class="tab" data-cat="elektronika">Elektronika</button><button class="tab" data-cat="aksesuarai">Aksesuarai</button><button class="tab" data-cat="kita">Kita</button>
+</div>
+<button class="view">Žiūrėti visas →</button>
+</div>
+
+<div class="grid" id="grid">
+<script>
+const data=[
+["Nike Tech Fleece Hoodie","Rūbai","89.99 €","🧥","populiarus"],
+["Air Force 1 '07","Rūbai","119.99 €","👟","populiarus"],
+["iPhone 15 128GB","Elektronika","699.99 €","📱","sale"],
+["Apple AirPods Pro 2","Elektronika","249.99 €","🎧","nauja"],
+["Apple Watch Series 9","Elektronika","249.99 €","⌚","populiarus"],
+["Bluetooth kolonėlė","Elektronika","159.99 €","🔊","populiarus"],
+["The North Face Hoodie","Rūbai","79.99 €","🧥","nauja"],
+["PlayStation 5","Elektronika","499.99 €","🎮","populiarus"],
+["Miesto kuprinė","Aksesuarai","34.99 €","🎒","nauja"],
+["Klasikinė piniginė","Aksesuarai","29.99 €","👛","populiarus"],
+["Stalo lempa","Kita","32.99 €","💡","nauja"],
+["Terminis puodelis","Kita","21.99 €","☕","populiarus"]
+];
+document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowerCase()}">
+<div class="photo">${x[3]}<span class="badge ${x[4]=='nauja'?'new':x[4]=='sale'?'sale':''}">${x[4]=='sale'?'−20%':x[4]=='nauja'?'Nauja':'Populiarus'}</span><button class="heart">♡</button></div>
+<div class="info"><h3>${x[0]}</h3><p>${x[1]}</p><div class="price-row"><b class="price">${x[2]}</b><button class="addsmall" onclick="add('${x[0]}',${parseFloat(x[2])})">🛒</button></div></div></article>`).join(""));
+</script>
+</div>
+
+<div class="contact" id="kontaktai">
+<div class="contact-card"><h3>📧 El. paštas</h3><p>Klausimams ir pagalbai.</p><a href="mailto:nedasliubinas4@gmail.com">nedasliubinas4@gmail.com</a></div>
+<div class="contact-card"><h3>🎫 Discord / Ticket</h3><p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p><a href="https://dsc.gg/ltparduotuve" target="_blank">dsc.gg/ltparduotuve →</a></div>
+</div>
 </main>
 
-<footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7 • nedasliubinas4@gmail.com</footer>
+<footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7</footer>
 
-<div class="toast" id="toast">✓ Prekė įdėta į krepšelį</div>
-
-<div class="backdrop" id="cartBg" onclick="closeCart()">
-<aside class="drawer" onclick="event.stopPropagation()">
-<div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div>
-<div id="items"></div>
-<div class="total">Iš viso: <span id="total">0.00 €</span></div>
-<button class="checkout" onclick="alert('Apmokėjimo sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button>
-</aside>
-</div>
+<div id="toast">✓ Prekė įdėta į krepšelį</div>
+<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
 
 <script>
-let cart=[],cat="all";
-const products=[...document.querySelectorAll(".product")];
-
-function add(name,price){
- cart.push({name,price});
- renderCart();
- document.getElementById("toast").classList.add("show");
- setTimeout(()=>document.getElementById("toast").classList.remove("show"),1700);
-}
-function renderCart(){
- document.getElementById("count").textContent=cart.length;
- document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):'<p style="color:#738097">Krepšelis tuščias.</p>';
- document.getElementById("total").textContent=cart.reduce((s,x)=>s+x.price,0).toFixed(2)+" €";
-}
-function removeItem(i){cart.splice(i,1);renderCart()}
-function openCart(){document.getElementById("cartBg").style.display="block"}
+let cart=[];
+let current="all";
+function add(name,price){cart.push({name,price});render();let t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)}
+function render(){document.getElementById("count").textContent=cart.length;document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):"<p style='color:#718097;margin-top:20px'>Krepšelis tuščias.</p>";document.getElementById("total").textContent=cart.reduce((s,x)=>s+x.price,0).toFixed(2)+" €"}
+function removeItem(i){cart.splice(i,1);render()}
+function openCart(){document.getElementById("cartBg").style.display="block";render()}
 function closeCart(){document.getElementById("cartBg").style.display="none"}
-function filterProducts(){
- const q=document.getElementById("search").value.toLowerCase();
- products.forEach(p=>p.style.display=(cat==="all"||p.dataset.cat===cat)&&p.dataset.name.toLowerCase().includes(q)?"":"none");
-}
-document.getElementById("search").addEventListener("input",filterProducts);
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
- b.classList.add("active");cat=b.dataset.cat;filterProducts();
-}));
-renderCart();
+function filter(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".product").forEach(p=>{let ok=current==="all"||p.dataset.cat===current;let text=p.innerText.toLowerCase();p.style.display=ok&&text.includes(q)?"":"none"})}
+document.getElementById("search").addEventListener("input",filter);
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");current=b.dataset.cat;filter()});
+function setCat(name){if(name==="-----")return;let m={"Rūbai":"rubai","Elektronika":"elektronika","Aksesuarai":"aksesuarai","Kita":"kita"};current=m[name]||"all";document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===current));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
+render();
 </script>
 </body>
 </html>
