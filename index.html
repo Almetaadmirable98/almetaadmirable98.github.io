@@ -46,8 +46,7 @@ linear-gradient(135deg,#030712,#0a1020 43%,#080611)}
 .hero-main p{font-size:11px;letter-spacing:7px;color:#d7e1f6}
 .hero-main .cta{display:inline-block;margin-top:20px;border:2px solid #5b9aff;border-radius:28px;padding:12px 30px;color:#fff;font-weight:800;box-shadow:0 0 25px #3b82ff66;background:#0a1730aa}
 .hero-main .cta:hover{background:#15366b}
-.hero-deco{position:absolute;font-size:55px;filter:drop-shadow(0 0 15px #538fff);opacity:.9;animation:float 4s ease-in-out infinite}
-.d1{left:3%;top:19%}.d2{left:6%;bottom:7%;animation-delay:.7s}.d3{right:3%;top:18%;animation-delay:1.2s}.d4{right:6%;bottom:7%;animation-delay:1.8s}
+
 @keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
 
 .servicebar{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative;z-index:5}
@@ -203,6 +202,17 @@ font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;poi
 .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease,filter .45s ease;background:linear-gradient(145deg,#182844,#080d15)}
 .product:hover .photo img{transform:scale(1.06);filter:brightness(1.08)}
 
+
+.clickable-card{display:block;color:inherit;text-decoration:none;cursor:pointer;transition:.22s}
+.clickable-card:hover{transform:translateY(-3px);border-color:#5b96ff;box-shadow:0 0 28px #397dff22}
+.clickable-card small{color:#a9c7ff}
+
+
+.clickable-card{display:block!important;color:inherit!important;text-decoration:none!important;cursor:pointer;transition:.22s}
+.top-link-btn{display:inline-block;margin-top:9px;padding:7px 11px;border-radius:8px;background:linear-gradient(135deg,#397dff,#684cff);border:1px solid #79a8ff;color:#fff;font-size:9px;font-weight:800;box-shadow:0 0 18px #397dff22}
+.clickable-card:hover .top-link-btn{box-shadow:0 0 24px #397dff66;transform:translateY(-1px)}
+.product-image{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
+.photo{overflow:hidden}
 </style>
 </head>
 <body>
@@ -247,91 +257,16 @@ font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;poi
 <section class="hero" id="top">
 <div class="hero-inner">
 <div class="hero-side">
-<div class="side-card"><strong><span class="green">●</span> &nbsp;24/7 Pagalba</strong><p>Visada pasiekiami</p></div>
-<div class="side-card"><strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small></div>
-<div class="side-card"><strong>💬 El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small></div>
-</div>
-<div class="wall-chip ch1">NEXT GEN • 2026</div>
-<div class="wall-chip ch2">FAST • SIMPLE • MODERN</div>
-<div class="wall-chip ch3">PREMIUM SELECTION</div>
-<div class="wall-chip ch4">ONLINE 24/7</div>
-<div class="hero-main">
-<div class="crown">♛</div>
-<div class="lt">LT</div>
-<h1>PARDUOTUVĖ</h1>
-<p>DAUGIAU NEI TIK PARDUOTUVĖ</p>
-<a class="cta" href="#prekes">APSIPIRKTI DABAR&nbsp; →</a>
-</div>
-<div class="hero-side">
-<div class="side-card"><strong>🚚 Greitas pristatymas</strong><p>1–3 darbo dienos</p></div>
-<div class="side-card"><strong>🛡️ Saugūs mokėjimai</strong><p>100% saugu</p></div>
-<div class="side-card"><strong>🎁 Diskretiškas pakavimas</strong><p>Jokių nereikalingų žymėjimų</p></div>
-<div class="side-card"><strong>◉ Klientų palaikymas 24/7</strong><p>Visada pasiruošę padėti</p></div>
-</div>
-<div class="hero-deco d1">📱</div><div class="hero-deco d2">👟</div><div class="hero-deco d3">🎧</div><div class="hero-deco d4">⌚</div>
-</div>
-</section>
-
-<div class="servicebar">
-<div class="service-inner">
-<div class="service"><div class="ico">🚚</div><div><strong>GREITAS PRISTATYMAS</strong><small>1–3 darbo dienos</small></div></div>
-<div class="service"><div class="ico">🛡️</div><div><strong>SAUGŪS MOKĖJIMAI</strong><small>100% saugūs</small></div></div>
-<div class="service"><div class="ico">🎁</div><div><strong>DISKRETIŠKAS PAKAVIMAS</strong><small>Jokių nereikalingų žymėjimų</small></div></div>
-<div class="service"><div class="ico">🔔</div><div><strong>24/7 PAGALBA</strong><small>Visada pasiekiami</small></div></div>
-<div class="service"><div><div class="stars">★★★★★</div><small>Klientų įvertinimas<br>4.9/5 (1000+ atsiliepimų)</small></div></div>
-</div>
-</div>
-
-<main>
-<div class="categories">
-<div class="cat"><h3>-----</h3><p>Platus pasirinkimas</p><button onclick="setCat('-----')">Žiūrėti →</button></div>
-<div class="cat"><h3>-----</h3><p>Populiariausi modeliai</p><button onclick="setCat('-----')">Žiūrėti →</button></div>
-<div class="cat"><h3>RŪBAI</h3><p>Stilius kiekvienam</p><button onclick="setCat('Rūbai')">Žiūrėti →</button></div>
-<div class="cat"><h3>ELEKTRONIKA</h3><p>Telefonai, ausinės, kita</p><button onclick="setCat('Elektronika')">Žiūrėti →</button></div>
-<div class="cat"><h3>AKSESUARAI</h3><p>Viskas, ko reikia</p><button onclick="setCat('Aksesuarai')">Žiūrėti →</button></div>
-<div class="cat"><h3>KITA</h3><p>Įvairios prekės</p><button onclick="setCat('Kita')">Žiūrėti →</button></div>
-</div>
-
-<div class="products-head" id="prekes">
-<div class="title"><h2><span class="fire">🔥</span>Populiariausios prekės</h2><p>Peržiūrėk mūsų populiariausias prekes</p></div>
-<div class="tabs">
-<button class="tab active" data-cat="all">Visos</button><button class="tab" data-cat="-----">-----</button><button class="tab" data-cat="-----2">-----</button><button class="tab" data-cat="rubai">Rūbai</button><button class="tab" data-cat="elektronika">Elektronika</button><button class="tab" data-cat="aksesuarai">Aksesuarai</button><button class="tab" data-cat="kita">Kita</button>
-</div>
-<button class="view">Žiūrėti visas →</button>
-</div>
-
-<div class="grid" id="grid">
-<script>
-const data=[
-["Nike Tech Fleece Hoodie","Rūbai","89.99 €","https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85","populiarus"],
-["Oversize marškinėliai","Rūbai","34.99 €","https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85","populiarus"],
-["Miesto striukė","Rūbai","79.99 €","https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=700&q=85","sale"],
-["Klasikiniai sportbačiai","Rūbai","119.99 €","https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85","nauja"],
-["The North Face Hoodie","Rūbai","79.99 €","https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85","nauja"],
-["Belaidės ausinės","Elektronika","59.99 €","https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85","populiarus"],
-["Išmanusis laikrodis","Elektronika","249.99 €","https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85","populiarus"],
-["iPhone 15 128GB","Elektronika","699.99 €","https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=85","nauja"],
-["Miesto kuprinė","Aksesuarai","34.99 €","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=85","nauja"],
-["Klasikinė piniginė","Aksesuarai","29.99 €","https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=85","populiarus"],
-["Stalo lempa","Kita","32.99 €","https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=85","nauja"],
-["Terminis puodelis","Kita","21.99 €","https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=700&q=85","populiarus"]
-];
-document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowerCase()}">
-<div class="photo">${x[3]}<span class="badge ${x[4]=='nauja'?'new':x[4]=='sale'?'sale':''}">${x[4]=='sale'?'−20%':x[4]=='nauja'?'Nauja':'Populiarus'}</span><button class="like-btn" aria-label="Pamėgti prekę" onclick="toggleLike(this)">♡</button></div>
-<div class="info"><h3>${x[0]}</h3><p>${x[1]}</p><div class="price-row"><b class="price">${x[2]}</b><button class="addsmall" onclick="add('${x[0]}',${parseFloat(x[2])})">🛒</button></div></div></article>`).join(""));
-</script>
-</div>
-
-<div class="contact" id="kontaktai">
-<div class="contact-card">
-<h3>📧 El. paštas</h3>
-<p>Klausimams ir pagalbai.</p>
-<a class="contact-btn" href="mailto:nedasliubinas4@gmail.com">✉️ RAŠYTI EL. PAŠTU →</a>
-</div>
+<a class="side-card clickable-card" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">
+<strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small>
+<span class="top-link-btn">ATIDARYTI DISCORD →</span></a>
+<a class="side-card clickable-card" href="mailto:nedasliubinas4@gmail.com">
+<strong>✉️ El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small>
+<span class="top-link-btn">RAŠYTI EL. PAŠTU →</span></a>
 <div class="contact-card">
 <h3>🎫 Discord / Ticket</h3>
 <p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p>
-<a class="contact-btn" href="https://dsc.gg/ltparduotuve" target="_blank" rel="noopener">💬 ATIDARYTI DISCORD →</a>
+<a class="contact-btn" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">💬 ATIDARYTI DISCORD →</a>
 </div>
 </div>
 </main>
