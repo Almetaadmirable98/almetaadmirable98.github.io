@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LT Parduotuvė</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+        }
+
+        .hero {
+            padding: 80px 7%;
+            text-align: center;
+            background: white;
+        }
+
+        .hero h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 18px;
+        }
+
+        .products {
+            padding: 50px 7%;
+        }
+
+        .products h2 {
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .product {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+            background: #eee;
+        }
+
+        .product h3 {
+            margin-top: 15px;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #333;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>LT Parduotuvė</h1>
+
+    <nav>
+        <a href="#">Pagrindinis</a>
+        <a href="#prekes">Prekės</a>
+        <a href="#">Kontaktai</a>
+        <a href="#">🛒 Krepšelis</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>LT Parduotuvė</h2>
+    <p>Geros prekės už gerą kainą.</p>
+</section>
+
+<section class="products" id="prekes">
+    <h2>Populiariausios prekės</h2>
+
+    <div class="grid">
+
+        <div class="product">
+            <img src="https://via.placeholder.com/500x500" alt="Prekė">
+            <h3>Prekė #1</h3>
+            <p class="price">19.99 €</p>
+            <button>Į krepšelį</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/500x500" alt="Prekė">
+            <h3>Prekė #2</h3>
+            <p class="price">29.99 €</p>
+            <button>Į krepšelį</button>
+        </div>
+
+        <div class="product">
+            <img src="https://via.placeholder.com/500x500" alt="Prekė">
+            <h3>Prekė #3</h3>
+            <p class="price">39.99 €</p>
+            <button>Į krepšelį</button>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2026 LT Parduotuvė
+</footer>
+
+</body>
+</html>
