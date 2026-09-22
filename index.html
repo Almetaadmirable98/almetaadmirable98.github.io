@@ -203,7 +203,7 @@ body.auth-locked{overflow:hidden}
 
 <header><div class="nav">
 <a class="logo" href="#top"><b>LT</b><span>PARDUOTUVĖ</span></a>
-<nav><a class="active" href="#top">Pagrindinis</a><a href="#prekes">-----</a><a href="#prekes">-----</a><a href="#prekes">Rūbai</a><a href="#prekes">Elektronika</a><a href="#prekes">Aksesuarai</a><a href="#prekes">Kita</a></nav>
+<nav id="mainNav"><a class="active" href="#top">Pagrindinis</a></nav>
 <input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
 <div class="user-menu">
 <button class="nav-icon" onclick="toggleUserMenu()">♙</button>
@@ -238,29 +238,12 @@ body.auth-locked{overflow:hidden}
 </div></div>
 
 <main>
-<div class="categories">
-<div class="cat"><h3>-----</h3><p>Platus pasirinkimas</p><button onclick="setCategory('-----')">Žiūrėti →</button></div>
-<div class="cat"><h3>-----</h3><p>Populiariausi modeliai</p><button onclick="setCategory('-----2')">Žiūrėti →</button></div>
-<div class="cat"><h3>RŪBAI</h3><p>Stilius kiekvienam</p><button onclick="setCategory('Rūbai')">Žiūrėti →</button></div>
-<div class="cat"><h3>ELEKTRONIKA</h3><p>Telefonai, ausinės, kita</p><button onclick="setCategory('Elektronika')">Žiūrėti →</button></div>
-<div class="cat"><h3>AKSESUARAI</h3><p>Viskas, ko reikia</p><button onclick="setCategory('Aksesuarai')">Žiūrėti →</button></div>
-<div class="cat"><h3>KITA</h3><p>Įvairios prekės</p><button onclick="setCategory('Kita')">Žiūrėti →</button></div>
-</div>
+<div class="categories" id="categoryCards"></div>
 
-<div class="products-head" id="prekes"><div><h2>🔥 Populiariausios prekės</h2><p>Peržiūrėk mūsų populiariausias prekes</p></div>
-<div class="tabs"><button class="tab active" data-cat="all">Visos</button><button class="tab" data-cat="-----">-----</button><button class="tab" data-cat="-----2">-----</button><button class="tab" data-cat="Rūbai">Rūbai</button><button class="tab" data-cat="Elektronika">Elektronika</button><button class="tab" data-cat="Aksesuarai">Aksesuarai</button><button class="tab" data-cat="Kita">Kita</button></div></div>
+<div class="products-head" id="prekes"><div><h2>🔥 Populiariausios prekės</h2><p>Peržiūrėk mūsų prekes</p></div>
+<div class="tabs" id="categoryTabs"><button class="tab active" data-cat="all">Visos</button></div></div>
 
-<div class="grid" id="grid">
-<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Nike Tech Fleece" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M230 145Q270 105 315 120L350 155 385 120Q430 105 470 145L535 215 478 270 438 225 438 420Q350 455 262 420L262 225 222 270 165 215Z' fill='%232f3949' stroke='%238c99ad' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Nike Tech Fleece Hoodie</h3><p>Rūbai</p><div class="price-row"><b class="price">89.99 €</b><button class="add" onclick="add('Nike Tech Fleece Hoodie',89.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Klasikiniai sportbačiai" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M145 330Q235 340 310 275L380 185Q410 165 445 210L515 310Q548 345 610 365L640 395Q625 430 570 430H175Q125 415 145 330Z' fill='%23d9dee6' stroke='%238f9bad' stroke-width='6'/%3E%3Cpath d='M205 347Q330 365 485 325' fill='none' stroke='white' stroke-width='13'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Klasikiniai sportbačiai</h3><p>Rūbai</p><div class="price-row"><b class="price">119.99 €</b><button class="add" onclick="add('Klasikiniai sportbačiai',119.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Telefonas" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='245' y='55' width='210' height='410' rx='32' fill='%233d527c' stroke='%2391a5c9' stroke-width='5'/%3E%3Crect x='260' y='72' width='180' height='375' rx='24' fill='%23070b12'/%3E%3Ccircle cx='302' cy='132' r='22' fill='%23101926' stroke='%238ea1c1' stroke-width='4'/%3E%3Ccircle cx='302' cy='184' r='22' fill='%23101926' stroke='%238ea1c1' stroke-width='4'/%3E%3C/svg%3E"><span class="badge sale">−20%</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>iPhone 15 128GB</h3><p>Elektronika</p><div class="price-row"><b class="price">699.99 €</b><button class="add" onclick="add('iPhone 15 128GB',699.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Ausinės" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M205 280V215Q205 90 350 90T495 215V280' fill='none' stroke='%23d9e0eb' stroke-width='42' stroke-linecap='round'/%3E%3Crect x='170' y='245' width='95' height='150' rx='35' fill='%23202a3a' stroke='%2393a1b8' stroke-width='5'/%3E%3Crect x='435' y='245' width='95' height='150' rx='35' fill='%23202a3a' stroke='%2393a1b8' stroke-width='5'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Apple AirPods Pro 2</h3><p>Elektronika</p><div class="price-row"><b class="price">249.99 €</b><button class="add" onclick="add('Apple AirPods Pro 2',249.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Laikrodis" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='285' y='20' width='130' height='160' rx='45' fill='%23171d28'/%3E%3Crect x='285' y='340' width='130' height='160' rx='45' fill='%23171d28'/%3E%3Crect x='230' y='125' width='240' height='270' rx='62' fill='%23151c28' stroke='%238f9eb5' stroke-width='7'/%3E%3Ccircle cx='350' cy='260' r='72' fill='%2318243a' stroke='%234d78b7' stroke-width='4'/%3E%3Cpath d='M350 260V215M350 260l38 22' stroke='%23e9f0ff' stroke-width='7'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Apple Watch Series 9</h3><p>Elektronika</p><div class="price-row"><b class="price">249.99 €</b><button class="add" onclick="add('Apple Watch Series 9',249.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Kolonėlė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='245' y='90' width='210' height='330' rx='55' fill='%231a2230' stroke='%2377869e' stroke-width='5'/%3E%3Ccircle cx='350' cy='205' r='72' fill='%23070b12' stroke='%233f5068' stroke-width='5'/%3E%3Ccircle cx='350' cy='330' r='52' fill='%23070b12' stroke='%233f5068' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Bluetooth kolonėlė</h3><p>Elektronika</p><div class="price-row"><b class="price">159.99 €</b><button class="add" onclick="add('Bluetooth kolonėlė',159.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Hoodie" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M230 145Q270 105 315 120L350 155 385 120Q430 105 470 145L535 215 478 270 438 225 438 420Q350 455 262 420L262 225 222 270 165 215Z' fill='%231c2430' stroke='%238c99ad' stroke-width='5'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>The North Face Hoodie</h3><p>Rūbai</p><div class="price-row"><b class="price">79.99 €</b><button class="add" onclick="add('The North Face Hoodie',79.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Aksesuarai"><div class="photo"><img class="product-image" alt="Kuprinė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M205 170Q205 105 350 105T495 170L545 410Q350 465 155 410Z' fill='%23202a38' stroke='%238a98ab' stroke-width='6'/%3E%3Cpath d='M260 170Q260 90 350 90T440 170' fill='none' stroke='%239ba8ba' stroke-width='18'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Miesto kuprinė</h3><p>Aksesuarai</p><div class="price-row"><b class="price">34.99 €</b><button class="add" onclick="add('Miesto kuprinė',34.99)">🛒</button></div></div></div>
-<div class="product" data-cat="Aksesuarai"><div class="photo"><img class="product-image" alt="Piniginė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='155' y='135' width='390' height='250' rx='25' fill='%23252b34' stroke='%238c96a4' stroke-width='6'/%3E%3Cpath d='M420 245h110v105H420Q365 298 420 245Z' fill='%23151a22' stroke='%236e7b8d' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Klasikinė piniginė</h3><p>Aksesuarai</p><div class="price-row"><b class="price">29.99 €</b><button class="add" onclick="add('Klasikinė piniginė',29.99)">🛒</button></div></div></div>
-</div>
+<div class="grid" id="grid"></div>
 
 <div class="contact"><div class="contact-card"><h3>✉️ El. paštas</h3><p>Klausimams ir pagalbai.</p><a class="contact-btn" href="mailto:nedasliubinas4@gmail.com">RAŠYTI EL. PAŠTU →</a></div><div class="contact-card"><h3>💬 Discord / Ticket</h3><p>Prisijunk ir susisiek per ticket.</p><a class="contact-btn" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">ATIDARYTI DISCORD →</a></div></div>
 </main>
@@ -282,6 +265,7 @@ body.auth-locked{overflow:hidden}
   <div class="admin-nav">
    <button class="admin-tab active" onclick="adminTab('dashboard',this)">📊 Apžvalga</button>
    <button class="admin-tab" onclick="adminTab('products',this)">📦 Prekės</button>
+   <button class="admin-tab" onclick="adminTab('categories',this)">🏷️ Kategorijos</button>
    <button class="admin-tab" onclick="adminTab('coupons',this)">🎟️ Kuponai</button>
    <button class="admin-tab" onclick="adminTab('chat',this)">💬 Klientų chat</button>
   </div>
@@ -300,7 +284,7 @@ body.auth-locked{overflow:hidden}
     <input type="hidden" id="productEditId">
     <div class="admin-field"><label>PAVADINIMAS</label><input id="productName" placeholder="Pvz. iPhone 17 Pro Max"></div>
     <div class="admin-field"><label>KAINA (€)</label><input id="productPrice" type="number" min="0" step="0.01" placeholder="1299.99"></div>
-    <div class="admin-field"><label>KATEGORIJA</label><select id="productCategory"><option>Rūbai</option><option>Elektronika</option><option>Aksesuarai</option><option>Kita</option></select></div>
+    <div class="admin-field"><label>KATEGORIJA</label><select id="productCategory"></select></div>
     <div class="admin-field"><label>NUOTRAUKOS URL</label><input id="productImage" placeholder="https://..."></div>
     <div class="admin-field"><label>ŽENKLIUKAS</label><input id="productBadge" placeholder="Nauja / Populiarus / −20%"></div>
     <div class="admin-field"><label>NUOLAIDA (%)</label><input id="productDiscount" type="number" min="0" max="100" step="1" value="0" placeholder="10"></div>
@@ -310,6 +294,19 @@ body.auth-locked{overflow:hidden}
    </div>
    <div class="admin-actions" style="margin-bottom:10px"><button class="admin-primary" onclick="clearProductForm();document.getElementById('productName').focus()">➕ Nauja prekė</button><button class="admin-secondary" onclick="loadAdminProducts()">↻ Atnaujinti</button></div>
    <div class="admin-list-title">📋 Visos prekės</div><div class="admin-list" id="adminProductList"><div class="admin-empty">Kraunama...</div></div>
+  </section>
+  <section class="admin-section" id="admin-categories">
+   <div class="admin-note"><b>🏷️ Kategorijų valdymas</b><br>Čia gali keisti kategorijų pavadinimus, pridėti naujas kategorijas, išjungti arba ištrinti kategorijas.</div>
+   <div class="admin-form">
+    <input type="hidden" id="categoryEditId">
+    <div class="admin-field"><label>PAVADINIMAS</label><input id="categoryName" placeholder="Pvz. Geriausi pasirinkimai"></div>
+    <div class="admin-field"><label>APRAŠYMAS</label><input id="categoryDescription" placeholder="Trumpas kategorijos aprašymas"></div>
+    <div class="admin-field"><label>TVARKA</label><input id="categorySort" type="number" min="0" step="1" value="0" placeholder="0"></div>
+    <div class="admin-field"><label>AKTYVI</label><select id="categoryActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
+    <div class="admin-actions full"><button class="admin-primary" onclick="saveCategory()">💾 Išsaugoti kategoriją</button><button class="admin-secondary" onclick="clearCategoryForm()">Išvalyti</button></div>
+   </div>
+   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-primary" onclick="clearCategoryForm();document.getElementById('categoryName').focus()">➕ Nauja kategorija</button><button class="admin-secondary" onclick="loadCategories()">↻ Atnaujinti</button></div>
+   <div class="admin-list-title">📋 Visos kategorijos</div><div class="admin-list" id="adminCategoryList"><div class="admin-empty">Kraunama...</div></div>
   </section>
   <section class="admin-section" id="admin-coupons">
    <div class="admin-form">
@@ -610,11 +607,11 @@ async function checkAdmin(user){
   if(btn) btn.style.display=isAdmin?"block":"none";
   return isAdmin;
 }
-async function initAdmin(user){await checkAdmin(user);await loadStoreProducts();}
+async function initAdmin(user){await checkAdmin(user);await loadCategories();await loadStoreProducts();}
 async function openAdmin(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
   document.getElementById("adminPanel").classList.add("open");
-  await loadAdminStats();await loadAdminProducts();await loadAdminCoupons();
+  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();
 }
 function closeAdmin(){document.getElementById("adminPanel").classList.remove("open")}
 function adminTab(name,btn){
@@ -633,6 +630,46 @@ async function loadAdminStats(){
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function money(v){return Number(v||0).toFixed(2)+" €"}
 function salePrice(p){const d=Math.min(100,Math.max(0,Number(p.discount_percent||0)));return Number(p.price||0)*(1-d/100)}
+async function loadCategories(){
+  const {data,error}=await supabaseClient.from("categories").select("*").eq("active",true).order("sort_order",{ascending:true}).order("name",{ascending:true});
+  if(error){console.error(error);return}
+  const cats=data||[];
+  renderCategoryUI(cats);
+  const sel=document.getElementById("productCategory");
+  if(sel){const current=sel.value;sel.innerHTML=cats.map(c=>`<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join("");if(cats.some(c=>c.name===current))sel.value=current;}
+  if(!cats.length && sel) sel.innerHTML='<option value="">Nėra kategorijų</option>';
+  if(isAdmin) await loadAdminCategories();
+}
+function renderCategoryUI(cats){
+  const nav=document.getElementById("mainNav"), cards=document.getElementById("categoryCards"), tabs=document.getElementById("categoryTabs");
+  if(nav) nav.innerHTML='<a class="active" href="#top">Pagrindinis</a>'+cats.map(c=>`<a href="#prekes" data-nav-cat="${escapeHtml(c.name)}">${escapeHtml(c.name)}</a>`).join("");
+  if(cards) cards.innerHTML=cats.map(c=>`<div class="cat"><h3>${escapeHtml(c.name).toUpperCase()}</h3><p>${escapeHtml(c.description||"Platus pasirinkimas")}</p><button onclick='setCategory(${JSON.stringify(c.name)})'>Žiūrėti →</button></div>`).join("");
+  if(tabs) tabs.innerHTML='<button class="tab active" data-cat="all">Visos</button>'+cats.map(c=>`<button class="tab" data-cat="${escapeHtml(c.name)}">${escapeHtml(c.name)}</button>`).join("");
+  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
+  document.querySelectorAll("[data-nav-cat]").forEach(a=>a.onclick=()=>setCategory(a.dataset.navCat));
+}
+async function loadAdminCategories(){
+  const list=document.getElementById("adminCategoryList");if(!list||!isAdmin)return;
+  const {data,error}=await supabaseClient.from("categories").select("*").order("sort_order",{ascending:true}).order("name",{ascending:true});
+  if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti kategorijų. Paleisk kategorijų SQL.</div>';return}
+  if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra kategorijų.</div>';return}
+  list.innerHTML=data.map(c=>`<div class="admin-product"><div class="admin-product-info"><b>${escapeHtml(c.name)}</b><small>${escapeHtml(c.description||"Be aprašymo")} • tvarka: ${c.sort_order} • ${c.active?"🟢 Aktyvi":"🔴 Išjungta"}</small></div><div class="admin-product-actions"><button class="admin-secondary" onclick='editCategory(${JSON.stringify(c).replace(/'/g,"&#39;")})'>✏️ Koreguoti</button><button class="admin-secondary ${c.active?'orange':'green'}" onclick="toggleCategory('${c.id}',${!c.active})">${c.active?'🔴 Išjungti':'🟢 Įjungti'}</button><button class="admin-danger" onclick="deleteCategory('${c.id}')">🗑️ Ištrinti</button></div></div>`).join("");
+}
+function editCategory(c){document.getElementById("categoryEditId").value=c.id||"";document.getElementById("categoryName").value=c.name||"";document.getElementById("categoryDescription").value=c.description||"";document.getElementById("categorySort").value=c.sort_order??0;document.getElementById("categoryActive").value=String(c.active!==false);document.getElementById("categoryName").scrollIntoView({behavior:"smooth",block:"center"})}
+function clearCategoryForm(){document.getElementById("categoryEditId").value="";document.getElementById("categoryName").value="";document.getElementById("categoryDescription").value="";document.getElementById("categorySort").value="0";document.getElementById("categoryActive").value="true"}
+async function saveCategory(){
+  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
+  const id=document.getElementById("categoryEditId").value;const name=document.getElementById("categoryName").value.trim();const desc=document.getElementById("categoryDescription").value.trim();const sort=Math.max(0,parseInt(document.getElementById("categorySort").value||0,10));const activeVal=document.getElementById("categoryActive").value==="true";
+  if(!name)return alert("Įrašyk kategorijos pavadinimą.");
+  let oldName="";if(id){const old=await supabaseClient.from("categories").select("name").eq("id",id).maybeSingle();oldName=old.data?.name||"";}
+  const result=id?await supabaseClient.from("categories").update({name,description:desc,sort_order:sort,active:activeVal}).eq("id",id):await supabaseClient.from("categories").insert({name,description:desc,sort_order:sort,active:activeVal});
+  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti kategorijos. Gal toks pavadinimas jau yra?");}
+  if(id&&oldName&&oldName!==name){const moved=await supabaseClient.from("products").update({category:name}).eq("category",oldName);if(moved.error)console.error("Produktų kategorijos pervadinti nepavyko",moved.error);}
+  clearCategoryForm();await loadCategories();await loadAdminProducts();await loadStoreProducts();alert("✓ Kategorija išsaugota.");
+}
+async function toggleCategory(id,activeVal){if(!isAdmin)return alert("Neturite administratoriaus teisių.");const {error}=await supabaseClient.from("categories").update({active:activeVal}).eq("id",id);if(error)return alert("Nepavyko pakeisti kategorijos būsenos.");await loadCategories();await loadAdminCategories()}
+async function deleteCategory(id){if(!isAdmin||!confirm("Ar tikrai ištrinti šią kategoriją? Produktai joje nebus ištrinti, bet liks su senu kategorijos pavadinimu."))return;const {error}=await supabaseClient.from("categories").delete().eq("id",id);if(error)return alert("Nepavyko ištrinti kategorijos. Jei joje yra prekių, pirmiausia perkelk jas į kitą kategoriją.");await loadCategories();await loadAdminCategories()}
+
 async function loadAdminProducts(){
   const list=document.getElementById("adminProductList");list.innerHTML='<div class="admin-empty">Kraunama...</div>';
   const {data,error}=await supabaseClient.from("products").select("*").order("created_at",{ascending:false});
@@ -655,7 +692,7 @@ function editProduct(p){
 function clearProductForm(){
   ["productEditId","productName","productPrice","productImage","productBadge","productDescription"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("productDiscount").value="0";
-  document.getElementById("productCategory").value="Rūbai";document.getElementById("productActive").value="true";
+  const sel=document.getElementById("productCategory");if(sel&&sel.options.length)sel.selectedIndex=0;document.getElementById("productActive").value="true";
 }
 async function saveProduct(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
@@ -746,7 +783,7 @@ let active="all";
 function filter(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".product").forEach(p=>{let ok=active==="all"||p.dataset.cat===active;let txt=p.innerText.toLowerCase();p.style.display=ok&&txt.includes(q)?"":"none"})}
 document.getElementById("search").addEventListener("input",filter);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
-function setCategory(c){active=c==="-----"||c==="-----2"?"all":c;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===active));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
+function setCategory(c){active=c;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===active));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
 function toggleChat(){
   const chat = document.getElementById("chat");
   chat.classList.toggle("open");
