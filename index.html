@@ -152,12 +152,148 @@ overflow:hidden;animation:introOut .9s ease 3.2s forwards}
 
 <button class="chat-launch" onclick="toggleChat()">💬</button>
 <div class="chat" id="chat"><div class="chat-head"><div><strong>LT Parduotuvė • Pagalba</strong><small>● Prisijungę • 24/7</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div>
-<div class="chat-body" id="chatBody"><div class="bubble">Sveiki! 👋 Kaip galime padėti?</div><div class="bubble">Pasirinkite klausimą arba parašykite savo problemą.</div><div class="demo">Tai yra tik puslapio demonstracinis pokalbis. Kad žinutės realiai pasiektų administratorių ir būtų saugomos, reikia prijungti backend + duomenų bazę.</div></div>
+<div class="chat-body" id="chatBody">
+<div class="bubble">Sveiki! 👋 Kaip galime padėti?</div>
+<div class="bubble">Parašykite savo klausimą — žinutė bus išsaugota ir perduota administratoriui.</div>
+</div>
 <div class="quick"><button onclick="quick('Turiu klausimą apie prekę')">Apie prekę</button><button onclick="quick('Kur mano užsakymas?')">Užsakymas</button><button onclick="quick('Noriu pagalbos')">Pagalba</button></div>
 <div class="chat-input"><input id="msg" placeholder="Parašykite žinutę..."><button onclick="send()">Siųsti</button></div></div>
 
 <div id="toast">✓ Pridėta į krepšelį</div>
 <div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "https://ibeumlqcrjxafnatlhtx.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3SNNvvuBtT4waMTznfCjnA_xYJZANED";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
+let chatUser = null;
+let chatChannel = null;
+let chatReady = false;
+const renderedMessageIds = new Set();
+
+async function ensureChatUser(){
+  if(chatUser) return chatUser;
+
+  const { data: sessionData, error: sessionError } =
+    await supabaseClient.auth.getSession();
+
+  if(sessionError) throw sessionError;
+
+  if(sessionData.session?.user){
+    chatUser = sessionData.session.user;
+    return chatUser;
+  }
+
+  const { data, error } = await supabaseClient.auth.signInAnonymously();
+
+  if(error) throw error;
+
+  chatUser = data.user;
+  return chatUser;
+}
+
+function setChatStatus(text, online=false){
+  const status = document.querySelector(".chat-head small");
+  if(!status) return;
+  status.textContent = online ? "● " + text : "● " + text;
+  status.style.color = online ? "#20e5a0" : "#f0b44d";
+}
+
+async function loadChatMessages(){
+  const user = await ensureChatUser();
+
+  const { data, error } = await supabaseClient
+    .from("messages")
+    .select("id, session_id, sender, message, created_at")
+    .eq("session_id", user.id)
+    .order("created_at", { ascending: true });
+
+  if(error) throw error;
+
+  const body = document.getElementById("chatBody");
+  body.innerHTML = "";
+
+  if(!data.length){
+    bubble("Sveiki! 👋 Kaip galime padėti?");
+    bubble("Parašykite savo klausimą — žinutė bus perduota administratoriui.");
+  }
+
+  data.forEach(renderChatMessage);
+}
+
+function renderChatMessage(row){
+  if(!row || renderedMessageIds.has(row.id)) return;
+  renderedMessageIds.add(row.id);
+  bubble(row.message, row.sender === "customer" ? "user" : "");
+}
+
+function subscribeToChat(){
+  if(chatChannel || !chatUser) return;
+
+  chatChannel = supabaseClient
+    .channel("customer-chat-" + chatUser.id)
+    .on(
+      "postgres_changes",
+      {
+        event: "INSERT",
+        schema: "public",
+        table: "messages",
+        filter: "session_id=eq." + chatUser.id
+      },
+      payload => renderChatMessage(payload.new)
+    )
+    .subscribe((status) => {
+      if(status === "SUBSCRIBED"){
+        chatReady = true;
+        setChatStatus("Prisijungę • žinutės saugomos", true);
+      }
+    });
+}
+
+async function initChat(){
+  if(chatReady) return;
+
+  setChatStatus("Jungiamasi...");
+
+  try{
+    await ensureChatUser();
+    await loadChatMessages();
+    subscribeToChat();
+  }catch(error){
+    console.error("Chat error:", error);
+    setChatStatus("Nepavyko prisijungti");
+    bubble("Nepavyko prisijungti prie pokalbio. Pabandykite perkrauti puslapį.");
+  }
+}
+
+async function sendChatMessage(text){
+  const message = String(text || "").trim();
+  if(!message) return;
+
+  try{
+    await initChat();
+    if(!chatUser) return;
+
+    const { error } = await supabaseClient
+      .from("messages")
+      .insert({
+        session_id: chatUser.id,
+        sender: "customer",
+        message: message
+      });
+
+    if(error) throw error;
+  }catch(error){
+    console.error("Send message error:", error);
+    bubble("Žinutės išsiųsti nepavyko. Pabandykite dar kartą.");
+  }
+}
 
 <script>
 
@@ -174,11 +310,36 @@ function filter(){let q=document.getElementById("search").value.toLowerCase();do
 document.getElementById("search").addEventListener("input",filter);
 document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
 function setCategory(c){active=c==="-----"||c==="-----2"?"all":c;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===active));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
-function toggleChat(){document.getElementById("chat").classList.toggle("open")}
-function bubble(t,who){let d=document.createElement("div");d.className="bubble "+(who||"");d.textContent=t;let b=document.getElementById("chatBody");b.appendChild(d);b.scrollTop=b.scrollHeight}
-function quick(t){bubble(t,"user");setTimeout(()=>bubble("Ačiū! Žinutė gauta. Realiam administratoriaus atsakymui reikia prijungti serverį."),450)}
-function send(){let i=document.getElementById("msg"),t=i.value.trim();if(t){quick(t);i.value=""}}
-document.getElementById("msg").addEventListener("keydown",e=>{if(e.key==="Enter")send()});
+function toggleChat(){
+  const chat = document.getElementById("chat");
+  chat.classList.toggle("open");
+  if(chat.classList.contains("open")) initChat();
+}
+
+function bubble(t,who){
+  let d=document.createElement("div");
+  d.className="bubble "+(who||"");
+  d.textContent=t;
+  let b=document.getElementById("chatBody");
+  b.appendChild(d);
+  b.scrollTop=b.scrollHeight;
+}
+
+function quick(t){
+  sendChatMessage(t);
+}
+
+async function send(){
+  let i=document.getElementById("msg");
+  let t=i.value.trim();
+  if(!t) return;
+  i.value="";
+  await sendChatMessage(t);
+}
+
+document.getElementById("msg").addEventListener("keydown",e=>{
+  if(e.key==="Enter") send();
+});
 renderCart();
 </script>
 </body></html>
