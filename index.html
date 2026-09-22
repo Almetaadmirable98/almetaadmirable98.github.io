@@ -122,6 +122,7 @@ body.auth-locked{overflow:hidden}
 @media(max-width:700px){.admin-grid,.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-product{align-items:flex-start}}
 
 .coupon-box{margin-top:18px;padding:18px;border:1px solid #263750;border-radius:14px;background:#080f1b}.coupon-row{display:flex;gap:8px;align-items:center;margin-top:10px}.coupon-row input,.coupon-row select{flex:1}.coupon-code{font-family:monospace;font-weight:800;letter-spacing:1px}.discount-old{text-decoration:line-through;color:#6f7d91;font-size:9px;margin-right:5px}.discount-new{color:#fff;font-weight:800}.admin-product small{display:block}.coupon-status{font-size:9px;color:#8492a6;margin-top:4px}.coupon-status.ok{color:#50d6a0}.coupon-status.off{color:#ff7373}
+.coupon-toggle{display:flex;align-items:center;gap:9px;cursor:pointer;color:#dce6f8;font-size:10px}.coupon-toggle input{width:16px;height:16px;accent-color:#4389ff}.coupon-hidden{display:none}.coupon-hidden.open{display:block}.coupon-message{font-size:9px;margin-top:7px;min-height:13px}.coupon-message.ok{color:#50d6a0}.coupon-message.err{color:#ff7373}.admin-list-title{font-size:12px;font-weight:800;margin:18px 0 8px;color:#dbe7f8}.admin-product-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.admin-secondary.green{border-color:#247a61;background:#0d2b24}.admin-secondary.orange{border-color:#87651e;background:#2c220c}
 </style>
 </head>
 <body class="auth-locked">
@@ -294,6 +295,7 @@ body.auth-locked{overflow:hidden}
    <div class="admin-note">Admin teisės tikrinamos per Supabase. Duomenų bazės RLS taisyklės riboja administratoriaus veiksmus.</div>
   </section>
   <section class="admin-section" id="admin-products">
+   <div class="admin-note"><b>📦 Prekių valdymas</b><br>Čia gali pridėti naują prekę arba paspausti <b>✏️ Koreguoti</b> prie jau esančios prekės. Taip pat gali ją išjungti arba visam laikui ištrinti.</div>
    <div class="admin-form">
     <input type="hidden" id="productEditId">
     <div class="admin-field"><label>PAVADINIMAS</label><input id="productName" placeholder="Pvz. iPhone 17 Pro Max"></div>
@@ -306,8 +308,8 @@ body.auth-locked{overflow:hidden}
     <div class="admin-field full"><label>APRAŠYMAS</label><textarea id="productDescription" placeholder="Trumpas prekės aprašymas"></textarea></div>
     <div class="admin-actions full"><button class="admin-primary" onclick="saveProduct()">💾 Išsaugoti prekę</button><button class="admin-secondary" onclick="clearProductForm()">Išvalyti</button></div>
    </div>
-   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-secondary" onclick="loadAdminProducts()">↻ Atnaujinti</button></div>
-   <div class="admin-list" id="adminProductList"><div class="admin-empty">Kraunama...</div></div>
+   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-primary" onclick="clearProductForm();document.getElementById('productName').focus()">➕ Nauja prekė</button><button class="admin-secondary" onclick="loadAdminProducts()">↻ Atnaujinti</button></div>
+   <div class="admin-list-title">📋 Visos prekės</div><div class="admin-list" id="adminProductList"><div class="admin-empty">Kraunama...</div></div>
   </section>
   <section class="admin-section" id="admin-coupons">
    <div class="admin-form">
@@ -331,7 +333,7 @@ body.auth-locked{overflow:hidden}
  </div>
 </div>
 <div id="toast">✓ Pridėta į krepšelį</div>
-<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="coupon-box"><b>🎟️ Kupono kodas</b><div class="coupon-row"><input id="couponInput" placeholder="PARDUOTUVE10"><button class="admin-primary" onclick="applyCoupon()">Pritaikyti</button></div><div class="coupon-status" id="couponApplied">Kuponas nepritaikytas</div></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
+<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="coupon-box"><label class="coupon-toggle"><input id="couponToggle" type="checkbox" onchange="toggleCouponBox()"><span>Turiu nuolaidos kodą</span></label><div id="couponForm" class="coupon-hidden"><div class="coupon-row"><input id="couponInput" placeholder="Įrašyk nuolaidos kodą"><button class="admin-primary" onclick="applyCoupon()">Pritaikyti</button></div><div class="coupon-message" id="couponMessage"></div></div></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -636,7 +638,7 @@ async function loadAdminProducts(){
   const {data,error}=await supabaseClient.from("products").select("*").order("created_at",{ascending:false});
   if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti prekių. Patikrink Supabase SQL/RLS.</div>';return}
   if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra pridėtų prekių.</div>';return}
-  list.innerHTML=data.map(p=>{const d=Number(p.discount_percent||0);const price=salePrice(p);return `<div class="admin-product"><img src="${escapeHtml(p.image_url||"")}" onerror="this.style.opacity='.25'"><div class="admin-product-info"><b>${escapeHtml(p.name)}</b><small>${escapeHtml(p.category)} • ${d?money(price)+" (−"+d+"%) • ":money(p.price)+" • "}${p.active?"Aktyvi":"Išjungta"}${p.badge?" • "+escapeHtml(p.badge):""}</small></div><div class="admin-actions"><button class="admin-secondary" onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>✏️</button><button class="admin-danger" onclick="deleteProduct('${p.id}')">🗑️</button></div></div>`}).join("");
+  list.innerHTML=data.map(p=>{const d=Number(p.discount_percent||0);const price=salePrice(p);const editData=JSON.stringify(p).replace(/'/g,"&#39;");return `<div class="admin-product"><img src="${escapeHtml(p.image_url||"")}" onerror="this.style.opacity='.25'"><div class="admin-product-info"><b>${escapeHtml(p.name)}</b><small>${escapeHtml(p.category)} • ${d?money(price)+" (−"+d+"%) • ":money(p.price)+" • "}${p.active?"🟢 Aktyvi":"🔴 Išjungta"}${p.badge?" • 🏷️ "+escapeHtml(p.badge):""}</small></div><div class="admin-product-actions"><button class="admin-secondary" onclick='editProduct(${editData})'>✏️ Koreguoti</button><button class="admin-secondary ${p.active?'orange':'green'}" onclick="toggleProduct('${p.id}',${!p.active})">${p.active?'🔴 Išjungti':'🟢 Įjungti'}</button><button class="admin-danger" onclick="deleteProduct('${p.id}')">🗑️ Ištrinti</button></div></div>`}).join("");
 }
 function editProduct(p){
   document.getElementById("productEditId").value=p.id||"";
@@ -648,6 +650,7 @@ function editProduct(p){
   document.getElementById("productDiscount").value=p.discount_percent??0;
   document.getElementById("productActive").value=String(p.active!==false);
   document.getElementById("productDescription").value=p.description||"";
+  document.getElementById("productName").scrollIntoView({behavior:"smooth",block:"center"});
 }
 function clearProductForm(){
   ["productEditId","productName","productPrice","productImage","productBadge","productDescription"].forEach(id=>document.getElementById(id).value="");
@@ -668,6 +671,12 @@ async function deleteProduct(id){
   if(!isAdmin||!confirm("Ar tikrai ištrinti šią prekę?"))return;
   const {error}=await supabaseClient.from("products").delete().eq("id",id);
   if(error)return alert("Nepavyko ištrinti prekės.");
+  await loadAdminProducts();await loadAdminStats();await loadStoreProducts();
+}
+async function toggleProduct(id,active){
+  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
+  const {error}=await supabaseClient.from("products").update({active}).eq("id",id);
+  if(error)return alert("Nepavyko pakeisti prekės būsenos.");
   await loadAdminProducts();await loadAdminStats();await loadStoreProducts();
 }
 async function loadStoreProducts(){
@@ -709,11 +718,22 @@ async function saveCoupon(){
   clearCouponForm();await loadAdminCoupons();await loadAdminStats();alert("✓ Kuponas išsaugotas.");
 }
 async function deleteCoupon(id){if(!isAdmin||!confirm("Ar tikrai ištrinti šį kuponą?"))return;const {error}=await supabaseClient.from("coupons").delete().eq("id",id);if(error)return alert("Nepavyko ištrinti kupono.");await loadAdminCoupons();await loadAdminStats();}
+function toggleCouponBox(){
+  const box=document.getElementById("couponForm");
+  const checked=document.getElementById("couponToggle")?.checked;
+  if(box) box.classList.toggle("open",!!checked);
+  if(checked) setTimeout(()=>document.getElementById("couponInput")?.focus(),50);
+}
+function setCouponMessage(text,ok=false){
+  const el=document.getElementById("couponMessage");
+  if(!el)return; el.textContent=text||""; el.className="coupon-message "+(text?(ok?"ok":"err"):"");
+}
 async function applyCoupon(){
-  const input=document.getElementById("couponInput"); if(!input)return; const code=input.value.trim().toUpperCase(); if(!code)return alert("Įrašyk kupono kodą.");
+  const input=document.getElementById("couponInput"); if(!input)return; const code=input.value.trim().toUpperCase();
+  if(!code){setCouponMessage("Įrašyk nuolaidos kodą.");return;}
   const {data,error}=await supabaseClient.rpc("apply_coupon",{p_code:code});
-  if(error){console.error(error);return alert(error.message||"Kupono pritaikyti nepavyko.");}
-  activeCoupon=data; renderCart(); input.value=""; toast(`✓ Kuponas ${code} pritaikytas`);
+  if(error){console.error(error);activeCoupon=null;renderCart();setCouponMessage(error.message||"Kuponas neegzistuoja arba jo negalima panaudoti.");return;}
+  activeCoupon=data; renderCart(); input.value=""; setCouponMessage(`✓ Kuponas pritaikytas: −${Number(data.discount_percent)}%`,true); toast(`✓ Kuponas ${code} pritaikytas`);
 }
 
 let cart=[];
