@@ -2,345 +2,142 @@
 <html lang="lt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LT PARDUOTUVĖ</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{--bg:#050914;--card:#0a111d;--line:#263650;--blue:#4389ff;--green:#22e5a0;--muted:#8290a8}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#040811;color:#fff;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:
+radial-gradient(circle at 50% 5%,#2854a83b,transparent 28%),
+radial-gradient(circle at 10% 35%,#7139a51c,transparent 25%),
+radial-gradient(circle at 90% 50%,#1474a51c,transparent 25%),
+#040811}
+body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.18;background-image:radial-gradient(#8eb7ff 1px,transparent 1px);background-size:90px 90px;animation:stars 18s linear infinite}
+a{color:inherit;text-decoration:none}button,input{font:inherit}
+header{position:sticky;top:0;z-index:100;background:#050914ed;backdrop-filter:blur(18px);border-bottom:1px solid #1e2b42}
+.nav{max-width:1500px;height:70px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
+.logo{font-weight:900;white-space:nowrap;font-size:19px}.logo b{font-size:30px;text-shadow:0 0 25px #4c8cff}.logo span{margin-left:5px}
+nav{display:flex;gap:25px}nav a{font-size:12px;color:#a9b5c9;padding:27px 0;position:relative}nav a:hover,nav a.active{color:#fff}nav a.active:after{content:"";position:absolute;height:2px;background:#4c8cff;box-shadow:0 0 12px #4c8cff;left:0;right:0;bottom:0}
+.search{margin-left:auto;width:290px;height:38px;border:1px solid #2b3b55;border-radius:22px;background:#0b1220;color:#fff;padding:0 15px;outline:none}.search:focus{border-color:#4b8cff}
+.nav-icon{border:0;background:none;color:#dce6f8;font-size:20px;cursor:pointer}.cart{position:relative}.count{position:absolute;right:-7px;top:-6px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;background:#4a82ff;font-size:9px}
 
-:root{
-  --bg:#050812;--panel:#0b111c;--panel2:#101827;--line:#26334a;
-  --blue:#3b82ff;--blue2:#6ea5ff;--green:#20e6a0;--muted:#8491a7;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,sans-serif;background:
-radial-gradient(circle at 50% 0%,#17346b44,transparent 28%),
-radial-gradient(circle at 10% 45%,#432a9b22,transparent 25%),
-var(--bg);color:#fff;min-height:100vh}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
-background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
-background-size:90px 90px;opacity:.025;mask-image:linear-gradient(#000,transparent 85%)}
-a{text-decoration:none;color:inherit}button,input{font:inherit}
+.hero{min-height:430px;position:relative;overflow:hidden;border-bottom:1px solid #1c2940;background:
+radial-gradient(circle at 50% 50%,#397dff3b,transparent 22%),
+radial-gradient(circle at 20% 20%,#7d4fff24,transparent 23%),
+radial-gradient(circle at 80% 30%,#21a7ff1b,transparent 23%),
+linear-gradient(135deg,#060b17,#0b1222 48%,#070911)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,#5a8dff0e 40%,transparent 42%,transparent 63%,#9b63ff0b 65%,transparent 67%);animation:sweep 7s ease-in-out infinite alternate}
+.hero-inner{max-width:1500px;min-height:430px;margin:auto;padding:38px 28px;display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:20px;align-items:center;position:relative}
+.side{display:flex;flex-direction:column;gap:10px}.side-card{background:#070e19d9;border:1px solid #30425e;border-radius:13px;padding:15px;backdrop-filter:blur(10px);transition:.2s}.side-card:hover{border-color:#5d94ff;transform:translateY(-2px);box-shadow:0 0 25px #397dff20}.side-card strong{font-size:13px}.side-card p{font-size:11px;color:#8795aa;margin-top:5px}.side-card small{font-size:10px;color:#b6c4da}.link-btn{display:inline-block;margin-top:9px;padding:7px 10px;border-radius:8px;background:linear-gradient(135deg,#3c83ff,#694cff);border:1px solid #79a7ff;font-size:9px;font-weight:800}
+.hero-main{text-align:center}.crown{font-size:42px;text-shadow:0 0 25px #5e9aff;animation:float 3s ease-in-out infinite}.lt{font-size:105px;line-height:.75;font-weight:900;letter-spacing:-9px;text-shadow:0 0 15px #fff,0 0 45px #3e82ff,0 0 90px #3e82ff77;animation:pulse 3s infinite}.hero-main h1{font-size:50px;margin-top:16px;letter-spacing:-3px;text-shadow:0 0 20px #fff,0 0 40px #3e82ff}.hero-main .sub{font-size:10px;letter-spacing:6px;color:#c5d1e6;margin-top:10px}.cta{display:inline-block;margin-top:22px;padding:13px 28px;border:2px solid #5b97ff;border-radius:28px;background:#0b1730;color:#fff;font-size:12px;font-weight:800;box-shadow:0 0 30px #397dff55;animation:cta 2.5s infinite}
+.services{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative}.service-grid{display:grid;grid-template-columns:repeat(5,1fr);background:#070d17;border:1px solid #354864;border-radius:15px;overflow:hidden}.service{padding:16px;border-right:1px solid #1e2d43}.service:last-child{border:0}.service b{font-size:10px}.service small{display:block;color:#75849a;font-size:9px;margin-top:4px}
 
-header{position:sticky;top:0;z-index:100;background:#050912ee;backdrop-filter:blur(18px);border-bottom:1px solid #202c40}
-.nav{height:68px;max-width:1500px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
-.logo{font-size:21px;font-weight:900;white-space:nowrap}.logo span{font-size:30px;color:#fff;text-shadow:0 0 15px #4288ff}.logo em{font-style:normal;color:#dce7ff}
-nav{display:flex;gap:26px}nav a{font-size:13px;color:#b9c4d7;padding:25px 0;position:relative}nav a.active,nav a:hover{color:#fff}nav a.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#4d8dff;box-shadow:0 0 12px #4d8dff}
-.search{margin-left:auto;width:315px;height:38px;border:1px solid #2c394d;border-radius:22px;background:#0b111c;color:#fff;padding:0 17px;outline:none}.search:focus{border-color:#4a8dff}
-.iconbtn{width:40px;height:40px;border:0;background:transparent;color:#e6edff;font-size:22px}.cart{position:relative}.cart b{position:absolute;right:-2px;top:1px;background:#4d82ff;width:19px;height:19px;border-radius:50%;font-size:10px;display:grid;place-items:center}
+main{max-width:1500px;margin:auto;padding:0 28px 70px}.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}.cat{height:130px;padding:16px;border:1px solid #2b3d58;border-radius:12px;background:linear-gradient(145deg,#101a2b,#070d16);position:relative;overflow:hidden;transition:.2s}.cat:hover{transform:translateY(-4px);border-color:#518cff}.cat:after{content:"";position:absolute;width:150px;height:150px;right:-55px;bottom:-55px;background:radial-gradient(circle,#3c82ff3b,transparent 65%)}.cat h3{font-size:15px;position:relative;z-index:2}.cat p{font-size:10px;color:#8290a5;margin-top:4px;position:relative;z-index:2}.cat button{position:absolute;left:13px;bottom:11px;border:1px solid #657995;border-radius:17px;background:#09111e;color:#fff;padding:6px 12px;font-size:9px;z-index:3;cursor:pointer}
+.products-head{display:flex;align-items:center;justify-content:space-between;margin:30px 0 17px}.products-head h2{font-size:24px}.products-head p{font-size:11px;color:#718096;margin-top:4px}.tabs{display:flex;border:1px solid #263750;border-radius:10px;overflow:hidden}.tab{border:0;border-right:1px solid #223148;background:#080f1b;color:#8794a8;padding:10px 16px;font-size:10px;cursor:pointer}.tab.active{color:#fff;background:#102754;box-shadow:inset 0 -2px #4a8bff}
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.product{background:#090f19;border:1px solid #23344d;border-radius:11px;overflow:hidden;transition:.2s}.product:hover{transform:translateY(-4px);border-color:#4e88ed;box-shadow:0 15px 35px #0008}.photo{height:165px;background:#0d1625;position:relative;overflow:hidden}.product-image{width:100%;height:100%;object-fit:cover;display:block;transition:.4s}.product:hover .product-image{transform:scale(1.06);filter:brightness(1.1)}.badge{position:absolute;top:8px;left:8px;padding:4px 7px;border-radius:8px;background:#286dff;font-size:8px;font-weight:800}.badge.new{background:#119a77}.badge.sale{background:#df4646}.like{position:absolute;right:7px;top:5px;border:0;background:transparent;color:#e6eefc;font-size:20px;cursor:pointer;z-index:2}.like.liked{color:#ff4d78;text-shadow:0 0 15px #ff4d78}
+.info{padding:10px}.info h3{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.info p{font-size:8px;color:#77859a;margin-top:3px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.price{font-size:16px;color:var(--green)}.add{width:32px;height:32px;border:1px solid #617697;background:#0b1422;color:#fff;border-radius:8px;cursor:pointer}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:45px}.contact-card{background:#080f1a;border:1px solid #2b3d57;border-radius:14px;padding:21px}.contact-card h3{font-size:15px}.contact-card p{font-size:11px;color:#8290a5;margin:7px 0 13px}.contact-btn{display:inline-block;padding:11px 15px;border-radius:10px;background:linear-gradient(135deg,#3b83ff,#6a4cff);border:1px solid #74a4ff;font-size:10px;font-weight:800}
+footer{text-align:center;padding:28px;border-top:1px solid #1b293d;color:#63728a;font-size:10px}
 
-.hero{min-height:440px;position:relative;overflow:hidden;border-bottom:1px solid #202c40;
-background:
-radial-gradient(circle at 50% 45%,#397dff38,transparent 22%),
-radial-gradient(circle at 18% 30%,#8c4dff2c,transparent 20%),
-radial-gradient(circle at 82% 28%,#00b7ff22,transparent 21%),
-linear-gradient(135deg,#030712,#0a1020 43%,#080611)}
-.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.7}
-.hero:before{width:480px;height:480px;left:-90px;top:-140px;background:radial-gradient(circle,#496cff44,transparent 65%)}
-.hero:after{width:600px;height:600px;right:-150px;top:-220px;background:radial-gradient(circle,#8d45ff35,transparent 65%)}
-.hero-inner{max-width:1500px;margin:auto;min-height:440px;padding:45px 28px;display:grid;grid-template-columns:1fr 1.3fr 1fr;align-items:center;gap:20px;position:relative;z-index:2}
-.hero-side{display:flex;flex-direction:column;gap:10px}.side-card{background:#080e18cc;border:1px solid #33425a;border-radius:12px;padding:15px;backdrop-filter:blur(10px);box-shadow:0 10px 35px #0006}.side-card strong{font-size:13px}.side-card p{font-size:11px;color:#8e9bb0;margin-top:4px}.green{color:#25e9a0}
-.hero-main{text-align:center}.crown{font-size:46px;filter:drop-shadow(0 0 18px #6fa0ff);animation:float 3s ease-in-out infinite}
-.hero-main .lt{font-size:110px;line-height:.75;font-weight:900;letter-spacing:-10px;color:#f4f7ff;text-shadow:0 0 14px #fff,0 0 40px #3d83ff,0 0 80px #3d83ff66}
-.hero-main h1{font-size:53px;letter-spacing:-3px;font-weight:900;margin:13px 0 7px;text-shadow:0 0 15px #fff,0 0 35px #397dff}
-.hero-main p{font-size:11px;letter-spacing:7px;color:#d7e1f6}
-.hero-main .cta{display:inline-block;margin-top:20px;border:2px solid #5b9aff;border-radius:28px;padding:12px 30px;color:#fff;font-weight:800;box-shadow:0 0 25px #3b82ff66;background:#0a1730aa}
-.hero-main .cta:hover{background:#15366b}
+#toast{position:fixed;right:20px;bottom:20px;z-index:500;background:#0c1727;border:1px solid #4287ff;padding:12px 15px;border-radius:10px;transform:translateY(100px);transition:.25s;font-size:11px}#toast.show{transform:none}
+.chat-launch{position:fixed;right:20px;bottom:20px;z-index:450;width:58px;height:58px;border-radius:50%;border:1px solid #70a4ff;background:linear-gradient(135deg,#397dff,#704cff);color:#fff;font-size:23px;cursor:pointer;box-shadow:0 0 30px #397dff66}
+.chat{display:none;position:fixed;right:20px;bottom:90px;width:390px;height:500px;z-index:451;background:#080f1a;border:1px solid #395071;border-radius:17px;box-shadow:0 25px 80px #000c;overflow:hidden}.chat.open{display:flex;flex-direction:column}.chat-head{padding:14px;border-bottom:1px solid #22334a;display:flex;justify-content:space-between}.chat-head strong{font-size:12px}.chat-head small{display:block;color:#20e5a0;font-size:9px;margin-top:4px}.chat-close{border:0;background:#111d2d;color:#fff;border-radius:7px;padding:5px 9px}.chat-body{padding:13px;flex:1;overflow:auto}.bubble{max-width:82%;padding:9px 11px;margin:6px 0;background:#101c2d;border:1px solid #263b58;border-radius:11px;font-size:10px;line-height:1.5}.bubble.user{margin-left:auto;background:#173661}.demo{margin-top:12px;padding:9px;border:1px dashed #3b4e6a;border-radius:8px;color:#71819a;font-size:9px}.quick{display:flex;gap:5px;padding:8px;border-top:1px solid #22334a;overflow:auto}.quick button{white-space:nowrap;border:1px solid #2d4565;background:#0d1726;color:#9cbcff;border-radius:18px;padding:7px 9px;font-size:9px}.chat-input{display:flex;gap:6px;padding:9px;border-top:1px solid #22334a}.chat-input input{flex:1;min-width:0;background:#0b1421;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:8px;font-size:10px}.chat-input button{border:0;background:#3e82ff;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px}
+#cartBg{display:none;position:fixed;inset:0;background:#000b;z-index:600}.drawer{position:absolute;right:0;top:0;height:100%;width:min(420px,100%);background:#080f19;border-left:1px solid #334a69;padding:22px;overflow:auto}.drawer-head{display:flex;justify-content:space-between}.close{border:1px solid #2d405b;background:#101a2a;color:#fff;border-radius:7px;padding:6px 9px}.cart-item{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #1c2b40;font-size:11px}.total{font-size:20px;font-weight:900;margin:20px 0}.checkout{width:100%;border:0;border-radius:9px;padding:12px;background:linear-gradient(135deg,#3c83ff,#6a4cff);color:#fff;font-weight:800}
 
-@keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
-
-.servicebar{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative;z-index:5}
-.service-inner{display:grid;grid-template-columns:repeat(5,1fr);background:#080e17;border:1px solid #42516b;border-radius:16px;overflow:hidden;box-shadow:0 15px 50px #0007}
-.service{padding:16px 18px;border-right:1px solid #202c40;display:flex;gap:12px;align-items:center}.service:last-child{border:0}
-.service .ico{width:38px;height:38px;border-radius:50%;background:#121b2c;border:1px solid #2d3e5c;display:grid;place-items:center}.service strong{display:block;font-size:11px}.service small{display:block;color:#7d8ba1;font-size:10px;margin-top:3px}
-.stars{color:#ffd35a;letter-spacing:2px;font-size:15px}
-
-main{max-width:1500px;margin:auto;padding:0 28px 70px}
-.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
-.cat{height:135px;border:1px solid #32415a;border-radius:13px;position:relative;overflow:hidden;padding:17px;background:linear-gradient(145deg,#111b2d,#080d16);transition:.25s}
-.cat:hover{transform:translateY(-4px);border-color:#538fff;box-shadow:0 12px 35px #2d73ff1c}
-.cat:after{content:"";position:absolute;width:150px;height:150px;right:-40px;bottom:-50px;background:radial-gradient(circle,#397dff44,transparent 65%)}
-.cat h3{font-size:16px;position:relative;z-index:2}.cat p{font-size:11px;color:#8d99ab;margin-top:5px;position:relative;z-index:2}.cat button{position:absolute;left:14px;bottom:12px;background:#07101e;border:1px solid #6c82a4;color:#fff;border-radius:18px;padding:6px 13px;font-size:10px;z-index:3}
-
-.products-head{display:flex;align-items:center;justify-content:space-between;margin-top:30px;margin-bottom:18px}.title h2{font-size:25px}.title p{font-size:12px;color:#718097;margin-top:4px}
-.fire{font-size:29px;vertical-align:-4px;margin-right:5px}.tabs{display:flex;border:1px solid #26354c;border-radius:10px;overflow:hidden}.tab{background:#090f19;color:#8794a9;border:0;border-right:1px solid #202d42;padding:10px 17px;font-size:11px}.tab.active,.tab:hover{color:#fff;background:#10234a;box-shadow:inset 0 -2px #4b8cff}.view{border:1px solid #2d405d;background:#0b1220;color:#6ea2ff;border-radius:10px;padding:10px 15px;font-size:11px}
-.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.product{background:linear-gradient(180deg,#0e1623,#080d15);border:1px solid #202e43;border-radius:11px;overflow:hidden;position:relative;min-width:0;transition:.2s}.product:hover{transform:translateY(-5px);border-color:#4a86e8;box-shadow:0 15px 40px #0008}.photo{height:170px;background:linear-gradient(145deg,#172338,#070b12);display:grid;place-items:center;font-size:65px;position:relative}.photo:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 30%,#4c8fff22,transparent 55%)}
-.badge{position:absolute;top:9px;left:9px;background:#246cff;color:#fff;border-radius:8px;padding:4px 7px;font-size:8px;font-weight:800;z-index:2}.badge.new{background:#0e9d78}.badge.sale{background:#e34a4a}.heart{position:absolute;right:8px;top:7px;background:transparent;border:0;color:#dbe5f7;font-size:18px;z-index:3}
-.info{padding:11px}.info h3{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.info p{font-size:9px;color:#7c899e;margin-top:3px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.price{color:#21e8a1;font-size:17px;font-weight:900}.addsmall{width:32px;height:32px;border:1px solid #64789b;background:#0b1220;color:#fff;border-radius:8px}
-
-.contact{margin-top:45px;display:grid;grid-template-columns:1fr 1fr;gap:12px}.contact-card{border:1px solid #25344b;background:#0a111b;border-radius:14px;padding:22px}.contact-card h3{font-size:16px}.contact-card p{color:#7f8ca0;font-size:12px;margin:7px 0 13px}.contact-card a{color:#6fa5ff;font-size:13px;font-weight:800}
-footer{text-align:center;border-top:1px solid #1a2639;padding:28px;color:#65738a;font-size:11px}
-
-#cartBg{display:none;position:fixed;inset:0;background:#000b;z-index:500}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#080e17;border-left:1px solid #31445f;padding:24px;overflow:auto}.drawer-head{display:flex;justify-content:space-between;align-items:center}.close{border:1px solid #2c3c55;background:#101a29;color:#fff;border-radius:8px;padding:7px 10px}.cart-item{padding:14px 0;border-bottom:1px solid #1d293a;display:flex;justify-content:space-between;gap:10px;font-size:13px}.total{font-size:21px;font-weight:900;margin:22px 0}.checkout{width:100%;padding:13px;border:0;border-radius:10px;background:linear-gradient(135deg,#3b82ff,#7c4dff);color:#fff;font-weight:800}
-#toast{position:fixed;right:20px;bottom:20px;background:#0c1726;border:1px solid #397dff;padding:13px 17px;border-radius:10px;transform:translateY(120px);transition:.25s;z-index:600}#toast.show{transform:translateY(0)}
-
-@media(max-width:1200px){.grid{grid-template-columns:repeat(4,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.hero-inner{grid-template-columns:1fr}.hero-side{display:none}.hero-main{padding:20px}}
-@media(max-width:800px){nav{display:none}.search{width:180px}.service-inner{grid-template-columns:repeat(2,1fr)}.service:nth-child(2),.service:nth-child(4){border-right:0}.service:last-child{grid-column:1/-1}.grid{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
-@media(max-width:500px){.nav{padding:0 14px;gap:10px}.search{width:125px}.logo{font-size:16px}.logo span{font-size:23px}.hero-main .lt{font-size:78px}.hero-main h1{font-size:36px}.hero-main p{letter-spacing:4px}.service-inner{grid-template-columns:1fr}.service{border-right:0;border-bottom:1px solid #202c40}.categories{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.photo{height:145px}.products-head{display:block}.tabs{margin-top:15px;overflow:auto}}
-
-/* ===== EXTRA 2026 ANIMATIONS ===== */
-#intro{
- position:fixed;inset:0;z-index:9999;display:grid;place-items:center;overflow:hidden;
- background:radial-gradient(circle at center,#17366f 0%,#080d19 42%,#02040a 100%);
- animation:introExit .9s cubic-bezier(.7,0,.2,1) 3.6s forwards;
-}
-.intro-glow{position:absolute;width:650px;height:650px;border-radius:50%;
- background:radial-gradient(circle,#4388ff66 0%,#7c4dff22 35%,transparent 68%);
- filter:blur(8px);animation:introGlow 2.5s ease-in-out infinite}
-.intro-logo{position:relative;text-align:center;z-index:3}
-.intro-crown{font-size:46px;color:#fff;text-shadow:0 0 15px #5797ff,0 0 40px #5797ff;opacity:0;animation:introUp .7s .15s forwards}
-.intro-lt{font-size:125px;font-weight:900;letter-spacing:-12px;line-height:.72;
- color:#fff;text-shadow:0 0 12px #fff,0 0 35px #3d82ff,0 0 85px #3d82ff88;
- transform:scale(.2);opacity:0;animation:introLogo 1s .35s cubic-bezier(.16,1,.3,1) forwards}
-.intro-name{font-size:48px;font-weight:900;letter-spacing:7px;margin-top:18px;
- text-shadow:0 0 12px #fff,0 0 35px #4b8dff;opacity:0;animation:introUp .8s .9s forwards}
-.intro-line{height:3px;width:0;margin:20px auto;background:linear-gradient(90deg,#3d82ff,#a45cff);
- box-shadow:0 0 25px #4b8dff;animation:introLine 1s 1.25s forwards}
-.intro-sub{font-size:10px;letter-spacing:6px;color:#b7c9e8;opacity:0;animation:introUp .7s 1.55s forwards}
-.intro-fly{position:absolute;font-size:62px;z-index:2;filter:drop-shadow(0 0 20px #4b8dff);
- animation:flyAround 3.2s ease-in-out infinite}
-.fly1{left:10%;top:18%;animation-delay:.1s}.fly2{right:13%;top:16%;animation-delay:.55s}
-.fly3{left:16%;bottom:17%;animation-delay:1s}.fly4{right:18%;bottom:15%;animation-delay:1.45s}
-.fly5{left:47%;top:8%;animation-delay:1.9s}
-.intro-particles,.page-particles{position:absolute;inset:0;pointer-events:none}
-.intro-particles:before,.intro-particles:after,.page-particles:before,.page-particles:after{
- content:"";position:absolute;width:4px;height:4px;border-radius:50%;
- background:#75aaff;box-shadow:
-  4vw 8vh #75aaff,12vw 32vh #a36cff,21vw 17vh #fff,29vw 70vh #397dff,
-  39vw 25vh #75aaff,48vw 82vh #a36cff,57vw 11vh #fff,67vw 66vh #397dff,
-  76vw 28vh #75aaff,86vw 74vh #a36cff,94vw 14vh #fff,18vw 90vh #397dff;
- opacity:.7;animation:particleDrift 9s linear infinite}
-.intro-particles:after{transform:translateY(100vh);animation-delay:-4s}
-.page-particles{z-index:-1;opacity:.35}
-.page-particles:before{animation-duration:16s}.page-particles:after{animation-duration:21s}
-@keyframes introLogo{to{transform:scale(1);opacity:1}}
-@keyframes introUp{to{opacity:1;transform:translateY(0)}}
-@keyframes introLine{to{width:360px}}
-@keyframes introGlow{50%{transform:scale(1.25);opacity:.7}}
-@keyframes flyAround{0%,100%{transform:translate(0,0) rotate(-8deg) scale(.9);opacity:.25}
-50%{transform:translate(35px,-35px) rotate(10deg) scale(1.1);opacity:1}}
-@keyframes particleDrift{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-50px) translateX(20px)}100%{transform:translateY(-100px) translateX(-10px)}}
-@keyframes introExit{to{opacity:0;visibility:hidden;transform:scale(1.06);pointer-events:none}}
-.hero-main .lt{animation:heroPulse 3s ease-in-out infinite}
-.hero-main h1{animation:heroText 4s ease-in-out infinite alternate}
-.hero-main .cta{animation:buttonPulse 2.2s ease-in-out infinite}
-.side-card,.service,.cat,.product,.contact-card{animation:cardReveal .8s ease both}
-.side-card:nth-child(2),.service:nth-child(2),.product:nth-child(2){animation-delay:.08s}
-.side-card:nth-child(3),.service:nth-child(3),.product:nth-child(3){animation-delay:.16s}
-.side-card:nth-child(4),.service:nth-child(4),.product:nth-child(4){animation-delay:.24s}
-.product .photo{transition:transform .45s ease,filter .45s ease}
-.product:hover .photo{transform:scale(1.06);filter:brightness(1.15)}
-.product:hover:after{content:"";position:absolute;left:-80%;top:0;width:50%;height:100%;
- background:linear-gradient(90deg,transparent,#ffffff22,transparent);transform:skewX(-18deg);animation:shine .65s forwards}
-.cat button,.addsmall,.cart,.iconbtn,.tab,.filter{transition:.2s}
-@keyframes heroPulse{50%{text-shadow:0 0 18px #fff,0 0 55px #3d82ff,0 0 110px #3d82ff99}}
-@keyframes heroText{from{filter:drop-shadow(0 0 0 #397dff)}to{filter:drop-shadow(0 0 16px #397dff)}}
-@keyframes buttonPulse{50%{box-shadow:0 0 40px #397dff88,0 0 80px #397dff22}}
-@keyframes cardReveal{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes shine{to{left:140%}}
-@media(max-width:600px){
- .intro-lt{font-size:82px}.intro-name{font-size:28px;letter-spacing:4px}.intro-line{max-width:75vw}
- .intro-fly{font-size:40px}.fly5{display:none}
-}
-
-
-/* ===== STORE INTERACTIONS ===== */
-.like-btn.liked{color:#ff4f78!important;text-shadow:0 0 15px #ff4f78;transform:scale(1.12)}
-.like-btn{transition:.2s!important}
-.product .like-btn{position:absolute;right:8px;top:7px;background:transparent;border:0;color:#dbe5f7;font-size:20px;z-index:5;cursor:pointer}
-.product .photo .like-btn{position:absolute}
-.chat-launch{position:fixed;right:22px;bottom:22px;z-index:400;width:58px;height:58px;border-radius:50%;border:1px solid #70a4ff;background:linear-gradient(135deg,#397dff,#704cff);color:#fff;font-size:24px;box-shadow:0 0 30px #397dff77;cursor:pointer;animation:chatPulse 2.2s infinite}
-.chat-window{display:none;position:fixed;right:22px;bottom:92px;z-index:401;width:min(390px,calc(100vw - 30px));height:500px;background:#080e18f5;border:1px solid #344c70;border-radius:18px;box-shadow:0 25px 80px #000b;backdrop-filter:blur(20px);overflow:hidden}
-.chat-window.open{display:flex;flex-direction:column;animation:chatIn .25s ease}
-.chat-head{padding:15px 17px;border-bottom:1px solid #25344b;display:flex;justify-content:space-between;align-items:center}
-.chat-head strong{font-size:14px}.online{color:#24e9a0;font-size:10px;margin-top:3px}
-.chat-close{border:0;background:#111b2b;color:#fff;border-radius:7px;padding:6px 9px}
-.chat-body{padding:14px;overflow:auto;flex:1}.bubble{max-width:82%;padding:10px 12px;border-radius:12px;margin:7px 0;font-size:11px;line-height:1.5;background:#111c2d;border:1px solid #263952}.bubble.admin{border-color:#315fa9}.bubble.user{margin-left:auto;background:#17345f}
-.quick-msgs{display:flex;gap:6px;overflow:auto;padding:8px 12px;border-top:1px solid #1d2b40}.quick-msg{white-space:nowrap;border:1px solid #2b405e;background:#0d1726;color:#9bb8e9;border-radius:20px;padding:7px 10px;font-size:10px;cursor:pointer}
-.chat-input{display:flex;gap:7px;padding:11px;border-top:1px solid #25344b}.chat-input input{min-width:0;flex:1;background:#0c1420;border:1px solid #2a3c57;color:#fff;border-radius:9px;padding:9px}.chat-input button{border:0;background:#397dff;color:#fff;border-radius:9px;padding:9px 12px}
-@keyframes chatPulse{50%{box-shadow:0 0 42px #397dffbb,0 0 75px #397dff22}}@keyframes chatIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
-.admin-note{margin-top:12px;padding:11px;border:1px dashed #344b6d;border-radius:10px;color:#7788a1;font-size:10px}
-
-
-/* ===== CLEAN ANIMATED WALLPAPER ===== */
-.hero{isolation:isolate}
-.hero:after{animation:ambientGlow 7s ease-in-out infinite alternate}
-.hero:before{animation:ambientGlow2 9s ease-in-out infinite alternate}
-.hero:global{} 
-.hero-inner:before{
- content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
- background:
- radial-gradient(circle at 12% 15%,#fff 0 1px,transparent 2px),
- radial-gradient(circle at 23% 78%,#66a4ff 0 1px,transparent 2px),
- radial-gradient(circle at 34% 20%,#fff 0 1px,transparent 2px),
- radial-gradient(circle at 67% 15%,#6fa7ff 0 1px,transparent 2px),
- radial-gradient(circle at 78% 75%,#fff 0 1px,transparent 2px),
- radial-gradient(circle at 91% 36%,#8b62ff 0 1px,transparent 2px);
- background-size:210px 180px,260px 220px,310px 240px,280px 210px,330px 270px,250px 190px;
- opacity:.55;animation:starDrift 16s linear infinite;
-}
-.hero-inner:after{
- content:"";position:absolute;inset:8% 4%;z-index:-1;pointer-events:none;border-radius:30px;
- background:
- linear-gradient(115deg,transparent 0 43%,#4e8fff13 44%,transparent 45%),
- linear-gradient(65deg,transparent 0 55%,#9b5cff10 56%,transparent 57%);
- animation:lightSweep 8s ease-in-out infinite alternate;
-}
-.wall-chip{position:absolute;z-index:0;border:1px solid #6d8fc522;background:#ffffff05;
-box-shadow:0 0 30px #397dff10;border-radius:12px;padding:8px 12px;color:#7f9bc4;
-font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;pointer-events:none}
-.ch1{left:4%;top:12%;}.ch2{left:17%;bottom:10%;animation-delay:1.3s}.ch3{right:16%;top:12%;animation-delay:2s}.ch4{right:4%;bottom:11%;animation-delay:3s}
-@keyframes ambientGlow{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,25px) scale(1.15)}}
-@keyframes ambientGlow2{from{transform:translate(0,0)}to{transform:translate(55px,-20px)}}
-@keyframes starDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(18px,-12px,0)}100%{transform:translate3d(-12px,-24px,0)}}
-@keyframes lightSweep{from{transform:translateX(-2%) scale(1)}to{transform:translateX(2%) scale(1.03)}}
-@keyframes chipFloat{50%{transform:translateY(-9px);border-color:#6d9fff44}}
-
-
-.contact-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#397dff,#684cff);border:1px solid #6b9dff;color:#fff!important;padding:11px 16px;border-radius:10px;font-size:11px;font-weight:800;box-shadow:0 0 22px #397dff22;transition:.2s}
-.contact-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px #397dff55}
-.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease,filter .45s ease;background:linear-gradient(145deg,#182844,#080d15)}
-.product:hover .photo img{transform:scale(1.06);filter:brightness(1.08)}
-
-
-.clickable-card{display:block;color:inherit;text-decoration:none;cursor:pointer;transition:.22s}
-.clickable-card:hover{transform:translateY(-3px);border-color:#5b96ff;box-shadow:0 0 28px #397dff22}
-.clickable-card small{color:#a9c7ff}
-
-
-.clickable-card{display:block!important;color:inherit!important;text-decoration:none!important;cursor:pointer;transition:.22s}
-.top-link-btn{display:inline-block;margin-top:9px;padding:7px 11px;border-radius:8px;background:linear-gradient(135deg,#397dff,#684cff);border:1px solid #79a8ff;color:#fff;font-size:9px;font-weight:800;box-shadow:0 0 18px #397dff22}
-.clickable-card:hover .top-link-btn{box-shadow:0 0 24px #397dff66;transform:translateY(-1px)}
-.product-image{width:100%!important;height:100%!important;object-fit:cover!important;display:block!important}
-.photo{overflow:hidden}
+@keyframes stars{to{background-position:90px 90px}}@keyframes sweep{to{transform:translateX(25px)}}@keyframes float{50%{transform:translateY(-10px)}}@keyframes pulse{50%{text-shadow:0 0 18px #fff,0 0 65px #3e82ff,0 0 120px #3e82ff99}}@keyframes cta{50%{box-shadow:0 0 42px #397dff99}}
+@media(max-width:1200px){.grid{grid-template-columns:repeat(4,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.hero-inner{grid-template-columns:1fr}.side{display:none}}
+@media(max-width:800px){nav{display:none}.search{width:180px}.service-grid{grid-template-columns:repeat(2,1fr)}.service:nth-child(2),.service:nth-child(4){border-right:0}.service:last-child{grid-column:1/-1}.grid{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
+@media(max-width:500px){.nav{padding:0 14px;gap:12px}.logo{font-size:14px}.logo b{font-size:22px}.search{width:125px}.hero-main .lt{font-size:78px}.hero-main h1{font-size:35px}.categories{grid-template-columns:repeat(2,1fr)}.products-head{display:block}.tabs{margin-top:12px;overflow:auto}.chat{right:10px;bottom:82px;width:calc(100% - 20px)}}
 </style>
 </head>
 <body>
 
-<div id="intro">
-  <div class="intro-particles"></div>
-  <div class="intro-glow"></div>
-  <div class="intro-logo">
-    <div class="intro-crown">♛</div>
-    <div class="intro-lt">LT</div>
-    <div class="intro-name">PARDUOTUVĖ</div>
-    <div class="intro-line"></div>
-    <div class="intro-sub">DAUGIAU NEI TIK PARDUOTUVĖ</div>
-  </div>
-  <div class="intro-fly fly1">📱</div>
-  <div class="intro-fly fly2">👟</div>
-  <div class="intro-fly fly3">🎧</div>
-  <div class="intro-fly fly4">⌚</div>
-  <div class="intro-fly fly5">💻</div>
-</div>
-<div class="page-particles"></div>
-
-
-<header>
-<div class="nav">
-<a class="logo" href="#top"><span>LT</span> <em>PARDUOTUVĖ</em></a>
-<nav>
-<a class="active" href="#top">Pagrindinis</a>
-<a href="#prekes">-----</a>
-<a href="#prekes">-----</a>
-<a href="#prekes">Rūbai</a>
-<a href="#prekes">Elektronika</a>
-<a href="#prekes">Aksesuarai</a>
-<a href="#prekes">Kita</a>
-</nav>
+<header><div class="nav">
+<a class="logo" href="#top"><b>LT</b><span>PARDUOTUVĖ</span></a>
+<nav><a class="active" href="#top">Pagrindinis</a><a href="#prekes">-----</a><a href="#prekes">-----</a><a href="#prekes">Rūbai</a><a href="#prekes">Elektronika</a><a href="#prekes">Aksesuarai</a><a href="#prekes">Kita</a></nav>
 <input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
-<button class="iconbtn">♙</button><button class="iconbtn">♡</button>
-<button class="iconbtn cart" onclick="openCart()">🛒<b id="count">0</b></button>
-</div>
-</header>
+<button class="nav-icon">♙</button><button class="nav-icon">♡</button><button class="nav-icon cart" onclick="openCart()">🛒<span class="count" id="count">0</span></button>
+</div></header>
 
-<section class="hero" id="top">
-<div class="hero-inner">
-<div class="hero-side">
-<a class="side-card clickable-card" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">
-<strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small>
-<span class="top-link-btn">ATIDARYTI DISCORD →</span></a>
-<a class="side-card clickable-card" href="mailto:nedasliubinas4@gmail.com">
-<strong>✉️ El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small>
-<span class="top-link-btn">RAŠYTI EL. PAŠTU →</span></a>
-<div class="contact-card">
-<h3>🎫 Discord / Ticket</h3>
-<p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p>
-<a class="contact-btn" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">💬 ATIDARYTI DISCORD →</a>
+<section class="hero" id="top"><div class="hero-inner">
+<div class="side">
+<a class="side-card" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener"><strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small><br><span class="link-btn">ATIDARYTI DISCORD →</span></a>
+<a class="side-card" href="mailto:nedasliubinas4@gmail.com"><strong>✉️ El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small><br><span class="link-btn">RAŠYTI EL. PAŠTU →</span></a>
 </div>
+<div class="hero-main"><div class="crown">♛</div><div class="lt">LT</div><h1>PARDUOTUVĖ</h1><div class="sub">DAUGIAU NEI TIK PARDUOTUVĖ</div><a class="cta" href="#prekes">APSIPIRKTI DABAR →</a></div>
+<div class="side">
+<div class="side-card"><strong>🚚 Greitas pristatymas</strong><p>1–3 darbo dienos</p></div>
+<div class="side-card"><strong>🛡️ Saugūs mokėjimai</strong><p>100% saugu</p></div>
+<div class="side-card"><strong>🎁 Diskretiškas pakavimas</strong><p>Jokių nereikalingų žymėjimų</p></div>
+<div class="side-card"><strong>◉ Klientų palaikymas 24/7</strong><p>Visada pasiruošę padėti</p></div>
 </div>
+</div></section>
+
+<div class="services"><div class="service-grid">
+<div class="service"><b>🚚 GREITAS PRISTATYMAS</b><small>1–3 darbo dienos</small></div>
+<div class="service"><b>🛡️ SAUGŪS MOKĖJIMAI</b><small>100% saugūs</small></div>
+<div class="service"><b>🎁 DISKRETIŠKAS PAKAVIMAS</b><small>Jokių nereikalingų žymėjimų</small></div>
+<div class="service"><b>🔔 24/7 PAGALBA</b><small>Visada pasiekiami</small></div>
+<div class="service"><b>★★★★★</b><small>Klientų įvertinimas 4.9/5</small></div>
+</div></div>
+
+<main>
+<div class="categories">
+<div class="cat"><h3>-----</h3><p>Platus pasirinkimas</p><button onclick="setCategory('-----')">Žiūrėti →</button></div>
+<div class="cat"><h3>-----</h3><p>Populiariausi modeliai</p><button onclick="setCategory('-----2')">Žiūrėti →</button></div>
+<div class="cat"><h3>RŪBAI</h3><p>Stilius kiekvienam</p><button onclick="setCategory('Rūbai')">Žiūrėti →</button></div>
+<div class="cat"><h3>ELEKTRONIKA</h3><p>Telefonai, ausinės, kita</p><button onclick="setCategory('Elektronika')">Žiūrėti →</button></div>
+<div class="cat"><h3>AKSESUARAI</h3><p>Viskas, ko reikia</p><button onclick="setCategory('Aksesuarai')">Žiūrėti →</button></div>
+<div class="cat"><h3>KITA</h3><p>Įvairios prekės</p><button onclick="setCategory('Kita')">Žiūrėti →</button></div>
+</div>
+
+<div class="products-head" id="prekes"><div><h2>🔥 Populiariausios prekės</h2><p>Peržiūrėk mūsų populiariausias prekes</p></div>
+<div class="tabs"><button class="tab active" data-cat="all">Visos</button><button class="tab" data-cat="-----">-----</button><button class="tab" data-cat="-----2">-----</button><button class="tab" data-cat="Rūbai">Rūbai</button><button class="tab" data-cat="Elektronika">Elektronika</button><button class="tab" data-cat="Aksesuarai">Aksesuarai</button><button class="tab" data-cat="Kita">Kita</button></div></div>
+
+<div class="grid" id="grid">
+<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Nike Tech Fleece" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M230 145Q270 105 315 120L350 155 385 120Q430 105 470 145L535 215 478 270 438 225 438 420Q350 455 262 420L262 225 222 270 165 215Z' fill='%232f3949' stroke='%238c99ad' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Nike Tech Fleece Hoodie</h3><p>Rūbai</p><div class="price-row"><b class="price">89.99 €</b><button class="add" onclick="add('Nike Tech Fleece Hoodie',89.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Klasikiniai sportbačiai" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M145 330Q235 340 310 275L380 185Q410 165 445 210L515 310Q548 345 610 365L640 395Q625 430 570 430H175Q125 415 145 330Z' fill='%23d9dee6' stroke='%238f9bad' stroke-width='6'/%3E%3Cpath d='M205 347Q330 365 485 325' fill='none' stroke='white' stroke-width='13'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Klasikiniai sportbačiai</h3><p>Rūbai</p><div class="price-row"><b class="price">119.99 €</b><button class="add" onclick="add('Klasikiniai sportbačiai',119.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Telefonas" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='245' y='55' width='210' height='410' rx='32' fill='%233d527c' stroke='%2391a5c9' stroke-width='5'/%3E%3Crect x='260' y='72' width='180' height='375' rx='24' fill='%23070b12'/%3E%3Ccircle cx='302' cy='132' r='22' fill='%23101926' stroke='%238ea1c1' stroke-width='4'/%3E%3Ccircle cx='302' cy='184' r='22' fill='%23101926' stroke='%238ea1c1' stroke-width='4'/%3E%3C/svg%3E"><span class="badge sale">−20%</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>iPhone 15 128GB</h3><p>Elektronika</p><div class="price-row"><b class="price">699.99 €</b><button class="add" onclick="add('iPhone 15 128GB',699.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Ausinės" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M205 280V215Q205 90 350 90T495 215V280' fill='none' stroke='%23d9e0eb' stroke-width='42' stroke-linecap='round'/%3E%3Crect x='170' y='245' width='95' height='150' rx='35' fill='%23202a3a' stroke='%2393a1b8' stroke-width='5'/%3E%3Crect x='435' y='245' width='95' height='150' rx='35' fill='%23202a3a' stroke='%2393a1b8' stroke-width='5'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Apple AirPods Pro 2</h3><p>Elektronika</p><div class="price-row"><b class="price">249.99 €</b><button class="add" onclick="add('Apple AirPods Pro 2',249.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Laikrodis" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='285' y='20' width='130' height='160' rx='45' fill='%23171d28'/%3E%3Crect x='285' y='340' width='130' height='160' rx='45' fill='%23171d28'/%3E%3Crect x='230' y='125' width='240' height='270' rx='62' fill='%23151c28' stroke='%238f9eb5' stroke-width='7'/%3E%3Ccircle cx='350' cy='260' r='72' fill='%2318243a' stroke='%234d78b7' stroke-width='4'/%3E%3Cpath d='M350 260V215M350 260l38 22' stroke='%23e9f0ff' stroke-width='7'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Apple Watch Series 9</h3><p>Elektronika</p><div class="price-row"><b class="price">249.99 €</b><button class="add" onclick="add('Apple Watch Series 9',249.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Elektronika"><div class="photo"><img class="product-image" alt="Kolonėlė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='245' y='90' width='210' height='330' rx='55' fill='%231a2230' stroke='%2377869e' stroke-width='5'/%3E%3Ccircle cx='350' cy='205' r='72' fill='%23070b12' stroke='%233f5068' stroke-width='5'/%3E%3Ccircle cx='350' cy='330' r='52' fill='%23070b12' stroke='%233f5068' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Bluetooth kolonėlė</h3><p>Elektronika</p><div class="price-row"><b class="price">159.99 €</b><button class="add" onclick="add('Bluetooth kolonėlė',159.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Rūbai"><div class="photo"><img class="product-image" alt="Hoodie" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M230 145Q270 105 315 120L350 155 385 120Q430 105 470 145L535 215 478 270 438 225 438 420Q350 455 262 420L262 225 222 270 165 215Z' fill='%231c2430' stroke='%238c99ad' stroke-width='5'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>The North Face Hoodie</h3><p>Rūbai</p><div class="price-row"><b class="price">79.99 €</b><button class="add" onclick="add('The North Face Hoodie',79.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Aksesuarai"><div class="photo"><img class="product-image" alt="Kuprinė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Cpath d='M205 170Q205 105 350 105T495 170L545 410Q350 465 155 410Z' fill='%23202a38' stroke='%238a98ab' stroke-width='6'/%3E%3Cpath d='M260 170Q260 90 350 90T440 170' fill='none' stroke='%239ba8ba' stroke-width='18'/%3E%3C/svg%3E"><span class="badge new">Nauja</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Miesto kuprinė</h3><p>Aksesuarai</p><div class="price-row"><b class="price">34.99 €</b><button class="add" onclick="add('Miesto kuprinė',34.99)">🛒</button></div></div></div>
+<div class="product" data-cat="Aksesuarai"><div class="photo"><img class="product-image" alt="Piniginė" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 520'%3E%3Crect width='700' height='520' fill='%23121b2a'/%3E%3Crect x='155' y='135' width='390' height='250' rx='25' fill='%23252b34' stroke='%238c96a4' stroke-width='6'/%3E%3Cpath d='M420 245h110v105H420Q365 298 420 245Z' fill='%23151a22' stroke='%236e7b8d' stroke-width='5'/%3E%3C/svg%3E"><span class="badge">Populiarus</span><button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>Klasikinė piniginė</h3><p>Aksesuarai</p><div class="price-row"><b class="price">29.99 €</b><button class="add" onclick="add('Klasikinė piniginė',29.99)">🛒</button></div></div></div>
+</div>
+
+<div class="contact"><div class="contact-card"><h3>✉️ El. paštas</h3><p>Klausimams ir pagalbai.</p><a class="contact-btn" href="mailto:nedasliubinas4@gmail.com">RAŠYTI EL. PAŠTU →</a></div><div class="contact-card"><h3>💬 Discord / Ticket</h3><p>Prisijunk ir susisiek per ticket.</p><a class="contact-btn" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">ATIDARYTI DISCORD →</a></div></div>
 </main>
-
-
-<button class="chat-launch" onclick="toggleChat()" aria-label="Pagalba">💬</button>
-<div class="chat-window" id="chatWindow">
-  <div class="chat-head">
-    <div><strong>LT Parduotuvė • Pagalba</strong><div class="online">● Prisijungę • 24/7</div></div>
-    <button class="chat-close" onclick="toggleChat()">✕</button>
-  </div>
-  <div class="chat-body" id="chatBody">
-    <div class="bubble admin">Sveiki! 👋 Kaip galime padėti?</div>
-    <div class="bubble admin">Pasirinkite klausimą apačioje arba parašykite savo problemą.</div>
-    <div class="admin-note">Demo pokalbis veikia šiame puslapyje. Tikram klientų ir administratorių susirašinėjimui reikės serverio / duomenų bazės.</div>
-  </div>
-  <div class="quick-msgs">
-    <button class="quick-msg" onclick="quickChat('Turiu klausimą apie prekę')">Apie prekę</button>
-    <button class="quick-msg" onclick="quickChat('Kur mano užsakymas?')">Užsakymas</button>
-    <button class="quick-msg" onclick="quickChat('Noriu pagalbos')">Pagalba</button>
-  </div>
-  <div class="chat-input"><input id="chatInput" placeholder="Parašykite žinutę..."><button onclick="sendChat()">Siųsti</button></div>
-</div>
-
 <footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7</footer>
 
-<div id="toast">✓ Prekė įdėta į krepšelį</div>
-<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
+<button class="chat-launch" onclick="toggleChat()">💬</button>
+<div class="chat" id="chat"><div class="chat-head"><div><strong>LT Parduotuvė • Pagalba</strong><small>● Prisijungę • 24/7</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div>
+<div class="chat-body" id="chatBody"><div class="bubble">Sveiki! 👋 Kaip galime padėti?</div><div class="bubble">Pasirinkite klausimą arba parašykite savo problemą.</div><div class="demo">Tai yra tik puslapio demonstracinis pokalbis. Kad žinutės realiai pasiektų administratorių ir būtų saugomos, reikia prijungti backend + duomenų bazę.</div></div>
+<div class="quick"><button onclick="quick('Turiu klausimą apie prekę')">Apie prekę</button><button onclick="quick('Kur mano užsakymas?')">Užsakymas</button><button onclick="quick('Noriu pagalbos')">Pagalba</button></div>
+<div class="chat-input"><input id="msg" placeholder="Parašykite žinutę..."><button onclick="send()">Siųsti</button></div></div>
+
+<div id="toast">✓ Pridėta į krepšelį</div>
+<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
 
 <script>
 let cart=[];
-let current="all";
-function add(name,price){cart.push({name,price});render();let t=document.getElementById("toast");t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)}
-function render(){document.getElementById("count").textContent=cart.length;document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):"<p style='color:#718097;margin-top:20px'>Krepšelis tuščias.</p>";document.getElementById("total").textContent=cart.reduce((s,x)=>s+x.price,0).toFixed(2)+" €"}
-function removeItem(i){cart.splice(i,1);render()}
-function openCart(){document.getElementById("cartBg").style.display="block";render()}
-function closeCart(){document.getElementById("cartBg").style.display="none"}
-function filter(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".product").forEach(p=>{let ok=current==="all"||p.dataset.cat===current;let text=p.innerText.toLowerCase();p.style.display=ok&&text.includes(q)?"":"none"})}
+function add(name,price){cart.push({name,price});renderCart();toast("✓ "+name+" pridėta į krepšelį")}
+function renderCart(){document.getElementById("count").textContent=cart.length;document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):"<p style='color:#718096;margin-top:20px'>Krepšelis tuščias.</p>";document.getElementById("total").textContent=cart.reduce((a,b)=>a+b.price,0).toFixed(2)+" €"}
+function removeItem(i){cart.splice(i,1);renderCart()}function openCart(){document.getElementById("cartBg").style.display="block";renderCart()}function closeCart(){document.getElementById("cartBg").style.display="none"}
+function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1800)}
+function like(b){b.classList.toggle("liked");b.textContent=b.classList.contains("liked")?"♥":"♡"}
+let active="all";
+function filter(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".product").forEach(p=>{let ok=active==="all"||p.dataset.cat===active;let txt=p.innerText.toLowerCase();p.style.display=ok&&txt.includes(q)?"":"none"})}
 document.getElementById("search").addEventListener("input",filter);
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");current=b.dataset.cat;filter()});
-function setCat(name){if(name==="-----")return;let m={"Rūbai":"rubai","Elektronika":"elektronika","Aksesuarai":"aksesuarai","Kita":"kita"};current=m[name]||"all";document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===current));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
-render();
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
+function setCategory(c){active=c==="-----"||c==="-----2"?"all":c;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===active));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
+function toggleChat(){document.getElementById("chat").classList.toggle("open")}
+function bubble(t,who){let d=document.createElement("div");d.className="bubble "+(who||"");d.textContent=t;let b=document.getElementById("chatBody");b.appendChild(d);b.scrollTop=b.scrollHeight}
+function quick(t){bubble(t,"user");setTimeout(()=>bubble("Ačiū! Žinutė gauta. Realiam administratoriaus atsakymui reikia prijungti serverį."),450)}
+function send(){let i=document.getElementById("msg"),t=i.value.trim();if(t){quick(t);i.value=""}}
+document.getElementById("msg").addEventListener("keydown",e=>{if(e.key==="Enter")send()});
+renderCart();
 </script>
-
-<script>
-setTimeout(()=>document.getElementById("intro")?.remove(),5200);
-</script>
-
-<script>
-
-function toggleLike(btn){
-  btn.classList.toggle("liked");
-  btn.textContent=btn.classList.contains("liked")?"♥":"♡";
-  const product=btn.closest(".product");
-  const name=product?.querySelector(".info h3")?.textContent||"Prekė";
-  showToast(btn.classList.contains("liked")?"♥ "+name+" pamėgta":"♡ "+name+" pašalinta iš mėgstamų");
-}
-function toggleChat(){document.getElementById("chatWindow").classList.toggle("open")}
-function addBubble(text,who="user"){
- const body=document.getElementById("chatBody");
- const div=document.createElement("div"); div.className="bubble "+who; div.textContent=text;
- body.appendChild(div); body.scrollTop=body.scrollHeight;
-}
-function quickChat(text){addBubble(text);setTimeout(()=>addBubble("Ačiū! Gavome jūsų žinutę. Administratorius galės atsakyti šiame pokalbyje, kai prijungsite tikrą backendą.","admin"),500)}
-function sendChat(){
- const input=document.getElementById("chatInput"); const text=input.value.trim(); if(!text)return;
- quickChat(text); input.value="";
-}
-document.getElementById("chatInput")?.addEventListener("keydown",e=>{if(e.key==="Enter")sendChat()});
-function showToast(text){
- const t=document.getElementById("toast"); t.textContent=text; t.classList.add("show");
- clearTimeout(window.toastTimer); window.toastTimer=setTimeout(()=>{t.classList.remove("show");t.textContent="✓ Prekė įdėta į krepšelį"},1800);
-}
-
-</script>
-</body>
-</html>
+</body></html>
