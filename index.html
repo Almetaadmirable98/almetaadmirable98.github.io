@@ -186,7 +186,7 @@ body.auth-locked{overflow:hidden}
 
 
 .admin-chat-layout{display:grid;grid-template-columns:280px 1fr;gap:12px;min-height:420px}.admin-chat-users,.admin-chat-window{background:#0b1421;border:1px solid #263950;border-radius:12px;overflow:hidden}.admin-chat-users{padding:10px}.admin-chat-user{padding:10px;border:1px solid #22354e;background:#08111d;border-radius:9px;cursor:pointer;margin-bottom:7px}.admin-chat-user:hover,.admin-chat-user.active{border-color:#4c8cff;background:#102754}.admin-chat-user b{font-size:10px}.admin-chat-user small{display:block;color:#718096;font-size:8px;margin-top:4px}.admin-chat-title{padding:13px;border-bottom:1px solid #263950;font-size:11px;font-weight:800}.admin-chat-body{height:340px;overflow:auto;padding:12px}.admin-chat-bubble{max-width:80%;padding:8px 10px;border-radius:10px;background:#101c2d;border:1px solid #263b58;margin:6px 0;font-size:9px;line-height:1.5}.admin-chat-bubble.admin{margin-left:auto;background:#173661}.admin-chat-time{display:block;color:#68788e;font-size:7px;margin-top:4px}.admin-chat-reply{display:flex;gap:7px;padding:9px;border-top:1px solid #263950}.admin-chat-reply input{flex:1;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:9px;outline:none}@media(max-width:700px){.admin-chat-layout{grid-template-columns:1fr}.admin-chat-users{max-height:220px}.admin-chat-body{height:300px}}
-</style>
+.order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer;margin-top:8px}.order-cancel-btn:hover{background:#351521}.pay-disabled{opacity:.45!important;cursor:not-allowed!important}.pay-note{font-size:9px;color:#71819a;margin-top:6px;line-height:1.4}.order-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}.order-pay-btn{border:1px solid #5579ad;background:#16243a;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px;opacity:.45;cursor:not-allowed}.order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer}.order-cancel-btn:hover{background:#351521}.pay-note{width:100%;font-size:9px;color:#71819a;line-height:1.4}</style>
 </head>
 <body class="auth-locked">
 
@@ -1000,6 +1000,18 @@ async function openOrders(){
   await loadMyOrders();
 }
 function closeOrders(){document.getElementById("ordersModal").classList.remove("open")}
+async function cancelMyOrder(orderId){
+  if(!confirm("Ar tikrai nori atšaukti šį užsakymą?")) return;
+  const {data,error}=await supabaseClient.from("orders").select("id,status").eq("id",orderId).maybeSingle();
+  if(error||!data)return alert("Nepavyko rasti užsakymo.");
+  // Klientas gali atšaukti tik neapmokėtą užsakymą.
+  if(data.status!=="pending")return alert("Šio užsakymo atšaukti nebegalima, nes jis jau apmokėtas arba pradėtas vykdyti.");
+  const result=await supabaseClient.from("orders").update({status:"cancelled"}).eq("id",orderId).eq("status","pending");
+  if(result.error)return alert("Nepavyko atšaukti užsakymo.");
+  await loadMyOrders();
+  toast("✓ Užsakymas atšauktas");
+}
+
 async function loadMyOrders(){
   const list=document.getElementById("ordersList");
   list.innerHTML='<div class="admin-empty">Kraunama...</div>';
@@ -1013,6 +1025,9 @@ async function loadMyOrders(){
    <div class="order-card" onclick="toggleOrderDetail('${o.id}')">
     <div class="order-top"><div><div class="order-number">#${escapeHtml(o.order_number)}</div><div class="order-date">${formatDate(o.created_at)}</div></div><span class="order-status ${statusClass(o.status)}">${statusLabel(o.status)}</span></div>
     <div class="order-bottom"><span>${(o.order_items||[]).reduce((n,x)=>n+Number(x.quantity||0),0)} prek.</span><strong>${money(o.total_amount)}</strong></div>
+    <div class="order-actions" onclick="event.stopPropagation()">
+      ${o.status==="pending"?`<button class="order-pay-btn" disabled title="Paysera dar neprijungta">💳 Apmokėti užsakymą</button><button class="order-cancel-btn" onclick="cancelMyOrder('${o.id}')">✕ Atšaukti</button><div class="pay-note">Apmokėjimas bus aktyvuotas, kai bus prijungta Paysera.</div>`:""}
+    </div>
     <div class="order-detail" id="order-detail-${o.id}" style="display:none">
       <div class="order-items">${(o.order_items||[]).map(x=>`<div class="order-item-row"><span>${escapeHtml(x.product_name)} × ${x.quantity}</span><b>${money(Number(x.unit_price)*Number(x.quantity))}</b></div>`).join("")}</div>
       <div class="order-info-grid">
