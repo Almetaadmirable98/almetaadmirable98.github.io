@@ -75,7 +75,7 @@ overflow:hidden;animation:introOut .9s ease 3.2s forwards}
 @keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
 
 
-.auth-intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5;pointer-events:none;animation:authIntroOut .8s ease 2.8s forwards}
+.auth-intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;pointer-events:none;animation:authIntroOut .8s ease 2.8s forwards}
 .auth-intro-crown{font-size:50px;text-shadow:0 0 20px #fff,0 0 55px #4c8cff;animation:authIntroFloat 1.8s ease-in-out infinite}
 .auth-intro-lt{font-size:108px;line-height:.78;font-weight:900;letter-spacing:-10px;text-shadow:0 0 18px #fff,0 0 55px #4b8cff,0 0 110px #4b8cff99;animation:authIntroIn 1s cubic-bezier(.2,.8,.2,1)}
 .auth-intro-title{font-size:48px;font-weight:900;letter-spacing:-2px;margin-top:18px;text-shadow:0 0 18px #fff,0 0 45px #4b8cff;animation:authIntroIn 1s .18s both}
@@ -84,7 +84,7 @@ overflow:hidden;animation:introOut .9s ease 3.2s forwards}
 .auth-intro-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .auth-intro-particles i{position:absolute;width:5px;height:5px;border-radius:50%;background:#7db0ff;box-shadow:0 0 14px #5d9cff;animation:authParticle 2.5s ease-in-out infinite}
 .auth-intro-particles i:nth-child(1){left:9%;top:22%;animation-delay:.2s}.auth-intro-particles i:nth-child(2){left:18%;top:72%;animation-delay:.8s}.auth-intro-particles i:nth-child(3){left:31%;top:14%;animation-delay:1.1s}.auth-intro-particles i:nth-child(4){left:72%;top:18%;animation-delay:.4s}.auth-intro-particles i:nth-child(5){left:87%;top:68%;animation-delay:1.3s}.auth-intro-particles i:nth-child(6){left:78%;top:82%;animation-delay:.9s}
-.auth-panel{position:relative;z-index:10;pointer-events:auto;opacity:0;transform:translateY(22px) scale(.97);animation:authPanelIn .8s ease 3.15s forwards}
+.auth-panel{position:relative;z-index:50;pointer-events:auto;opacity:0;transform:translateY(22px) scale(.97);animation:authPanelIn .8s ease 3.15s forwards}
 @keyframes authIntroIn{from{opacity:0;transform:scale(.72) translateY(25px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
 @keyframes authIntroLine{from{width:0;opacity:0}to{width:220px;opacity:1}}
 @keyframes authIntroFloat{50%{transform:translateY(-10px)}}
