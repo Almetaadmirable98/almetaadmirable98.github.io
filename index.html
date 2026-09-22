@@ -120,6 +120,8 @@ body.auth-locked{overflow:hidden}
 .admin-actions{display:flex;gap:7px;align-items:center}.admin-primary{background:#286dff;border-color:#5b91ff;font-weight:700}.admin-danger{background:#4b1820;border-color:#a34b59}
 .admin-list{display:grid;gap:8px}.admin-product{display:flex;gap:12px;align-items:center;background:#0b1421;border:1px solid #263950;border-radius:10px;padding:10px}.admin-product img{width:70px;height:55px;object-fit:cover;border-radius:7px;background:#111b2b}.admin-product-info{flex:1;min-width:0}.admin-product-info b{font-size:11px}.admin-product-info small{display:block;color:#7d8ca3;font-size:9px;margin-top:3px}.admin-empty{color:#718096;font-size:10px;padding:15px;text-align:center}.admin-note{color:#718096;font-size:9px;line-height:1.5;margin-bottom:12px}
 @media(max-width:700px){.admin-grid,.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-product{align-items:flex-start}}
+
+.coupon-box{margin-top:18px;padding:18px;border:1px solid #263750;border-radius:14px;background:#080f1b}.coupon-row{display:flex;gap:8px;align-items:center;margin-top:10px}.coupon-row input,.coupon-row select{flex:1}.coupon-code{font-family:monospace;font-weight:800;letter-spacing:1px}.discount-old{text-decoration:line-through;color:#6f7d91;font-size:9px;margin-right:5px}.discount-new{color:#fff;font-weight:800}.admin-product small{display:block}.coupon-status{font-size:9px;color:#8492a6;margin-top:4px}.coupon-status.ok{color:#50d6a0}.coupon-status.off{color:#ff7373}
 </style>
 </head>
 <body class="auth-locked">
@@ -279,6 +281,7 @@ body.auth-locked{overflow:hidden}
   <div class="admin-nav">
    <button class="admin-tab active" onclick="adminTab('dashboard',this)">📊 Apžvalga</button>
    <button class="admin-tab" onclick="adminTab('products',this)">📦 Prekės</button>
+   <button class="admin-tab" onclick="adminTab('coupons',this)">🎟️ Kuponai</button>
    <button class="admin-tab" onclick="adminTab('chat',this)">💬 Klientų chat</button>
   </div>
   <section class="admin-section active" id="admin-dashboard">
@@ -286,6 +289,7 @@ body.auth-locked{overflow:hidden}
     <div class="admin-stat"><b id="statProducts">0</b><span>PREKIŲ DUOMENŲ BAZĖJE</span></div>
     <div class="admin-stat"><b id="statUsers">—</b><span>VARTOTOJAI</span></div>
     <div class="admin-stat"><b id="statMessages">—</b><span>CHAT ŽINUTĖS</span></div>
+    <div class="admin-stat"><b id="statCoupons">0</b><span>AKTYVŪS KUPONAI</span></div>
    </div>
    <div class="admin-note">Admin teisės tikrinamos per Supabase. Duomenų bazės RLS taisyklės riboja administratoriaus veiksmus.</div>
   </section>
@@ -297,12 +301,28 @@ body.auth-locked{overflow:hidden}
     <div class="admin-field"><label>KATEGORIJA</label><select id="productCategory"><option>Rūbai</option><option>Elektronika</option><option>Aksesuarai</option><option>Kita</option></select></div>
     <div class="admin-field"><label>NUOTRAUKOS URL</label><input id="productImage" placeholder="https://..."></div>
     <div class="admin-field"><label>ŽENKLIUKAS</label><input id="productBadge" placeholder="Nauja / Populiarus / −20%"></div>
+    <div class="admin-field"><label>NUOLAIDA (%)</label><input id="productDiscount" type="number" min="0" max="100" step="1" value="0" placeholder="10"></div>
     <div class="admin-field"><label>AKTYVI</label><select id="productActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
     <div class="admin-field full"><label>APRAŠYMAS</label><textarea id="productDescription" placeholder="Trumpas prekės aprašymas"></textarea></div>
     <div class="admin-actions full"><button class="admin-primary" onclick="saveProduct()">💾 Išsaugoti prekę</button><button class="admin-secondary" onclick="clearProductForm()">Išvalyti</button></div>
    </div>
    <div class="admin-actions" style="margin-bottom:10px"><button class="admin-secondary" onclick="loadAdminProducts()">↻ Atnaujinti</button></div>
    <div class="admin-list" id="adminProductList"><div class="admin-empty">Kraunama...</div></div>
+  </section>
+  <section class="admin-section" id="admin-coupons">
+   <div class="admin-form">
+    <input type="hidden" id="couponEditId">
+    <div class="admin-field"><label>KUPONO KODAS</label><input id="couponCode" class="coupon-code" placeholder="PARDUOTUVE10" maxlength="40"></div>
+    <div class="admin-field"><label>NUOLAIDA (%)</label><input id="couponDiscount" type="number" min="1" max="100" step="1" placeholder="10"></div>
+    <div class="admin-field"><label>GALIOJA NUO</label><input id="couponStarts" type="datetime-local"></div>
+    <div class="admin-field"><label>GALIOJA IKI</label><input id="couponExpires" type="datetime-local"></div>
+    <div class="admin-field"><label>MAKS. ŽMONIŲ</label><input id="couponMaxUses" type="number" min="0" step="1" placeholder="100"><small>0 = neribota</small></div>
+    <div class="admin-field"><label>NAUDOJIMŲ / ŽMOGUI</label><input id="couponMaxPerUser" type="number" min="1" step="1" value="1" placeholder="1"></div>
+    <div class="admin-field"><label>AKTYVUS</label><select id="couponActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
+    <div class="admin-actions full"><button class="admin-primary" onclick="saveCoupon()">🎟️ Išsaugoti kuponą</button><button class="admin-secondary" onclick="clearCouponForm()">Išvalyti</button></div>
+   </div>
+   <div class="admin-actions" style="margin:12px 0 10px"><button class="admin-secondary" onclick="loadAdminCoupons()">↻ Atnaujinti</button></div>
+   <div class="admin-list" id="adminCouponList"><div class="admin-empty">Kraunama...</div></div>
   </section>
   <section class="admin-section" id="admin-chat">
    <div class="admin-note">Čia bus prijungtas visų klientų chatų valdymas. Kliento chat sistema jau naudoja Supabase messages lentelę.</div>
@@ -311,7 +331,7 @@ body.auth-locked{overflow:hidden}
  </div>
 </div>
 <div id="toast">✓ Pridėta į krepšelį</div>
-<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
+<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()"><div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div><div id="items"></div><div class="coupon-box"><b>🎟️ Kupono kodas</b><div class="coupon-row"><input id="couponInput" placeholder="PARDUOTUVE10"><button class="admin-primary" onclick="applyCoupon()">Pritaikyti</button></div><div class="coupon-status" id="couponApplied">Kuponas nepritaikytas</div></div><div class="total">Iš viso: <span id="total">0.00 €</span></div><button class="checkout" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button></aside></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -576,12 +596,13 @@ async function initAuth(){
 
 const ADMIN_EMAIL="nedasliubinas4@gmail.com";
 let isAdmin=false;
+let activeCoupon=null;
 
 async function checkAdmin(user){
   isAdmin=false;
   const btn=document.getElementById("adminBtn");
   if(btn) btn.style.display="none";
-  if(!user?.email) return false;
+  if(!user?.id) return false;
   const {data,error}=await supabaseClient.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
   if(!error && data?.user_id) isAdmin=true;
   if(btn) btn.style.display=isAdmin?"block":"none";
@@ -591,7 +612,7 @@ async function initAdmin(user){await checkAdmin(user);await loadStoreProducts();
 async function openAdmin(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
   document.getElementById("adminPanel").classList.add("open");
-  await loadAdminStats();await loadAdminProducts();
+  await loadAdminStats();await loadAdminProducts();await loadAdminCoupons();
 }
 function closeAdmin(){document.getElementById("adminPanel").classList.remove("open")}
 function adminTab(name,btn){
@@ -604,14 +625,18 @@ async function loadAdminStats(){
   document.getElementById("statProducts").textContent=p.count??"0";
   const m=await supabaseClient.from("messages").select("id",{count:"exact",head:true});
   document.getElementById("statMessages").textContent=m.count??"0";
+  const c=await supabaseClient.from("coupons").select("id",{count:"exact",head:true}).eq("active",true);
+  document.getElementById("statCoupons").textContent=c.count??"0";
 }
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function money(v){return Number(v||0).toFixed(2)+" €"}
+function salePrice(p){const d=Math.min(100,Math.max(0,Number(p.discount_percent||0)));return Number(p.price||0)*(1-d/100)}
 async function loadAdminProducts(){
   const list=document.getElementById("adminProductList");list.innerHTML='<div class="admin-empty">Kraunama...</div>';
   const {data,error}=await supabaseClient.from("products").select("*").order("created_at",{ascending:false});
   if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti prekių. Patikrink Supabase SQL/RLS.</div>';return}
   if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra pridėtų prekių.</div>';return}
-  list.innerHTML=data.map(p=>`<div class="admin-product"><img src="${escapeHtml(p.image_url||"")}" onerror="this.style.opacity='.25'"><div class="admin-product-info"><b>${escapeHtml(p.name)}</b><small>${escapeHtml(p.category)} • ${Number(p.price).toFixed(2)} € • ${p.active?"Aktyvi":"Išjungta"}</small></div><div class="admin-actions"><button class="admin-secondary" onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>✏️</button><button class="admin-danger" onclick="deleteProduct('${p.id}')">🗑️</button></div></div>`).join("");
+  list.innerHTML=data.map(p=>{const d=Number(p.discount_percent||0);const price=salePrice(p);return `<div class="admin-product"><img src="${escapeHtml(p.image_url||"")}" onerror="this.style.opacity='.25'"><div class="admin-product-info"><b>${escapeHtml(p.name)}</b><small>${escapeHtml(p.category)} • ${d?money(price)+" (−"+d+"%) • ":money(p.price)+" • "}${p.active?"Aktyvi":"Išjungta"}${p.badge?" • "+escapeHtml(p.badge):""}</small></div><div class="admin-actions"><button class="admin-secondary" onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>✏️</button><button class="admin-danger" onclick="deleteProduct('${p.id}')">🗑️</button></div></div>`}).join("");
 }
 function editProduct(p){
   document.getElementById("productEditId").value=p.id||"";
@@ -620,43 +645,80 @@ function editProduct(p){
   document.getElementById("productCategory").value=p.category||"Kita";
   document.getElementById("productImage").value=p.image_url||"";
   document.getElementById("productBadge").value=p.badge||"";
+  document.getElementById("productDiscount").value=p.discount_percent??0;
   document.getElementById("productActive").value=String(p.active!==false);
   document.getElementById("productDescription").value=p.description||"";
 }
 function clearProductForm(){
   ["productEditId","productName","productPrice","productImage","productBadge","productDescription"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("productDiscount").value="0";
   document.getElementById("productCategory").value="Rūbai";document.getElementById("productActive").value="true";
 }
 async function saveProduct(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  const payload={name:document.getElementById("productName").value.trim(),price:Number(document.getElementById("productPrice").value),category:document.getElementById("productCategory").value,image_url:document.getElementById("productImage").value.trim(),badge:document.getElementById("productBadge").value.trim(),description:document.getElementById("productDescription").value.trim(),active:document.getElementById("productActive").value==="true"};
+  const discount=Math.min(100,Math.max(0,Number(document.getElementById("productDiscount").value||0)));
+  const payload={name:document.getElementById("productName").value.trim(),price:Number(document.getElementById("productPrice").value),category:document.getElementById("productCategory").value,image_url:document.getElementById("productImage").value.trim(),badge:document.getElementById("productBadge").value.trim(),discount_percent:discount,description:document.getElementById("productDescription").value.trim(),active:document.getElementById("productActive").value==="true"};
   if(!payload.name||!Number.isFinite(payload.price)||payload.price<0)return alert("Įrašyk prekės pavadinimą ir teisingą kainą.");
   const id=document.getElementById("productEditId").value;
   const result=id?await supabaseClient.from("products").update(payload).eq("id",id):await supabaseClient.from("products").insert(payload);
-  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti prekės. Patikrink Supabase RLS.");}
-  clearProductForm();await loadAdminProducts();await loadStoreProducts();alert("✓ Prekė išsaugota.");
+  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti prekės. Patikrink Supabase RLS/SQL.");}
+  clearProductForm();await loadAdminProducts();await loadAdminStats();await loadStoreProducts();alert("✓ Prekė išsaugota.");
 }
 async function deleteProduct(id){
   if(!isAdmin||!confirm("Ar tikrai ištrinti šią prekę?"))return;
   const {error}=await supabaseClient.from("products").delete().eq("id",id);
   if(error)return alert("Nepavyko ištrinti prekės.");
-  await loadAdminProducts();await loadStoreProducts();
+  await loadAdminProducts();await loadAdminStats();await loadStoreProducts();
 }
 async function loadStoreProducts(){
   const {data,error}=await supabaseClient.from("products").select("*").eq("active",true).order("created_at",{ascending:false});
   if(error||!data)return;
   const grid=document.getElementById("grid");
   data.forEach(p=>{
-    if(grid.querySelector(`[data-db-id="${p.id}"]`))return;
+    const old=grid.querySelector(`[data-db-id="${p.id}"]`); if(old) old.remove();
+    const d=Math.min(100,Math.max(0,Number(p.discount_percent||0))); const finalPrice=salePrice(p);
     const card=document.createElement("div");card.className="product";card.dataset.cat=p.category;card.dataset.dbId=p.id;
-    card.innerHTML=`<div class="photo"><img class="product-image" alt="${escapeHtml(p.name)}" src="${escapeHtml(p.image_url||"")}">${p.badge?`<span class="badge">${escapeHtml(p.badge)}</span>`:""}<button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.category)}</p><div class="price-row"><b class="price">${Number(p.price).toFixed(2)} €</b><button class="add" onclick='add(${JSON.stringify(p.name)},${Number(p.price)})'>🛒</button></div></div>`;
+    card.innerHTML=`<div class="photo"><img class="product-image" alt="${escapeHtml(p.name)}" src="${escapeHtml(p.image_url||"")}">${p.badge?`<span class="badge ${d?"sale":""}">${escapeHtml(p.badge)}</span>`:d?`<span class="badge sale">−${d}%</span>`:""}<button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.category)}</p><div class="price-row"><b class="price">${d?`<span class="discount-old">${money(p.price)}</span><span class="discount-new">${money(finalPrice)}</span>`:money(p.price)}</b><button class="add" onclick='add(${JSON.stringify(p.name)},${finalPrice})'>🛒</button></div></div>`;
     grid.prepend(card);
   });filter();
 }
 
+async function loadAdminCoupons(){
+  const list=document.getElementById("adminCouponList");if(!list)return;list.innerHTML='<div class="admin-empty">Kraunama...</div>';
+  const {data,error}=await supabaseClient.from("coupons").select("*").order("created_at",{ascending:false});
+  if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti kuponų. Paleisk kuponų SQL.</div>';return}
+  if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra kuponų.</div>';return}
+  const now=Date.now();
+  list.innerHTML=data.map(c=>{const start=c.starts_at?new Date(c.starts_at).getTime():0;const end=c.expires_at?new Date(c.expires_at).getTime():Infinity;const valid=c.active&&now>=start&&now<end&&(c.max_uses===0||c.uses_count<c.max_uses);return `<div class="admin-product"><div class="admin-product-info"><b class="coupon-code">${escapeHtml(c.code)}</b><small>−${Number(c.discount_percent)}% • ${c.uses_count}/${c.max_uses===0?"∞":c.max_uses} panaudojimų • iki ${c.expires_at?new Date(c.expires_at).toLocaleString("lt-LT"):"neribotai"}</small><div class="coupon-status ${valid?"ok":"off"}">${valid?"● Galioja":"● Negalioja / išjungtas"}</div></div><div class="admin-actions"><button class="admin-secondary" onclick='editCoupon(${JSON.stringify(c).replace(/'/g,"&#39;")})'>✏️</button><button class="admin-danger" onclick="deleteCoupon('${c.id}')">🗑️</button></div></div>`}).join("");
+}
+function toLocalInput(v){if(!v)return "";const d=new Date(v);const pad=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
+function editCoupon(c){
+  document.getElementById("couponEditId").value=c.id||"";document.getElementById("couponCode").value=c.code||"";document.getElementById("couponDiscount").value=c.discount_percent||"";document.getElementById("couponStarts").value=toLocalInput(c.starts_at);document.getElementById("couponExpires").value=toLocalInput(c.expires_at);document.getElementById("couponMaxUses").value=c.max_uses??0;document.getElementById("couponMaxPerUser").value=c.max_uses_per_user??1;document.getElementById("couponActive").value=String(c.active!==false);
+}
+function clearCouponForm(){["couponEditId","couponCode","couponDiscount","couponStarts","couponExpires","couponMaxUses"].forEach(id=>document.getElementById(id).value="");document.getElementById("couponMaxPerUser").value="1";document.getElementById("couponActive").value="true"}
+async function saveCoupon(){
+  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
+  const code=document.getElementById("couponCode").value.trim().toUpperCase().replace(/\s+/g,"");const discount=Number(document.getElementById("couponDiscount").value);const maxUses=Number(document.getElementById("couponMaxUses").value||0);const maxPerUser=Number(document.getElementById("couponMaxPerUser").value||1);const starts=document.getElementById("couponStarts").value?new Date(document.getElementById("couponStarts").value).toISOString():new Date().toISOString();const expires=document.getElementById("couponExpires").value?new Date(document.getElementById("couponExpires").value).toISOString():null;
+  if(!/^[A-Z0-9_-]{3,40}$/.test(code))return alert("Kupono kodas turi būti 3–40 simbolių: raidės, skaičiai, _ arba -.");
+  if(!Number.isInteger(discount)||discount<1||discount>100)return alert("Nuolaida turi būti 1–100%.");
+  if(maxUses<0||!Number.isInteger(maxUses)||maxPerUser<1||!Number.isInteger(maxPerUser))return alert("Neteisingas panaudojimų skaičius.");
+  if(expires&&new Date(expires)<=new Date(starts))return alert("Kupono galiojimo pabaiga turi būti vėlesnė.");
+  const payload={code,discount_percent:discount,starts_at:starts,expires_at:expires,max_uses:maxUses,max_uses_per_user:maxPerUser,active:document.getElementById("couponActive").value==="true"};const id=document.getElementById("couponEditId").value;
+  const result=id?await supabaseClient.from("coupons").update(payload).eq("id",id):await supabaseClient.from("coupons").insert(payload);
+  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti kupono. Gal toks kodas jau yra?");}
+  clearCouponForm();await loadAdminCoupons();await loadAdminStats();alert("✓ Kuponas išsaugotas.");
+}
+async function deleteCoupon(id){if(!isAdmin||!confirm("Ar tikrai ištrinti šį kuponą?"))return;const {error}=await supabaseClient.from("coupons").delete().eq("id",id);if(error)return alert("Nepavyko ištrinti kupono.");await loadAdminCoupons();await loadAdminStats();}
+async function applyCoupon(){
+  const input=document.getElementById("couponInput"); if(!input)return; const code=input.value.trim().toUpperCase(); if(!code)return alert("Įrašyk kupono kodą.");
+  const {data,error}=await supabaseClient.rpc("apply_coupon",{p_code:code});
+  if(error){console.error(error);return alert(error.message||"Kupono pritaikyti nepavyko.");}
+  activeCoupon=data; renderCart(); input.value=""; toast(`✓ Kuponas ${code} pritaikytas`);
+}
+
 let cart=[];
 function add(name,price){cart.push({name,price});renderCart();toast("✓ "+name+" pridėta į krepšelį")}
-function renderCart(){document.getElementById("count").textContent=cart.length;document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):"<p style='color:#718096;margin-top:20px'>Krepšelis tuščias.</p>";document.getElementById("total").textContent=cart.reduce((a,b)=>a+b.price,0).toFixed(2)+" €"}
+function renderCart(){const subtotal=cart.reduce((a,b)=>a+b.price,0);const pct=activeCoupon?Number(activeCoupon.discount_percent||0):0;const total=subtotal*(1-pct/100);document.getElementById("count").textContent=cart.length;document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${escapeHtml(x.name)}</span><b>${money(x.price)} <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):"<p style='color:#718096;margin-top:20px'>Krepšelis tuščias.</p>";document.getElementById("total").textContent=money(total);const a=document.getElementById("couponApplied");if(a)a.textContent=activeCoupon?`✓ ${activeCoupon.code} −${pct}% (sutaupai ${money(subtotal-total)})`:"Kuponas nepritaikytas"}
 function removeItem(i){cart.splice(i,1);renderCart()}function openCart(){document.getElementById("cartBg").style.display="block";renderCart()}function closeCart(){document.getElementById("cartBg").style.display="none"}
 function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1800)}
 function like(b){b.classList.toggle("liked");b.textContent=b.classList.contains("liked")?"♥":"♡"}
