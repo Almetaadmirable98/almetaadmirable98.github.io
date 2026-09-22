@@ -185,6 +185,8 @@ body.auth-locked{overflow:hidden}
 @media(max-width:750px){.checkout-layout{grid-template-columns:1fr}.checkout-summary{position:static}.checkout-grid,.order-info-grid{grid-template-columns:1fr}.checkout-field.full{grid-column:auto}.admin-order{grid-template-columns:1fr}.admin-order-actions{justify-content:flex-start}}
 
 
+
+.admin-chat-notification{display:none;position:fixed;right:20px;top:84px;z-index:2500;width:min(370px,calc(100% - 40px));background:#0b1421;border:1px solid #4c8cff;border-radius:13px;padding:12px;box-shadow:0 18px 55px #000c;cursor:pointer;align-items:center;gap:10px;animation:chatNoticeIn .25s ease}.admin-chat-notification.show{display:flex}.admin-chat-notification-icon{width:36px;height:36px;border-radius:10px;background:#173661;display:grid;place-items:center;font-size:18px;flex:0 0 auto}.admin-chat-notification b{display:block;font-size:10px}.admin-chat-notification small{display:block;color:#8b9bb2;font-size:8px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:245px}.admin-chat-notification button{margin-left:auto;border:0;background:#111d2d;color:#fff;border-radius:6px;padding:4px 7px;cursor:pointer}.admin-chat-user.unread{border-color:#20e5a0;box-shadow:0 0 0 1px #20e5a033}.admin-chat-user .unread-dot{float:right;color:#20e5a0;font-size:9px}@keyframes chatNoticeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 .admin-chat-layout{display:grid;grid-template-columns:280px 1fr;gap:12px;min-height:420px}.admin-chat-users,.admin-chat-window{background:#0b1421;border:1px solid #263950;border-radius:12px;overflow:hidden}.admin-chat-users{padding:10px}.admin-chat-user{padding:10px;border:1px solid #22354e;background:#08111d;border-radius:9px;cursor:pointer;margin-bottom:7px}.admin-chat-user:hover,.admin-chat-user.active{border-color:#4c8cff;background:#102754}.admin-chat-user b{font-size:10px}.admin-chat-user small{display:block;color:#718096;font-size:8px;margin-top:4px}.admin-chat-title{padding:13px;border-bottom:1px solid #263950;font-size:11px;font-weight:800}.admin-chat-body{height:340px;overflow:auto;padding:12px}.admin-chat-bubble{max-width:80%;padding:8px 10px;border-radius:10px;background:#101c2d;border:1px solid #263b58;margin:6px 0;font-size:9px;line-height:1.5}.admin-chat-bubble.admin{margin-left:auto;background:#173661}.admin-chat-time{display:block;color:#68788e;font-size:7px;margin-top:4px}.admin-chat-reply{display:flex;gap:7px;padding:9px;border-top:1px solid #263950}.admin-chat-reply input{flex:1;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:9px;outline:none}@media(max-width:700px){.admin-chat-layout{grid-template-columns:1fr}.admin-chat-users{max-height:220px}.admin-chat-body{height:300px}}
 .order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer;margin-top:8px}.order-cancel-btn:hover{background:#351521}.pay-disabled{opacity:.45!important;cursor:not-allowed!important}.pay-note{font-size:9px;color:#71819a;margin-top:6px;line-height:1.4}.order-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}.order-pay-btn{border:1px solid #5579ad;background:#16243a;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px;opacity:.45;cursor:not-allowed}.order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer}.order-cancel-btn:hover{background:#351521}.pay-note{width:100%;font-size:9px;color:#71819a;line-height:1.4}</style>
 </head>
@@ -390,10 +392,22 @@ body.auth-locked{overflow:hidden}
    <div class="admin-list" id="adminCouponList"><div class="admin-empty">Kraunama...</div></div>
   </section>
   <section class="admin-section" id="admin-chat">
-   <div class="admin-note">Čia bus prijungtas visų klientų chatų valdymas. Kliento chat sistema jau naudoja Supabase messages lentelę.</div>
-   <div class="admin-list"><div class="admin-empty">Chat administravimo dalį prijungsime kitame žingsnyje.</div></div>
+   <div class="admin-note"><b>💬 Tiesioginis klientų chat</b><br>Žinutės atkeliauja realiu laiku. Kai klientas parašo, gausi pranešimą ir vienu paspaudimu galėsi atsidaryti pokalbį.</div>
+   <div class="admin-chat-layout">
+    <div class="admin-chat-users" id="adminChatUsers"><div class="admin-empty">Kraunama...</div></div>
+    <div class="admin-chat-window">
+      <div class="admin-chat-title" id="adminChatTitle">💬 Pasirink klientą</div>
+      <div class="admin-chat-body" id="adminChatBody"><div class="admin-empty">Pasirink klientą kairėje.</div></div>
+      <div class="admin-chat-reply"><input id="adminChatInput" placeholder="Rašykite klientui..."><button class="admin-primary" onclick="sendAdminChat()">Siųsti</button></div>
+    </div>
+   </div>
   </section>
  </div>
+</div>
+<div id="adminChatNotification" class="admin-chat-notification" onclick="openAdminFromNotification()">
+ <div class="admin-chat-notification-icon">💬</div>
+ <div><b id="adminChatNotificationTitle">Nauja kliento žinutė</b><small id="adminChatNotificationText">Paspausk, kad atidarytum chatą.</small></div>
+ <button onclick="event.stopPropagation();hideAdminNotification()">✕</button>
 </div>
 <div id="toast">✓ Pridėta į krepšelį</div>
 <div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()">
@@ -742,11 +756,11 @@ async function checkAdmin(user){
   if(btn) btn.style.display=isAdmin?"block":"none";
   return isAdmin;
 }
-async function initAdmin(user){await checkAdmin(user);await loadCategories();await loadStoreProducts();}
+async function initAdmin(user){await checkAdmin(user);await loadCategories();await loadStoreProducts();if(isAdmin)subscribeAdminChat();}
 async function openAdmin(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
   document.getElementById("adminPanel").classList.add("open");
-  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();await loadAdminOrders();await loadAdminChats();
+  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();await loadAdminOrders();await loadAdminChats();subscribeAdminChat();
 }
 function closeAdmin(){document.getElementById("adminPanel").classList.remove("open")}
 function adminTab(name,btn){
@@ -900,6 +914,7 @@ async function loadAdminOrders(){
        ${["pending","paid","processing","shipped","completed","cancelled"].map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${statusLabel(s)}</option>`).join("")}
       </select>
       <button class="admin-secondary" onclick='showOrderDetails(${JSON.stringify(o).replace(/'/g,"&#39;")})'>👁️</button>
+      <button class="admin-danger" onclick="deleteAdminOrder('${o.id}')">🗑️</button>
     </div>
   </div>`).join("");
 }
@@ -909,6 +924,16 @@ async function updateOrderStatus(id,status){
   if(error)return alert("Nepavyko pakeisti užsakymo būsenos.");
   await loadAdminOrders(); await loadAdminStats();
 }
+async function deleteAdminOrder(id){
+  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
+  if(!confirm("Ar tikrai visam laikui ištrinti šį užsakymą? Jis nebebus rodomas sistemoje."))return;
+  const {error}=await supabaseClient.from("orders").delete().eq("id",id);
+  if(error){console.error(error);return alert("Nepavyko ištrinti užsakymo. Patikrink Supabase RLS SQL.");}
+  if(window.adminOrderDetailId===id)window.adminOrderDetailId=null;
+  await loadAdminOrders();
+  await loadAdminStats();
+  toast("✓ Užsakymas ištrintas iš sistemos");
+}
 function showOrderDetails(o){
   const items=(o.order_items||[]).map(x=>`${x.product_name} × ${x.quantity} — ${money(x.unit_price* x.quantity)}`).join("\\n");
   alert(`Užsakymas #${o.order_number}\\n\\nKlientas: ${o.first_name||""} ${o.last_name||""}\\nEl. paštas: ${o.email||""}\\nTelefonas: ${o.phone||"—"}\\nAdresas: ${o.address||""}, ${o.city||""} ${o.postal_code||""}\\nPristatymas: ${o.shipping_method||""}\\n\\nPrekės:\\n${items||"—"}\\n\\nSuma: ${money(o.total_amount)}\\nBūsena: ${statusLabel(o.status)}`);
@@ -916,39 +941,94 @@ function showOrderDetails(o){
 
 let adminChatSessionId=null;
 let adminChatRows=[];
+let adminChatChannel=null;
+let adminChatNotificationSession=null;
+const adminUnreadChats=new Set();
 
+function showAdminNotification(row){
+  if(!isAdmin || row?.sender!=="customer")return;
+  adminChatNotificationSession=row.session_id;
+  const n=document.getElementById("adminChatNotification");
+  const t=document.getElementById("adminChatNotificationTitle");
+  const x=document.getElementById("adminChatNotificationText");
+  if(t)t.textContent="💬 Nauja kliento žinutė";
+  if(x)x.textContent=(row.message||"").slice(0,90);
+  n?.classList.add("show");
+  adminUnreadChats.add(row.session_id);
+  refreshAdminChatUsers();
+  if("Notification" in window && Notification.permission==="granted")new Notification("LT Parduotuvė — nauja žinutė",{body:row.message||"Klientas parašė į chatą."});
+}
+function hideAdminNotification(){document.getElementById("adminChatNotification")?.classList.remove("show")}
+function openAdminFromNotification(){
+  if(!isAdmin)return;
+  const sid=adminChatNotificationSession;hideAdminNotification();
+  document.getElementById("adminPanel")?.classList.add("open");
+  const tab=[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.includes("Klientų chat"));
+  if(tab)adminTab("chat",tab);
+  if(sid){adminChatSessionId=sid;loadAdminChats().then(()=>openAdminChat(sid));}
+}
+function refreshAdminChatUsers(){
+  const users=document.getElementById("adminChatUsers");
+  const groups=window.adminChatGroups||{};
+  if(!users)return;
+  const ids=Object.keys(groups);
+  users.innerHTML=ids.length?ids.map(id=>{
+    const rows=groups[id],last=rows[rows.length-1];
+    const unread=adminUnreadChats.has(id) && id!==adminChatSessionId;
+    return `<div class="admin-chat-user ${id===adminChatSessionId?"active":""} ${unread?"unread":""}" onclick="openAdminChat(${JSON.stringify(id)})"><b>${escapeHtml(id.slice(0,8))}…</b>${unread?'<span class="unread-dot">● NAUJA</span>':''}<small>${escapeHtml(last.message.slice(0,70))}<br>${formatDate(last.created_at)}</small></div>`;
+  }).join(""):'<div class="admin-empty">Klientų žinučių nėra.</div>';
+}
+async function subscribeAdminChat(){
+  if(adminChatChannel||!isAdmin)return;
+  adminChatChannel=supabaseClient.channel("admin-live-chat")
+    .on("postgres_changes",{event:"INSERT",schema:"public",table:"messages"},payload=>{
+      const row=payload.new;
+      if(row?.sender!=="customer")return;
+      if(!window.adminChatGroups)window.adminChatGroups={};
+      if(!window.adminChatGroups[row.session_id])window.adminChatGroups[row.session_id]=[];
+      window.adminChatGroups[row.session_id].push(row);
+      showAdminNotification(row);
+      if(adminChatSessionId===row.session_id)openAdminChat(row.session_id);
+      else refreshAdminChatUsers();
+    })
+    .subscribe();
+  if("Notification" in window && Notification.permission==="default")Notification.requestPermission().catch(()=>{});
+}
 async function loadAdminChats(){
   const users=document.getElementById("adminChatUsers"); if(!users||!isAdmin)return;
   const {data,error}=await supabaseClient.from("messages").select("id,session_id,sender,message,created_at").order("created_at",{ascending:true});
   if(error){console.error(error);users.innerHTML='<div class="admin-empty">Nepavyko įkelti chatų. Patikrink RLS SQL.</div>';return}
   const groups={};
   (data||[]).forEach(m=>{if(!groups[m.session_id])groups[m.session_id]=[];groups[m.session_id].push(m)});
+  window.adminChatGroups=groups;
   const ids=Object.keys(groups);
   if(!ids.length){users.innerHTML='<div class="admin-empty">Klientų žinučių nėra.</div>';return}
-  users.innerHTML=ids.map(id=>{
-    const rows=groups[id], last=rows[rows.length-1];
-    return `<div class="admin-chat-user ${id===adminChatSessionId?"active":""}" onclick="openAdminChat(${JSON.stringify(id)})"><b>${escapeHtml(id.slice(0,8))}…</b><small>${escapeHtml(last.message.slice(0,70))}<br>${formatDate(last.created_at)}</small></div>`;
-  }).join("");
-  window.adminChatGroups=groups;
-  if(!adminChatSessionId) openAdminChat(ids[0]);
+  if(!adminChatSessionId||!groups[adminChatSessionId])adminChatSessionId=ids[0];
+  refreshAdminChatUsers();
+  openAdminChat(adminChatSessionId);
+  subscribeAdminChat();
 }
 function openAdminChat(sessionId){
   adminChatSessionId=sessionId;
+  adminUnreadChats.delete(sessionId);
+  refreshAdminChatUsers();
   const groups=window.adminChatGroups||{};
   const rows=groups[sessionId]||[];
-  document.getElementById("adminChatTitle").textContent="💬 Klientas • "+sessionId;
-  document.getElementById("adminChatBody").innerHTML=rows.map(m=>`<div class="admin-chat-bubble ${m.sender==="admin"?"admin":""}">${escapeHtml(m.message)}<span class="admin-chat-time">${m.sender==="admin"?"Administratorius":"Klientas"} • ${formatDate(m.created_at)}</span></div>`).join("");
-  document.querySelectorAll(".admin-chat-user").forEach(x=>x.classList.toggle("active",x.getAttribute("onclick")?.includes(sessionId)));
-  const b=document.getElementById("adminChatBody");b.scrollTop=b.scrollHeight;
+  const title=document.getElementById("adminChatTitle");
+  if(title)title.textContent="💬 Klientas • "+sessionId;
+  const body=document.getElementById("adminChatBody");
+  if(body)body.innerHTML=rows.length?rows.map(m=>`<div class="admin-chat-bubble ${m.sender==="admin"?"admin":""}">${escapeHtml(m.message)}<span class="admin-chat-time">${m.sender==="admin"?"Administratorius":"Klientas"} • ${formatDate(m.created_at)}</span></div>`).join(""):'<div class="admin-empty">Šiame pokalbyje dar nėra žinučių.</div>';
+  if(body)body.scrollTop=body.scrollHeight;
 }
 async function sendAdminChat(){
   if(!isAdmin||!adminChatSessionId)return alert("Pasirink klientą.");
   const input=document.getElementById("adminChatInput"); const message=input.value.trim(); if(!message)return;
   const {error}=await supabaseClient.from("messages").insert({session_id:adminChatSessionId,sender:"admin",message});
   if(error){console.error(error);return alert("Nepavyko išsiųsti atsakymo. Patikrink RLS SQL.");}
-  input.value=""; await loadAdminChats(); openAdminChat(adminChatSessionId);
+  input.value="";
 }
 document.getElementById("adminChatInput")?.addEventListener("keydown",e=>{if(e.key==="Enter")sendAdminChat()});
+
 async function loadAdminCoupons(){
   const list=document.getElementById("adminCouponList");if(!list)return;list.innerHTML='<div class="admin-empty">Kraunama...</div>';
   const {data,error}=await supabaseClient.from("coupons").select("*").order("created_at",{ascending:false});
