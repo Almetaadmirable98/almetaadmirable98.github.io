@@ -44,6 +44,7 @@ footer{text-align:center;padding:28px;border-top:1px solid #1b293d;color:#63728a
 #toast{position:fixed;right:20px;bottom:20px;z-index:500;background:#0c1727;border:1px solid #4287ff;padding:12px 15px;border-radius:10px;transform:translateY(100px);transition:.25s;font-size:11px}#toast.show{transform:none}
 .chat-launch{position:fixed;right:20px;bottom:20px;z-index:450;width:58px;height:58px;border-radius:50%;border:1px solid #70a4ff;background:linear-gradient(135deg,#397dff,#704cff);color:#fff;font-size:23px;cursor:pointer;box-shadow:0 0 30px #397dff66}
 .chat{display:none;position:fixed;right:20px;bottom:90px;width:390px;height:500px;z-index:451;background:#080f1a;border:1px solid #395071;border-radius:17px;box-shadow:0 25px 80px #000c;overflow:hidden}.chat.open{display:flex;flex-direction:column}.chat-head{padding:14px;border-bottom:1px solid #22334a;display:flex;justify-content:space-between}.chat-head strong{font-size:12px}.chat-head small{display:block;color:#20e5a0;font-size:9px;margin-top:4px}.chat-close{border:0;background:#111d2d;color:#fff;border-radius:7px;padding:5px 9px}.chat-body{padding:13px;flex:1;overflow:auto}.bubble{max-width:82%;padding:9px 11px;margin:6px 0;background:#101c2d;border:1px solid #263b58;border-radius:11px;font-size:10px;line-height:1.5}.bubble.user{margin-left:auto;background:#173661}.demo{margin-top:12px;padding:9px;border:1px dashed #3b4e6a;border-radius:8px;color:#71819a;font-size:9px}.quick{display:flex;gap:5px;padding:8px;border-top:1px solid #22334a;overflow:auto}.quick button{white-space:nowrap;border:1px solid #2d4565;background:#0d1726;color:#9cbcff;border-radius:18px;padding:7px 9px;font-size:9px}.chat-input{display:flex;gap:6px;padding:9px;border-top:1px solid #22334a}.chat-input input{flex:1;min-width:0;background:#0b1421;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:8px;font-size:10px}.chat-input button{border:0;background:#3e82ff;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px}
+.ai-mode{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;background:#0b1421;border-bottom:1px solid #22334a;font-size:9px;color:#9cbcff}.ai-mode b{color:#55d6a7}.ai-admin-btn{border:1px solid #4c8cff;background:#102754;color:#fff;border-radius:7px;padding:6px 9px;font-size:8px;cursor:pointer}.ai-admin-btn:hover{background:#173661}
 #cartBg{display:none;position:fixed;inset:0;background:#000b;z-index:600}.drawer{position:absolute;right:0;top:0;height:100%;width:min(420px,100%);background:#080f19;border-left:1px solid #334a69;padding:22px;overflow:auto}.drawer-head{display:flex;justify-content:space-between}.close{border:1px solid #2d405b;background:#101a2a;color:#fff;border-radius:7px;padding:6px 9px}.cart-item{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #1c2b40;font-size:11px}.total{font-size:20px;font-weight:900;margin:20px 0}.checkout{width:100%;border:0;border-radius:9px;padding:12px;background:linear-gradient(135deg,#3c83ff,#6a4cff);color:#fff;font-weight:800}
 
 @keyframes stars{to{background-position:90px 90px}}@keyframes sweep{to{transform:translateX(25px)}}@keyframes float{50%{transform:translateY(-10px)}}@keyframes pulse{50%{text-shadow:0 0 18px #fff,0 0 65px #3e82ff,0 0 120px #3e82ff99}}@keyframes cta{50%{box-shadow:0 0 42px #397dff99}}
@@ -313,11 +314,12 @@ body.auth-locked{overflow:hidden}
 
 <button class="chat-launch" onclick="toggleChat()">💬</button>
 <div class="chat" id="chat"><div class="chat-head"><div><strong>LT Parduotuvė • Pagalba</strong><small>● Prisijungę • 24/7</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div>
+<div class="ai-mode"><span>🤖 <b>LT Parduotuvės AI</b> • automatinė pagalba</span><button class="ai-admin-btn" onclick="requestHumanSupport()">👤 Administratorius</button></div>
 <div class="chat-body" id="chatBody">
 <div class="bubble">Sveiki! 👋 Kaip galime padėti?</div>
 <div class="bubble">Parašykite savo klausimą — žinutė bus išsaugota ir perduota administratoriui.</div>
 </div>
-<div class="quick"><button onclick="quick('Turiu klausimą apie prekę')">Apie prekę</button><button onclick="quick('Kur mano užsakymas?')">Užsakymas</button><button onclick="quick('Noriu pagalbos')">Pagalba</button></div>
+<div class="quick"><button onclick="quick('Turiu klausimą apie prekę')">Apie prekę</button><button onclick="quick('Kur mano užsakymas?')">Užsakymas</button><button onclick="quick('Noriu pagalbos')">Pagalba</button><button onclick="startStoreAI()">🤖 AI pagalba</button></div>
 <div class="chat-input"><input id="msg" placeholder="Parašykite žinutę..."><button onclick="send()">Siųsti</button></div></div>
 
 
@@ -568,6 +570,70 @@ async function initChat(){
     console.error("Chat error:", error);
     setChatStatus("Nepavyko prisijungti");
     bubble("Nepavyko prisijungti prie pokalbio. Pabandykite perkrauti puslapį.");
+  }
+}
+
+let storeAIActive=true;
+let aiEscalated=false;
+
+async function startStoreAI(){
+  storeAIActive=true;
+  const input=document.getElementById("msg");
+  if(input){ input.placeholder="Klausk apie LT Parduotuvę..."; input.focus(); }
+  if(!document.querySelector("#chatBody .ai-welcome")){
+    const d=document.createElement("div");d.className="bubble ai-welcome";d.textContent="🤖 Sveiki! Esu LT Parduotuvės AI. Pirmiausia pabandysiu pats padėti su prekėmis, kainomis, pristatymu, kuponais, užsakymų informacija ir apmokėjimu. Jei klausimo neišspręsiu, perduosiu pokalbį administratoriui.";document.getElementById("chatBody").appendChild(d);
+  }
+}
+
+async function requestHumanSupport(reason="Klientas paprašė administratoriaus"){
+  try{
+    await ensureChatUser();
+    const text=`[AI → ADMIN] ${reason}`;
+    const {error}=await supabaseClient.from("messages").insert({session_id:chatUser.id,sender:"customer",message:text});
+    if(error) throw error;
+    aiEscalated=true;
+    bubble("👤 Gerai — perduodu pokalbį administratoriui. Jis galės tęsti pokalbį čia.");
+    setChatStatus("Laukiama administratoriaus",false);
+  }catch(error){
+    console.error("Escalation error:",error);
+    bubble("Nepavyko perduoti administratoriui. Pabandykite dar kartą.");
+  }
+}
+
+function aiNeedsHuman(answer){
+  const t=String(answer||"").toLowerCase();
+  return !t || /negaliu atsakyti|nežinau|nezinau|neturiu informacijos|susisiekite su administrator|kreipkitės į administratori|negaliu padėti|negaliu padeti|administrator/i.test(t);
+}
+
+async function askStoreAI(message){
+  const clean=String(message||"").trim();
+  if(!clean)return;
+  await initChat();
+  bubble(clean,"user");
+  const loading=document.createElement("div");loading.className="bubble ai-loading";loading.textContent="🤖 Tikrinu informaciją...";document.getElementById("chatBody").appendChild(loading);
+  try{
+    const [{data:products,error:pErr},{data:cats,error:cErr}]=await Promise.all([
+      supabaseClient.from("products").select("name,price,category,description,badge,discount_percent,active").eq("active",true).order("created_at",{ascending:false}).limit(100),
+      supabaseClient.from("categories").select("name,description").eq("active",true).order("sort_order",{ascending:true})
+    ]);
+    if(pErr)throw pErr;if(cErr)throw cErr;
+    const context={store:"LT Parduotuvė",shipping:[{name:"LP EXPRESS",price:2.40},{name:"DPD",price:2.80},{name:"OMNIVA",price:2.80}],categories:cats||[],products:(products||[]).map(p=>({name:p.name,price:Number(p.price||0),category:p.category,description:p.description||"",badge:p.badge||"",discount_percent:Number(p.discount_percent||0)})),rules:["Atsakyk tik apie LT Parduotuvę ir jos prekes bei paslaugas.","Naudok tik pateiktą katalogo informaciją; nesugalvok kainų, prekių ar taisyklių.","Jei klausimas nesusijęs su LT Parduotuve, trumpai pasakyk, kad gali padėti tik parduotuvės klausimais.","Niekada neprašyk slaptažodžio, kortelės numerio, CVV ar kitų slaptų duomenų.","Jei klientas klausia apie konkretų jo užsakymą ar mokėjimo būseną, neapsimesk matantis privačius duomenis — nukreipk į Mano užsakymai arba administratorių."]};
+    const res=await fetch("https://ibeumlqcrjxafnatlhtx.supabase.co/functions/v1/store-ai",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:clean,context})});
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok)throw new Error(data.error||"AI serveris nepasiekiamas");
+    loading.remove();
+    const answer=String(data.answer||"").trim();
+    if(!answer || aiNeedsHuman(answer)){
+      bubble(answer||"🤖 Šio klausimo negaliu patikimai išspręsti.");
+      await requestHumanSupport(`AI negalėjo patikimai atsakyti į: ${clean}`);
+      return;
+    }
+    bubble(answer);
+  }catch(err){
+    console.error("Store AI error:",err);
+    loading.remove();
+    bubble("🤖 Šiuo metu negaliu patikimai atsakyti į šį klausimą.");
+    await requestHumanSupport(`AI klaida / nepavyko atsakyti į: ${clean}`);
   }
 }
 
@@ -1164,20 +1230,17 @@ function bubble(t,who){
 }
 
 function quick(t){
-  sendChatMessage(t);
+  if(storeAIActive){ askStoreAI(t); } else { startStoreAI(); setTimeout(()=>askStoreAI(t),50); }
 }
 
 async function send(){
-  let i=document.getElementById("msg");
-  let t=i.value.trim();
-  if(!t) return;
-  i.value="";
-  await sendChatMessage(t);
+  const i=document.getElementById("msg"); const t=i.value.trim(); if(!t)return; i.value=""; await askStoreAI(t);
 }
 
 document.getElementById("msg").addEventListener("keydown",e=>{
   if(e.key==="Enter") send();
 });
+startStoreAI();
 renderCart();
 </script>
 </body></html>
