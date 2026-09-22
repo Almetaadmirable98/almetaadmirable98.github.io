@@ -31,8 +31,10 @@ nav{display:flex;gap:26px}nav a{font-size:13px;color:#b9c4d7;padding:25px 0;posi
 
 .hero{min-height:440px;position:relative;overflow:hidden;border-bottom:1px solid #202c40;
 background:
-radial-gradient(circle at 50% 45%,#4b8fff2b,transparent 23%),
-linear-gradient(135deg,#080e1c,#10172b 45%,#080b13)}
+radial-gradient(circle at 50% 45%,#397dff38,transparent 22%),
+radial-gradient(circle at 18% 30%,#8c4dff2c,transparent 20%),
+radial-gradient(circle at 82% 28%,#00b7ff22,transparent 21%),
+linear-gradient(135deg,#030712,#0a1020 43%,#080611)}
 .hero:before,.hero:after{content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.7}
 .hero:before{width:480px;height:480px;left:-90px;top:-140px;background:radial-gradient(circle,#496cff44,transparent 65%)}
 .hero:after{width:600px;height:600px;right:-150px;top:-220px;background:radial-gradient(circle,#8d45ff35,transparent 65%)}
@@ -45,7 +47,7 @@ linear-gradient(135deg,#080e1c,#10172b 45%,#080b13)}
 .hero-main .cta{display:inline-block;margin-top:20px;border:2px solid #5b9aff;border-radius:28px;padding:12px 30px;color:#fff;font-weight:800;box-shadow:0 0 25px #3b82ff66;background:#0a1730aa}
 .hero-main .cta:hover{background:#15366b}
 .hero-deco{position:absolute;font-size:55px;filter:drop-shadow(0 0 15px #538fff);opacity:.9;animation:float 4s ease-in-out infinite}
-.d1{left:7%;top:25%}.d2{left:23%;bottom:10%;animation-delay:.7s}.d3{right:7%;top:23%;animation-delay:1.2s}.d4{right:25%;bottom:8%;animation-delay:1.8s}
+.d1{left:3%;top:19%}.d2{left:6%;bottom:7%;animation-delay:.7s}.d3{right:3%;top:18%;animation-delay:1.2s}.d4{right:6%;bottom:7%;animation-delay:1.8s}
 @keyframes float{50%{transform:translateY(-12px) rotate(4deg)}}
 
 .servicebar{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative;z-index:5}
@@ -142,6 +144,59 @@ footer{text-align:center;border-top:1px solid #1a2639;padding:28px;color:#65738a
  .intro-fly{font-size:40px}.fly5{display:none}
 }
 
+
+/* ===== STORE INTERACTIONS ===== */
+.like-btn.liked{color:#ff4f78!important;text-shadow:0 0 15px #ff4f78;transform:scale(1.12)}
+.like-btn{transition:.2s!important}
+.product .like-btn{position:absolute;right:8px;top:7px;background:transparent;border:0;color:#dbe5f7;font-size:20px;z-index:5;cursor:pointer}
+.product .photo .like-btn{position:absolute}
+.chat-launch{position:fixed;right:22px;bottom:22px;z-index:400;width:58px;height:58px;border-radius:50%;border:1px solid #70a4ff;background:linear-gradient(135deg,#397dff,#704cff);color:#fff;font-size:24px;box-shadow:0 0 30px #397dff77;cursor:pointer;animation:chatPulse 2.2s infinite}
+.chat-window{display:none;position:fixed;right:22px;bottom:92px;z-index:401;width:min(390px,calc(100vw - 30px));height:500px;background:#080e18f5;border:1px solid #344c70;border-radius:18px;box-shadow:0 25px 80px #000b;backdrop-filter:blur(20px);overflow:hidden}
+.chat-window.open{display:flex;flex-direction:column;animation:chatIn .25s ease}
+.chat-head{padding:15px 17px;border-bottom:1px solid #25344b;display:flex;justify-content:space-between;align-items:center}
+.chat-head strong{font-size:14px}.online{color:#24e9a0;font-size:10px;margin-top:3px}
+.chat-close{border:0;background:#111b2b;color:#fff;border-radius:7px;padding:6px 9px}
+.chat-body{padding:14px;overflow:auto;flex:1}.bubble{max-width:82%;padding:10px 12px;border-radius:12px;margin:7px 0;font-size:11px;line-height:1.5;background:#111c2d;border:1px solid #263952}.bubble.admin{border-color:#315fa9}.bubble.user{margin-left:auto;background:#17345f}
+.quick-msgs{display:flex;gap:6px;overflow:auto;padding:8px 12px;border-top:1px solid #1d2b40}.quick-msg{white-space:nowrap;border:1px solid #2b405e;background:#0d1726;color:#9bb8e9;border-radius:20px;padding:7px 10px;font-size:10px;cursor:pointer}
+.chat-input{display:flex;gap:7px;padding:11px;border-top:1px solid #25344b}.chat-input input{min-width:0;flex:1;background:#0c1420;border:1px solid #2a3c57;color:#fff;border-radius:9px;padding:9px}.chat-input button{border:0;background:#397dff;color:#fff;border-radius:9px;padding:9px 12px}
+@keyframes chatPulse{50%{box-shadow:0 0 42px #397dffbb,0 0 75px #397dff22}}@keyframes chatIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.admin-note{margin-top:12px;padding:11px;border:1px dashed #344b6d;border-radius:10px;color:#7788a1;font-size:10px}
+
+
+/* ===== CLEAN ANIMATED WALLPAPER ===== */
+.hero{isolation:isolate}
+.hero:after{animation:ambientGlow 7s ease-in-out infinite alternate}
+.hero:before{animation:ambientGlow2 9s ease-in-out infinite alternate}
+.hero:global{} 
+.hero-inner:before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:
+ radial-gradient(circle at 12% 15%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 23% 78%,#66a4ff 0 1px,transparent 2px),
+ radial-gradient(circle at 34% 20%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 67% 15%,#6fa7ff 0 1px,transparent 2px),
+ radial-gradient(circle at 78% 75%,#fff 0 1px,transparent 2px),
+ radial-gradient(circle at 91% 36%,#8b62ff 0 1px,transparent 2px);
+ background-size:210px 180px,260px 220px,310px 240px,280px 210px,330px 270px,250px 190px;
+ opacity:.55;animation:starDrift 16s linear infinite;
+}
+.hero-inner:after{
+ content:"";position:absolute;inset:8% 4%;z-index:-1;pointer-events:none;border-radius:30px;
+ background:
+ linear-gradient(115deg,transparent 0 43%,#4e8fff13 44%,transparent 45%),
+ linear-gradient(65deg,transparent 0 55%,#9b5cff10 56%,transparent 57%);
+ animation:lightSweep 8s ease-in-out infinite alternate;
+}
+.wall-chip{position:absolute;z-index:0;border:1px solid #6d8fc522;background:#ffffff05;
+box-shadow:0 0 30px #397dff10;border-radius:12px;padding:8px 12px;color:#7f9bc4;
+font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;pointer-events:none}
+.ch1{left:4%;top:12%;}.ch2{left:17%;bottom:10%;animation-delay:1.3s}.ch3{right:16%;top:12%;animation-delay:2s}.ch4{right:4%;bottom:11%;animation-delay:3s}
+@keyframes ambientGlow{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,25px) scale(1.15)}}
+@keyframes ambientGlow2{from{transform:translate(0,0)}to{transform:translate(55px,-20px)}}
+@keyframes starDrift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(18px,-12px,0)}100%{transform:translate3d(-12px,-24px,0)}}
+@keyframes lightSweep{from{transform:translateX(-2%) scale(1)}to{transform:translateX(2%) scale(1.03)}}
+@keyframes chipFloat{50%{transform:translateY(-9px);border-color:#6d9fff44}}
+
 </style>
 </head>
 <body>
@@ -160,7 +215,7 @@ footer{text-align:center;border-top:1px solid #1a2639;padding:28px;color:#65738a
   <div class="intro-fly fly2">👟</div>
   <div class="intro-fly fly3">🎧</div>
   <div class="intro-fly fly4">⌚</div>
-  <div class="intro-fly fly5">🎮</div>
+  <div class="intro-fly fly5">💻</div>
 </div>
 <div class="page-particles"></div>
 
@@ -190,6 +245,10 @@ footer{text-align:center;border-top:1px solid #1a2639;padding:28px;color:#65738a
 <div class="side-card"><strong>💬 Discord</strong><p>dsc.gg/ltparduotuve</p><small>Prisijunk arba siųsk ticketą</small></div>
 <div class="side-card"><strong>💬 El. paštas</strong><p>nedasliubinas4@gmail.com</p><small>Susisiek dėl užsakymo</small></div>
 </div>
+<div class="wall-chip ch1">NEXT GEN • 2026</div>
+<div class="wall-chip ch2">FAST • SIMPLE • MODERN</div>
+<div class="wall-chip ch3">PREMIUM SELECTION</div>
+<div class="wall-chip ch4">ONLINE 24/7</div>
 <div class="hero-main">
 <div class="crown">♛</div>
 <div class="lt">LT</div>
@@ -252,7 +311,7 @@ const data=[
 ["Terminis puodelis","Kita","21.99 €","☕","populiarus"]
 ];
 document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowerCase()}">
-<div class="photo">${x[3]}<span class="badge ${x[4]=='nauja'?'new':x[4]=='sale'?'sale':''}">${x[4]=='sale'?'−20%':x[4]=='nauja'?'Nauja':'Populiarus'}</span><button class="heart">♡</button></div>
+<div class="photo">${x[3]}<span class="badge ${x[4]=='nauja'?'new':x[4]=='sale'?'sale':''}">${x[4]=='sale'?'−20%':x[4]=='nauja'?'Nauja':'Populiarus'}</span><button class="like-btn" aria-label="Pamėgti prekę" onclick="toggleLike(this)">♡</button></div>
 <div class="info"><h3>${x[0]}</h3><p>${x[1]}</p><div class="price-row"><b class="price">${x[2]}</b><button class="addsmall" onclick="add('${x[0]}',${parseFloat(x[2])})">🛒</button></div></div></article>`).join(""));
 </script>
 </div>
@@ -262,6 +321,26 @@ document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowe
 <div class="contact-card"><h3>🎫 Discord / Ticket</h3><p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p><a href="https://dsc.gg/ltparduotuve" target="_blank">dsc.gg/ltparduotuve →</a></div>
 </div>
 </main>
+
+
+<button class="chat-launch" onclick="toggleChat()" aria-label="Pagalba">💬</button>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div><strong>LT Parduotuvė • Pagalba</strong><div class="online">● Prisijungę • 24/7</div></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="bubble admin">Sveiki! 👋 Kaip galime padėti?</div>
+    <div class="bubble admin">Pasirinkite klausimą apačioje arba parašykite savo problemą.</div>
+    <div class="admin-note">Demo pokalbis veikia šiame puslapyje. Tikram klientų ir administratorių susirašinėjimui reikės serverio / duomenų bazės.</div>
+  </div>
+  <div class="quick-msgs">
+    <button class="quick-msg" onclick="quickChat('Turiu klausimą apie prekę')">Apie prekę</button>
+    <button class="quick-msg" onclick="quickChat('Kur mano užsakymas?')">Užsakymas</button>
+    <button class="quick-msg" onclick="quickChat('Noriu pagalbos')">Pagalba</button>
+  </div>
+  <div class="chat-input"><input id="chatInput" placeholder="Parašykite žinutę..."><button onclick="sendChat()">Siųsti</button></div>
+</div>
 
 <footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7</footer>
 
@@ -287,5 +366,32 @@ render();
 setTimeout(()=>document.getElementById("intro")?.remove(),5200);
 </script>
 
+<script>
+
+function toggleLike(btn){
+  btn.classList.toggle("liked");
+  btn.textContent=btn.classList.contains("liked")?"♥":"♡";
+  const product=btn.closest(".product");
+  const name=product?.querySelector(".info h3")?.textContent||"Prekė";
+  showToast(btn.classList.contains("liked")?"♥ "+name+" pamėgta":"♡ "+name+" pašalinta iš mėgstamų");
+}
+function toggleChat(){document.getElementById("chatWindow").classList.toggle("open")}
+function addBubble(text,who="user"){
+ const body=document.getElementById("chatBody");
+ const div=document.createElement("div"); div.className="bubble "+who; div.textContent=text;
+ body.appendChild(div); body.scrollTop=body.scrollHeight;
+}
+function quickChat(text){addBubble(text);setTimeout(()=>addBubble("Ačiū! Gavome jūsų žinutę. Administratorius galės atsakyti šiame pokalbyje, kai prijungsite tikrą backendą.","admin"),500)}
+function sendChat(){
+ const input=document.getElementById("chatInput"); const text=input.value.trim(); if(!text)return;
+ quickChat(text); input.value="";
+}
+document.getElementById("chatInput")?.addEventListener("keydown",e=>{if(e.key==="Enter")sendChat()});
+function showToast(text){
+ const t=document.getElementById("toast"); t.textContent=text; t.classList.add("show");
+ clearTimeout(window.toastTimer); window.toastTimer=setTimeout(()=>{t.classList.remove("show");t.textContent="✓ Prekė įdėta į krepšelį"},1800);
+}
+
+</script>
 </body>
 </html>
