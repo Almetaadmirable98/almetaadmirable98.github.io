@@ -73,9 +73,67 @@ overflow:hidden;animation:introOut .9s ease 3.2s forwards}
 @keyframes introFloat{50%{transform:translateY(-10px)}}
 @keyframes particle{0%,100%{transform:translateY(0) scale(.7);opacity:.25}50%{transform:translateY(-45px) scale(1.4);opacity:1}}
 @keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+/* AUTH */
+#authGate{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#2854a844,transparent 32%),#03060d;padding:20px}
+.auth-card{width:min(430px,100%);background:#080f1aee;border:1px solid #365277;border-radius:20px;padding:30px;box-shadow:0 25px 100px #000d;backdrop-filter:blur(20px)}
+.auth-brand{text-align:center;margin-bottom:24px}.auth-brand b{display:block;font-size:48px;font-weight:900;text-shadow:0 0 35px #4389ff}.auth-brand strong{font-size:21px;letter-spacing:-1px}.auth-brand small{display:block;color:#8190a8;font-size:10px;margin-top:7px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#0b1422;border:1px solid #263950;border-radius:10px;padding:4px;margin-bottom:20px}.auth-tab{border:0;background:transparent;color:#8190a8;padding:10px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}.auth-tab.active{background:#173661;color:#fff;box-shadow:0 0 20px #397dff22}
+.auth-form{display:none}.auth-form.active{display:block}.auth-field{margin-bottom:13px}.auth-field label{display:block;color:#aebbd0;font-size:10px;margin-bottom:6px}.auth-field input{width:100%;height:43px;background:#0b1421;border:1px solid #2b3e5a;color:#fff;border-radius:9px;padding:0 12px;outline:none}.auth-field input:focus{border-color:#4c8cff;box-shadow:0 0 0 3px #4389ff12}.auth-submit{width:100%;height:44px;border:1px solid #74a4ff;border-radius:9px;background:linear-gradient(135deg,#3b83ff,#6a4cff);color:#fff;font-weight:800;font-size:11px;cursor:pointer;margin-top:4px}.auth-msg{min-height:18px;text-align:center;font-size:10px;color:#f0b44d;margin-top:11px}.auth-note{text-align:center;color:#66758d;font-size:9px;margin-top:15px;line-height:1.5}
+body.auth-locked{overflow:hidden}
+.user-menu{position:relative}.user-menu button{border:0;background:none;color:#dce6f8;font-size:20px;cursor:pointer}.user-dropdown{display:none;position:absolute;right:0;top:34px;width:190px;background:#080f1a;border:1px solid #314968;border-radius:11px;padding:8px;box-shadow:0 20px 60px #000b}.user-dropdown.open{display:block}.user-dropdown small{display:block;color:#7f8ea5;padding:7px;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.user-dropdown button{width:100%;border:1px solid #273a54;background:#0c1727;color:#fff;border-radius:7px;padding:8px;font-size:10px;cursor:pointer}
+
 </style>
 </head>
-<body>
+<body class="auth-locked">
+
+<div id="authGate">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <b>LT</b>
+      <strong>PARDUOTUVĖ</strong>
+      <small>PRISIJUNK PRIE SAVO PASKYROS</small>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" onclick="showAuth('login')">PRISIJUNGTI</button>
+      <button class="auth-tab" id="registerTab" onclick="showAuth('register')">REGISTRUOTIS</button>
+    </div>
+
+    <form id="loginForm" class="auth-form active" onsubmit="loginUser(event)">
+      <div class="auth-field">
+        <label>EL. PAŠTAS</label>
+        <input id="loginEmail" type="email" autocomplete="email" required>
+      </div>
+      <div class="auth-field">
+        <label>SLAPTAŽODIS</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="auth-submit" type="submit">PRISIJUNGTI →</button>
+      <div class="auth-msg" id="loginMsg"></div>
+    </form>
+
+    <form id="registerForm" class="auth-form" onsubmit="registerUser(event)">
+      <div class="auth-field">
+        <label>EL. PAŠTAS</label>
+        <input id="registerEmail" type="email" autocomplete="email" required>
+      </div>
+      <div class="auth-field">
+        <label>SLAPTAŽODIS</label>
+        <input id="registerPassword" type="password" minlength="6" autocomplete="new-password" required>
+      </div>
+      <div class="auth-field">
+        <label>PAKARTOK SLAPTAŽODĮ</label>
+        <input id="registerPassword2" type="password" minlength="6" autocomplete="new-password" required>
+      </div>
+      <button class="auth-submit" type="submit">SUKURTI PASKYRĄ →</button>
+      <div class="auth-msg" id="registerMsg"></div>
+    </form>
+
+    <div class="auth-note">Sukurdami paskyrą galėsite naudotis katalogu, krepšeliu ir klientų pagalba.</div>
+  </div>
+</div>
+
 
 <div id="intro">
   <div class="intro-particles">
@@ -96,7 +154,14 @@ overflow:hidden;animation:introOut .9s ease 3.2s forwards}
 <a class="logo" href="#top"><b>LT</b><span>PARDUOTUVĖ</span></a>
 <nav><a class="active" href="#top">Pagrindinis</a><a href="#prekes">-----</a><a href="#prekes">-----</a><a href="#prekes">Rūbai</a><a href="#prekes">Elektronika</a><a href="#prekes">Aksesuarai</a><a href="#prekes">Kita</a></nav>
 <input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
-<button class="nav-icon">♙</button><button class="nav-icon">♡</button><button class="nav-icon cart" onclick="openCart()">🛒<span class="count" id="count">0</span></button>
+<div class="user-menu">
+<button class="nav-icon" onclick="toggleUserMenu()">♙</button>
+<div class="user-dropdown" id="userDropdown">
+<small id="userEmail">Paskyra</small>
+<button onclick="logoutUser()">Atsijungti</button>
+</div>
+</div>
+<button class="nav-icon">♡</button><button class="nav-icon cart" onclick="openCart()">🛒<span class="count" id="count">0</span></button>
 </div></header>
 
 <section class="hero" id="top"><div class="hero-inner">
@@ -185,16 +250,11 @@ async function ensureChatUser(){
 
   if(sessionError) throw sessionError;
 
-  if(sessionData.session?.user){
-    chatUser = sessionData.session.user;
-    return chatUser;
+  if(!sessionData.session?.user){
+    throw new Error("Reikia prisijungti prie paskyros.");
   }
 
-  const { data, error } = await supabaseClient.auth.signInAnonymously();
-
-  if(error) throw error;
-
-  chatUser = data.user;
+  chatUser = sessionData.session.user;
   return chatUser;
 }
 
@@ -298,6 +358,120 @@ async function sendChatMessage(text){
 <script>
 
 setTimeout(()=>{const intro=document.getElementById("intro"); if(intro) intro.remove()},4300);
+
+initAuth();
+
+
+function showAuth(mode){
+  document.getElementById("loginForm").classList.toggle("active", mode==="login");
+  document.getElementById("registerForm").classList.toggle("active", mode==="register");
+  document.getElementById("loginTab").classList.toggle("active", mode==="login");
+  document.getElementById("registerTab").classList.toggle("active", mode==="register");
+  document.getElementById("loginMsg").textContent="";
+  document.getElementById("registerMsg").textContent="";
+}
+
+function authErrorMessage(error){
+  const m = String(error?.message || error || "");
+  if(m.toLowerCase().includes("invalid login credentials")) return "Neteisingas el. paštas arba slaptažodis.";
+  if(m.toLowerCase().includes("user already registered")) return "Šis el. paštas jau užregistruotas.";
+  if(m.toLowerCase().includes("password")) return "Slaptažodis turi būti bent 6 simbolių.";
+  return m || "Įvyko klaida. Bandykite dar kartą.";
+}
+
+async function registerUser(event){
+  event.preventDefault();
+  const email=document.getElementById("registerEmail").value.trim();
+  const password=document.getElementById("registerPassword").value;
+  const password2=document.getElementById("registerPassword2").value;
+  const msg=document.getElementById("registerMsg");
+
+  if(password !== password2){
+    msg.textContent="Slaptažodžiai nesutampa.";
+    return;
+  }
+
+  msg.textContent="Kuriama paskyra...";
+
+  const {data,error}=await supabaseClient.auth.signUp({
+    email,
+    password,
+    options:{emailRedirectTo:window.location.origin}
+  });
+
+  if(error){
+    msg.textContent=authErrorMessage(error);
+    return;
+  }
+
+  if(data.session){
+    enterStore(data.user);
+  }else{
+    msg.textContent="Paskyra sukurta. Patikrinkite el. paštą ir patvirtinkite paskyrą.";
+  }
+}
+
+async function loginUser(event){
+  event.preventDefault();
+  const email=document.getElementById("loginEmail").value.trim();
+  const password=document.getElementById("loginPassword").value;
+  const msg=document.getElementById("loginMsg");
+
+  msg.textContent="Jungiamasi...";
+
+  const {data,error}=await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error){
+    msg.textContent=authErrorMessage(error);
+    return;
+  }
+
+  enterStore(data.user);
+}
+
+function enterStore(user){
+  document.getElementById("authGate").style.display="none";
+  document.body.classList.remove("auth-locked");
+  document.getElementById("userEmail").textContent=user?.email || "Paskyra";
+  initChat();
+}
+
+function toggleUserMenu(){
+  document.getElementById("userDropdown").classList.toggle("open");
+}
+
+async function logoutUser(){
+  await supabaseClient.auth.signOut();
+  document.getElementById("userDropdown").classList.remove("open");
+  document.getElementById("authGate").style.display="flex";
+  document.body.classList.add("auth-locked");
+  showAuth("login");
+  document.getElementById("loginMsg").textContent="Atsijungta.";
+}
+
+async function initAuth(){
+  const {data,error}=await supabaseClient.auth.getSession();
+
+  if(error){
+    console.error("Auth error:",error);
+    return;
+  }
+
+  if(data.session?.user){
+    enterStore(data.session.user);
+  }else{
+    document.getElementById("authGate").style.display="flex";
+    document.body.classList.add("auth-locked");
+  }
+
+  supabaseClient.auth.onAuthStateChange((_event,session)=>{
+    if(session?.user) enterStore(session.user);
+  });
+}
+
 
 let cart=[];
 function add(name,price){cart.push({name,price});renderCart();toast("✓ "+name+" pridėta į krepšelį")}
