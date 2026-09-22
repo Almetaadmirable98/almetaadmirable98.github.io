@@ -1,1081 +1,149 @@
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>LT PARDUOTUVĖ</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-:root{--bg:#050914;--card:#0a111d;--line:#263650;--blue:#4389ff;--green:#22e5a0;--muted:#8290a8}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:Inter,Arial,sans-serif;background:#040811;color:#fff;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:
-radial-gradient(circle at 50% 5%,#2854a83b,transparent 28%),
-radial-gradient(circle at 10% 35%,#7139a51c,transparent 25%),
-radial-gradient(circle at 90% 50%,#1474a51c,transparent 25%),
-#040811}
-body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.18;background-image:radial-gradient(#8eb7ff 1px,transparent 1px);background-size:90px 90px;animation:stars 18s linear infinite}
-a{color:inherit;text-decoration:none}button,input{font:inherit}
-header{position:sticky;top:0;z-index:100;background:#050914ed;backdrop-filter:blur(18px);border-bottom:1px solid #1e2b42}
-.nav{max-width:1500px;height:70px;margin:auto;padding:0 28px;display:flex;align-items:center;gap:30px}
-.logo{font-weight:900;white-space:nowrap;font-size:19px}.logo b{font-size:30px;text-shadow:0 0 25px #4c8cff}.logo span{margin-left:5px}
-nav{display:flex;gap:25px}nav a{font-size:12px;color:#a9b5c9;padding:27px 0;position:relative}nav a:hover,nav a.active{color:#fff}nav a.active:after{content:"";position:absolute;height:2px;background:#4c8cff;box-shadow:0 0 12px #4c8cff;left:0;right:0;bottom:0}
-.search{margin-left:auto;width:290px;height:38px;border:1px solid #2b3b55;border-radius:22px;background:#0b1220;color:#fff;padding:0 15px;outline:none}.search:focus{border-color:#4b8cff}
-.nav-icon{border:0;background:none;color:#dce6f8;font-size:20px;cursor:pointer}.cart{position:relative}.count{position:absolute;right:-7px;top:-6px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;background:#4a82ff;font-size:9px}
-
-.hero{min-height:430px;position:relative;overflow:hidden;border-bottom:1px solid #1c2940;background:
-radial-gradient(circle at 50% 50%,#397dff3b,transparent 22%),
-radial-gradient(circle at 20% 20%,#7d4fff24,transparent 23%),
-radial-gradient(circle at 80% 30%,#21a7ff1b,transparent 23%),
-linear-gradient(135deg,#060b17,#0b1222 48%,#070911)}
-.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,#5a8dff0e 40%,transparent 42%,transparent 63%,#9b63ff0b 65%,transparent 67%);animation:sweep 7s ease-in-out infinite alternate}
-.hero-inner{max-width:1500px;min-height:430px;margin:auto;padding:38px 28px;display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:20px;align-items:center;position:relative}
-.side{display:flex;flex-direction:column;gap:10px}.side-card{background:#070e19d9;border:1px solid #30425e;border-radius:13px;padding:15px;backdrop-filter:blur(10px);transition:.2s}.side-card:hover{border-color:#5d94ff;transform:translateY(-2px);box-shadow:0 0 25px #397dff20}.side-card strong{font-size:13px}.side-card p{font-size:11px;color:#8795aa;margin-top:5px}.side-card small{font-size:10px;color:#b6c4da}.link-btn{display:inline-block;margin-top:9px;padding:7px 10px;border-radius:8px;background:linear-gradient(135deg,#3c83ff,#694cff);border:1px solid #79a7ff;font-size:9px;font-weight:800}
-.hero-main{text-align:center}.crown{font-size:42px;text-shadow:0 0 25px #5e9aff;animation:float 3s ease-in-out infinite}.lt{font-size:105px;line-height:.75;font-weight:900;letter-spacing:-9px;text-shadow:0 0 15px #fff,0 0 45px #3e82ff,0 0 90px #3e82ff77;animation:pulse 3s infinite}.hero-main h1{font-size:50px;margin-top:16px;letter-spacing:-3px;text-shadow:0 0 20px #fff,0 0 40px #3e82ff}.hero-main .sub{font-size:10px;letter-spacing:6px;color:#c5d1e6;margin-top:10px}.cta{display:inline-block;margin-top:22px;padding:13px 28px;border:2px solid #5b97ff;border-radius:28px;background:#0b1730;color:#fff;font-size:12px;font-weight:800;box-shadow:0 0 30px #397dff55;animation:cta 2.5s infinite}
-.services{max-width:1500px;margin:-1px auto 0;padding:0 28px;position:relative}.service-grid{display:grid;grid-template-columns:repeat(5,1fr);background:#070d17;border:1px solid #354864;border-radius:15px;overflow:hidden}.service{padding:16px;border-right:1px solid #1e2d43}.service:last-child{border:0}.service b{font-size:10px}.service small{display:block;color:#75849a;font-size:9px;margin-top:4px}
-
-main{max-width:1500px;margin:auto;padding:0 28px 70px}.categories{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}.cat{height:130px;padding:16px;border:1px solid #2b3d58;border-radius:12px;background:linear-gradient(145deg,#101a2b,#070d16);position:relative;overflow:hidden;transition:.2s}.cat:hover{transform:translateY(-4px);border-color:#518cff}.cat:after{content:"";position:absolute;width:150px;height:150px;right:-55px;bottom:-55px;background:radial-gradient(circle,#3c82ff3b,transparent 65%)}.cat h3{font-size:15px;position:relative;z-index:2}.cat p{font-size:10px;color:#8290a5;margin-top:4px;position:relative;z-index:2}.cat button{position:absolute;left:13px;bottom:11px;border:1px solid #657995;border-radius:17px;background:#09111e;color:#fff;padding:6px 12px;font-size:9px;z-index:3;cursor:pointer}
-.products-head{display:flex;align-items:center;justify-content:space-between;margin:30px 0 17px}.products-head h2{font-size:24px}.products-head p{font-size:11px;color:#718096;margin-top:4px}.tabs{display:flex;border:1px solid #263750;border-radius:10px;overflow:hidden}.tab{border:0;border-right:1px solid #223148;background:#080f1b;color:#8794a8;padding:10px 16px;font-size:10px;cursor:pointer}.tab.active{color:#fff;background:#102754;box-shadow:inset 0 -2px #4a8bff}
-.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}.product{background:#090f19;border:1px solid #23344d;border-radius:11px;overflow:hidden;transition:.2s}.product:hover{transform:translateY(-4px);border-color:#4e88ed;box-shadow:0 15px 35px #0008}.photo{height:165px;background:#0d1625;position:relative;overflow:hidden}.product-image{width:100%;height:100%;object-fit:cover;display:block;transition:.4s}.product:hover .product-image{transform:scale(1.06);filter:brightness(1.1)}.badge{position:absolute;top:8px;left:8px;padding:4px 7px;border-radius:8px;background:#286dff;font-size:8px;font-weight:800}.badge.new{background:#119a77}.badge.sale{background:#df4646}.like{position:absolute;right:7px;top:5px;border:0;background:transparent;color:#e6eefc;font-size:20px;cursor:pointer;z-index:2}.like.liked{color:#ff4d78;text-shadow:0 0 15px #ff4d78}
-.info{padding:10px}.info h3{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.info p{font-size:8px;color:#77859a;margin-top:3px}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:9px}.price{font-size:16px;color:var(--green)}.add{width:32px;height:32px;border:1px solid #617697;background:#0b1422;color:#fff;border-radius:8px;cursor:pointer}
-.contact{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:45px}.contact-card{background:#080f1a;border:1px solid #2b3d57;border-radius:14px;padding:21px}.contact-card h3{font-size:15px}.contact-card p{font-size:11px;color:#8290a5;margin:7px 0 13px}.contact-btn{display:inline-block;padding:11px 15px;border-radius:10px;background:linear-gradient(135deg,#3b83ff,#6a4cff);border:1px solid #74a4ff;font-size:10px;font-weight:800}
-footer{text-align:center;padding:28px;border-top:1px solid #1b293d;color:#63728a;font-size:10px}
-
-#toast{position:fixed;right:20px;bottom:20px;z-index:500;background:#0c1727;border:1px solid #4287ff;padding:12px 15px;border-radius:10px;transform:translateY(100px);transition:.25s;font-size:11px}#toast.show{transform:none}
-.chat-launch{position:fixed;right:20px;bottom:20px;z-index:450;width:58px;height:58px;border-radius:50%;border:1px solid #70a4ff;background:linear-gradient(135deg,#397dff,#704cff);color:#fff;font-size:23px;cursor:pointer;box-shadow:0 0 30px #397dff66}
-.chat{display:none;position:fixed;right:20px;bottom:90px;width:390px;height:500px;z-index:451;background:#080f1a;border:1px solid #395071;border-radius:17px;box-shadow:0 25px 80px #000c;overflow:hidden}.chat.open{display:flex;flex-direction:column}.chat-head{padding:14px;border-bottom:1px solid #22334a;display:flex;justify-content:space-between}.chat-head strong{font-size:12px}.chat-head small{display:block;color:#20e5a0;font-size:9px;margin-top:4px}.chat-close{border:0;background:#111d2d;color:#fff;border-radius:7px;padding:5px 9px}.chat-body{padding:13px;flex:1;overflow:auto}.bubble{max-width:82%;padding:9px 11px;margin:6px 0;background:#101c2d;border:1px solid #263b58;border-radius:11px;font-size:10px;line-height:1.5}.bubble.user{margin-left:auto;background:#173661}.demo{margin-top:12px;padding:9px;border:1px dashed #3b4e6a;border-radius:8px;color:#71819a;font-size:9px}.quick{display:flex;gap:5px;padding:8px;border-top:1px solid #22334a;overflow:auto}.quick button{white-space:nowrap;border:1px solid #2d4565;background:#0d1726;color:#9cbcff;border-radius:18px;padding:7px 9px;font-size:9px}.chat-input{display:flex;gap:6px;padding:9px;border-top:1px solid #22334a}.chat-input input{flex:1;min-width:0;background:#0b1421;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:8px;font-size:10px}.chat-input button{border:0;background:#3e82ff;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px}
-.ai-mode{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 10px;background:#0b1421;border-bottom:1px solid #22334a;font-size:9px;color:#9cbcff}.ai-mode b{color:#55d6a7}.ai-admin-btn{border:1px solid #4c8cff;background:#102754;color:#fff;border-radius:7px;padding:6px 9px;font-size:8px;cursor:pointer}.ai-admin-btn:hover{background:#173661}
-#cartBg{display:none;position:fixed;inset:0;background:#000b;z-index:600}.drawer{position:absolute;right:0;top:0;height:100%;width:min(420px,100%);background:#080f19;border-left:1px solid #334a69;padding:22px;overflow:auto}.drawer-head{display:flex;justify-content:space-between}.close{border:1px solid #2d405b;background:#101a2a;color:#fff;border-radius:7px;padding:6px 9px}.cart-item{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #1c2b40;font-size:11px}.total{font-size:20px;font-weight:900;margin:20px 0}.checkout{width:100%;border:0;border-radius:9px;padding:12px;background:linear-gradient(135deg,#3c83ff,#6a4cff);color:#fff;font-weight:800}
-
-@keyframes stars{to{background-position:90px 90px}}@keyframes sweep{to{transform:translateX(25px)}}@keyframes float{50%{transform:translateY(-10px)}}@keyframes pulse{50%{text-shadow:0 0 18px #fff,0 0 65px #3e82ff,0 0 120px #3e82ff99}}@keyframes cta{50%{box-shadow:0 0 42px #397dff99}}
-@media(max-width:1200px){.grid{grid-template-columns:repeat(4,1fr)}.categories{grid-template-columns:repeat(3,1fr)}.hero-inner{grid-template-columns:1fr}.side{display:none}}
-@media(max-width:800px){nav{display:none}.search{width:180px}.service-grid{grid-template-columns:repeat(2,1fr)}.service:nth-child(2),.service:nth-child(4){border-right:0}.service:last-child{grid-column:1/-1}.grid{grid-template-columns:repeat(2,1fr)}.contact{grid-template-columns:1fr}}
-@media(max-width:500px){.nav{padding:0 14px;gap:12px}.logo{font-size:14px}.logo b{font-size:22px}.search{width:125px}.hero-main .lt{font-size:78px}.hero-main h1{font-size:35px}.categories{grid-template-columns:repeat(2,1fr)}.products-head{display:block}.tabs{margin-top:12px;overflow:auto}.chat{right:10px;bottom:82px;width:calc(100% - 20px)}}
-
-#intro{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:
-radial-gradient(circle at 50% 48%,#315fff44,transparent 24%),
-radial-gradient(circle at 50% 50%,#111c42,transparent 55%),#03060d;
-overflow:hidden;animation:introOut .9s ease 3.2s forwards}
-.intro-content{text-align:center;position:relative;z-index:3;animation:introIn 1.2s cubic-bezier(.2,.8,.2,1)}
-.intro-crown{font-size:48px;text-shadow:0 0 25px #fff,0 0 55px #4c8cff;animation:introFloat 1.8s ease-in-out infinite}
-.intro-lt{font-size:105px;font-weight:900;letter-spacing:-10px;line-height:.8;text-shadow:0 0 18px #fff,0 0 55px #4b8cff,0 0 110px #4b8cff99}
-.intro-title{font-size:48px;font-weight:900;letter-spacing:-2px;margin-top:18px;text-shadow:0 0 18px #fff,0 0 45px #4b8cff}
-.intro-line{width:0;height:2px;margin:22px auto;background:#66a0ff;box-shadow:0 0 20px #4c8cff;animation:introLine 1.1s ease .5s forwards}
-.intro-sub{font-size:10px;letter-spacing:6px;color:#b9c8e2;opacity:0;animation:introText .7s ease 1.15s forwards}
-.intro-particles{position:absolute;inset:0;overflow:hidden}
-.intro-particle{position:absolute;width:5px;height:5px;border-radius:50%;background:#7db0ff;box-shadow:0 0 14px #5d9cff;animation:particle 3s ease-in-out infinite}
-.intro-particle:nth-child(1){left:8%;top:22%;animation-delay:.2s}.intro-particle:nth-child(2){left:18%;top:70%;animation-delay:.8s}
-.intro-particle:nth-child(3){left:31%;top:14%;animation-delay:1.1s}.intro-particle:nth-child(4){left:72%;top:18%;animation-delay:.4s}
-.intro-particle:nth-child(5){left:87%;top:68%;animation-delay:1.3s}.intro-particle:nth-child(6){left:77%;top:82%;animation-delay:.9s}
-.intro-particle:nth-child(7){left:12%;top:86%;animation-delay:1.6s}.intro-particle:nth-child(8){left:91%;top:30%;animation-delay:.6s}
-@keyframes introIn{from{opacity:0;transform:scale(.72) translateY(25px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
-@keyframes introLine{to{width:220px}}
-@keyframes introText{to{opacity:1}}
-@keyframes introFloat{50%{transform:translateY(-10px)}}
-@keyframes particle{0%,100%{transform:translateY(0) scale(.7);opacity:.25}50%{transform:translateY(-45px) scale(1.4);opacity:1}}
-@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-
-
-.auth-intro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:1;pointer-events:none;animation:authIntroOut .8s ease 2.8s forwards}
-.auth-intro-crown{font-size:50px;text-shadow:0 0 20px #fff,0 0 55px #4c8cff;animation:authIntroFloat 1.8s ease-in-out infinite}
-.auth-intro-lt{font-size:108px;line-height:.78;font-weight:900;letter-spacing:-10px;text-shadow:0 0 18px #fff,0 0 55px #4b8cff,0 0 110px #4b8cff99;animation:authIntroIn 1s cubic-bezier(.2,.8,.2,1)}
-.auth-intro-title{font-size:48px;font-weight:900;letter-spacing:-2px;margin-top:18px;text-shadow:0 0 18px #fff,0 0 45px #4b8cff;animation:authIntroIn 1s .18s both}
-.auth-intro-line{width:220px;height:2px;margin:22px auto;background:#66a0ff;box-shadow:0 0 20px #4c8cff;animation:authIntroLine 1s .45s both}
-.auth-intro-sub{font-size:10px;letter-spacing:6px;color:#b9c8e2;animation:authIntroIn 1s .65s both}
-.auth-intro-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.auth-intro-particles i{position:absolute;width:5px;height:5px;border-radius:50%;background:#7db0ff;box-shadow:0 0 14px #5d9cff;animation:authParticle 2.5s ease-in-out infinite}
-.auth-intro-particles i:nth-child(1){left:9%;top:22%;animation-delay:.2s}.auth-intro-particles i:nth-child(2){left:18%;top:72%;animation-delay:.8s}.auth-intro-particles i:nth-child(3){left:31%;top:14%;animation-delay:1.1s}.auth-intro-particles i:nth-child(4){left:72%;top:18%;animation-delay:.4s}.auth-intro-particles i:nth-child(5){left:87%;top:68%;animation-delay:1.3s}.auth-intro-particles i:nth-child(6){left:78%;top:82%;animation-delay:.9s}
-.auth-panel{position:relative;z-index:50;pointer-events:auto;opacity:0;transform:translateY(22px) scale(.97);animation:authPanelIn .8s ease 3.15s forwards}
-@keyframes authIntroIn{from{opacity:0;transform:scale(.72) translateY(25px);filter:blur(12px)}to{opacity:1;transform:none;filter:none}}
-@keyframes authIntroLine{from{width:0;opacity:0}to{width:220px;opacity:1}}
-@keyframes authIntroFloat{50%{transform:translateY(-10px)}}
-@keyframes authParticle{0%,100%{transform:translateY(0) scale(.7);opacity:.25}50%{transform:translateY(-45px) scale(1.4);opacity:1}}
-@keyframes authIntroOut{to{opacity:0;visibility:hidden;pointer-events:none}}
-@keyframes authPanelIn{to{opacity:1;transform:none}}
-
-
-.robot-check{display:flex;align-items:center;gap:10px;background:#0b1421;border:1px solid #2b3e5a;border-radius:9px;padding:11px;margin:12px 0 4px;cursor:pointer;user-select:none}
-.robot-check input{width:18px;height:18px;accent-color:#4389ff;cursor:pointer}
-.robot-check span{font-size:10px;color:#b8c5d8}
-.robot-check .robot-status{margin-left:auto;font-size:9px;color:#71819a}
-
-/* AUTH */
-#authGate{position:fixed;inset:0;z-index:2000;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 35%,#2854a844,transparent 32%),#03060d;padding:20px}
-.auth-card{width:min(430px,100%);background:#080f1aee;border:1px solid #365277;border-radius:20px;padding:30px;box-shadow:0 25px 100px #000d;backdrop-filter:blur(20px)}
-.auth-brand{text-align:center;margin-bottom:24px}.auth-brand b{display:block;font-size:48px;font-weight:900;text-shadow:0 0 35px #4389ff}.auth-brand strong{font-size:21px;letter-spacing:-1px}.auth-brand small{display:block;color:#8190a8;font-size:10px;margin-top:7px}
-.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#0b1422;border:1px solid #263950;border-radius:10px;padding:4px;margin-bottom:20px}.auth-tab{border:0;background:transparent;color:#8190a8;padding:10px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer}.auth-tab.active{background:#173661;color:#fff;box-shadow:0 0 20px #397dff22}
-.auth-form{display:none}.auth-form.active{display:block}.auth-field{margin-bottom:13px}.auth-field label{display:block;color:#aebbd0;font-size:10px;margin-bottom:6px}.auth-field input{width:100%;height:43px;background:#0b1421;border:1px solid #2b3e5a;color:#fff;border-radius:9px;padding:0 12px;outline:none}.auth-field input:focus{border-color:#4c8cff;box-shadow:0 0 0 3px #4389ff12}.auth-submit{width:100%;height:44px;border:1px solid #74a4ff;border-radius:9px;background:linear-gradient(135deg,#3b83ff,#6a4cff);color:#fff;font-weight:800;font-size:11px;cursor:pointer;margin-top:4px}.auth-msg{min-height:18px;text-align:center;font-size:10px;color:#f0b44d;margin-top:11px}.auth-note{text-align:center;color:#66758d;font-size:9px;margin-top:15px;line-height:1.5}
-body.auth-locked{overflow:hidden}
-.user-menu{position:relative}.user-menu button{border:0;background:none;color:#dce6f8;font-size:20px;cursor:pointer}.user-dropdown{display:none;position:absolute;right:0;top:34px;width:190px;background:#080f1a;border:1px solid #314968;border-radius:11px;padding:8px;box-shadow:0 20px 60px #000b}.user-dropdown.open{display:block}.user-dropdown small{display:block;color:#7f8ea5;padding:7px;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.user-dropdown button{width:100%;border:1px solid #273a54;background:#0c1727;color:#fff;border-radius:7px;padding:8px;font-size:10px;cursor:pointer}
-
-
-#adminPanel{display:none;position:fixed;inset:0;z-index:1800;background:#03060df5;backdrop-filter:blur(14px);padding:24px;overflow:auto}
-#adminPanel.open{display:block}.admin-wrap{max-width:1200px;margin:0 auto;background:#080f1a;border:1px solid #365277;border-radius:20px;box-shadow:0 25px 100px #000d;overflow:hidden}
-.admin-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #263950}.admin-head h2{font-size:18px}.admin-head small{display:block;color:#20e5a0;font-size:9px;margin-top:4px}
-.admin-close,.admin-tab,.admin-primary,.admin-secondary,.admin-danger{border:1px solid #304662;background:#0d1726;color:#fff;border-radius:8px;padding:8px 11px;cursor:pointer;font-size:10px}
-.admin-nav{display:flex;gap:8px;padding:12px 18px;border-bottom:1px solid #1e2d43;overflow:auto}.admin-tab{color:#91a0b7;white-space:nowrap}.admin-tab.active{background:#173661;border-color:#4c8cff;color:#fff}
-.admin-section{display:none;padding:20px}.admin-section.active{display:block}.admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.admin-stat{background:#0b1421;border:1px solid #263950;border-radius:11px;padding:15px}.admin-stat b{font-size:22px}.admin-stat span{display:block;color:#7e8da5;font-size:9px;margin-top:5px}
-.admin-form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;background:#0b1421;border:1px solid #263950;border-radius:12px;padding:15px;margin-bottom:18px}.admin-form .full{grid-column:1/-1}
-.admin-field label{display:block;color:#9eabc0;font-size:9px;margin-bottom:5px}.admin-field input,.admin-field textarea,.admin-field select{width:100%;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:10px;outline:none}.admin-field textarea{min-height:75px;resize:vertical}
-.admin-actions{display:flex;gap:7px;align-items:center}.admin-primary{background:#286dff;border-color:#5b91ff;font-weight:700}.admin-danger{background:#4b1820;border-color:#a34b59}
-.admin-list{display:grid;gap:8px}.admin-product{display:flex;gap:12px;align-items:center;background:#0b1421;border:1px solid #263950;border-radius:10px;padding:10px}.admin-product img{width:70px;height:55px;object-fit:cover;border-radius:7px;background:#111b2b}.admin-product-info{flex:1;min-width:0}.admin-product-info b{font-size:11px}.admin-product-info small{display:block;color:#7d8ca3;font-size:9px;margin-top:3px}.admin-empty{color:#718096;font-size:10px;padding:15px;text-align:center}.admin-note{color:#718096;font-size:9px;line-height:1.5;margin-bottom:12px}
-@media(max-width:700px){.admin-grid,.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-product{align-items:flex-start}}
-
-.coupon-box{margin-top:18px;padding:18px;border:1px solid #263750;border-radius:14px;background:#080f1b}.coupon-row{display:flex;gap:8px;align-items:center;margin-top:10px}.coupon-row input,.coupon-row select{flex:1}.coupon-code{font-family:monospace;font-weight:800;letter-spacing:1px}.discount-old{text-decoration:line-through;color:#6f7d91;font-size:9px;margin-right:5px}.discount-new{color:#fff;font-weight:800}.admin-product small{display:block}.coupon-status{font-size:9px;color:#8492a6;margin-top:4px}.coupon-status.ok{color:#50d6a0}.coupon-status.off{color:#ff7373}
-.coupon-toggle{display:flex;align-items:center;gap:9px;cursor:pointer;color:#dce6f8;font-size:10px}.coupon-toggle input{width:16px;height:16px;accent-color:#4389ff}.coupon-hidden{display:none}.coupon-hidden.open{display:block}.coupon-message{font-size:9px;margin-top:7px;min-height:13px}.coupon-message.ok{color:#50d6a0}.coupon-message.err{color:#ff7373}.admin-list-title{font-size:12px;font-weight:800;margin:18px 0 8px;color:#dbe7f8}.admin-product-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.admin-secondary.green{border-color:#247a61;background:#0d2b24}.admin-secondary.orange{border-color:#87651e;background:#2c220c}
-
-/* === PRODUCT DETAILS + ENHANCED CART === */
-.product{cursor:pointer}
-.product .add,.product .like{cursor:pointer}
-.product-modal{display:none;position:fixed;inset:0;z-index:700;background:#000c;padding:24px;align-items:center;justify-content:center}
-.product-modal.open{display:flex}
-.product-modal-card{width:min(920px,100%);max-height:92vh;overflow:auto;background:#080f1a;border:1px solid #3b5578;border-radius:20px;box-shadow:0 30px 100px #000e;display:grid;grid-template-columns:1fr 1fr;position:relative}
-.product-modal-image{min-height:430px;background:#0d1625;overflow:hidden}
-.product-modal-image img{width:100%;height:100%;min-height:430px;object-fit:cover}
-.product-modal-info{padding:32px}
-.product-modal-info .modal-badge{display:inline-block;padding:6px 10px;border-radius:8px;background:#286dff;font-size:9px;font-weight:800;margin-bottom:12px}
-.product-modal-info h2{font-size:30px;line-height:1.15;margin-bottom:8px}
-.product-modal-cat{color:#8190a8;font-size:11px;margin-bottom:20px}
-.product-modal-desc{color:#b7c4d8;font-size:12px;line-height:1.75;white-space:pre-wrap;min-height:80px;margin-bottom:22px}
-.modal-price{font-size:27px;color:#22e5a0;font-weight:900}
-.modal-old-price{text-decoration:line-through;color:#68778d;font-size:12px;margin-right:7px}
-.modal-actions{display:flex;gap:9px;align-items:center;margin-top:22px}
-.modal-qty{display:flex;align-items:center;background:#0b1421;border:1px solid #30445f;border-radius:10px;overflow:hidden}
-.modal-qty button{width:38px;height:40px;border:0;background:#101c2d;color:#fff;cursor:pointer;font-size:18px}
-.modal-qty span{width:42px;text-align:center;font-weight:800;font-size:11px}
-.modal-add{flex:1;height:40px;border:1px solid #74a4ff;border-radius:10px;background:linear-gradient(135deg,#3b83ff,#6a4cff);color:#fff;font-weight:800;cursor:pointer}
-.modal-close{position:absolute;right:14px;top:14px;width:36px;height:36px;border:1px solid #405775;background:#0a1422dd;color:#fff;border-radius:9px;cursor:pointer;z-index:2}
-.cart-summary{margin-top:18px;padding:14px;border:1px solid #263950;border-radius:13px;background:#0b1421}
-.cart-summary-row{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#8998ad;margin:6px 0}
-.cart-summary-row strong{color:#fff;font-size:11px}
-.cart-summary-total{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:12px;border-top:1px solid #263950;font-size:12px}
-.cart-summary-total b{font-size:21px;color:#22e5a0}
-.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:15px 0;border-bottom:1px solid #1c2b40}
-.cart-item-name{font-size:11px;font-weight:700}
-.cart-item-price{color:#22e5a0;font-weight:800;font-size:11px;margin-top:4px}
-.cart-controls{display:flex;align-items:center;gap:5px;margin-top:8px}
-.cart-controls button{width:27px;height:27px;border:1px solid #30445f;background:#101c2d;color:#fff;border-radius:7px;cursor:pointer}
-.cart-controls span{min-width:25px;text-align:center;font-size:10px;font-weight:800}
-.cart-remove{border:0!important;background:transparent!important;color:#ff7373!important;width:auto!important}
-@media(max-width:700px){
- .product-modal{padding:10px}
- .product-modal-card{grid-template-columns:1fr}
- .product-modal-image,.product-modal-image img{min-height:280px;height:280px}
- .product-modal-info{padding:22px}
- .product-modal-info h2{font-size:23px}
-}
-
-/* === ORDERS + CHECKOUT === */
-.account-action{margin-top:6px}
-.orders-modal,.checkout-modal{display:none;position:fixed;inset:0;z-index:900;background:#000c;padding:18px;align-items:center;justify-content:center}
-.orders-modal.open,.checkout-modal.open{display:flex}
-.orders-card,.checkout-card{width:min(980px,100%);max-height:92vh;overflow:auto;background:#080f1a;border:1px solid #3b5578;border-radius:20px;box-shadow:0 30px 100px #000e}
-.orders-head,.checkout-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #263950}
-.orders-head h2,.checkout-head h2{font-size:18px}.orders-head small,.checkout-head small{display:block;color:#7e8da5;font-size:9px;margin-top:4px}
-.orders-body,.checkout-body{padding:20px}
-.order-list{display:grid;gap:10px}.order-card{background:#0b1421;border:1px solid #263950;border-radius:13px;padding:15px;cursor:pointer;transition:.2s}.order-card:hover{border-color:#4c8cff;transform:translateY(-1px)}
-.order-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.order-number{font-size:13px;font-weight:900}.order-date{color:#7e8da5;font-size:9px;margin-top:4px}
-.order-status{padding:6px 9px;border-radius:20px;font-size:9px;font-weight:800;background:#18263b;border:1px solid #344b69;white-space:nowrap}
-.status-paid{color:#50d6a0;border-color:#247a61;background:#0d2b24}.status-pending{color:#f0c66b}.status-shipped{color:#7fb0ff}.status-cancelled{color:#ff8585;border-color:#793b45;background:#29141a}
-.order-bottom{display:flex;justify-content:space-between;margin-top:12px;color:#8290a8;font-size:10px}.order-bottom strong{color:#fff;font-size:14px}
-.order-detail{margin-top:14px;padding-top:14px;border-top:1px solid #263950}.order-items{display:grid;gap:7px;margin:10px 0}.order-item-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #17263a;font-size:10px}.order-item-row span{color:#aebbd0}.order-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.order-info-box{background:#08111d;border:1px solid #22354e;border-radius:9px;padding:10px}.order-info-box small{display:block;color:#718096;font-size:8px;margin-bottom:4px}.order-info-box b{font-size:10px}
-.checkout-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.checkout-section{background:#0b1421;border:1px solid #263950;border-radius:13px;padding:16px}.checkout-section h3{font-size:12px;margin-bottom:13px}.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.checkout-field label{display:block;color:#9eabc0;font-size:9px;margin-bottom:5px}.checkout-field input{width:100%;height:40px;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:0 11px;outline:none;font-size:10px}.checkout-field input:focus{border-color:#4c8cff}.checkout-field.full{grid-column:1/-1}.shipping-options{display:grid;gap:8px}.shipping-option{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #293d58;background:#08111d;border-radius:9px;cursor:pointer}.shipping-option:has(input:checked){border-color:#4c8cff;background:#102754}.shipping-option input{accent-color:#4389ff}.shipping-option span{font-size:10px}.shipping-option b{margin-left:auto;font-size:10px;color:#22e5a0}.checkout-summary{position:sticky;top:0}.checkout-summary-list{display:grid;gap:7px;max-height:260px;overflow:auto}.checkout-summary-item{display:flex;justify-content:space-between;gap:8px;font-size:10px;padding:7px 0;border-bottom:1px solid #17263a}.checkout-total{display:flex;justify-content:space-between;padding-top:12px;margin-top:10px;border-top:1px solid #30445f;font-size:12px}.checkout-total b{font-size:21px;color:#22e5a0}.checkout-note{color:#718096;font-size:9px;line-height:1.5;margin-top:12px}.checkout-error{min-height:15px;color:#ff7373;font-size:9px;margin:8px 0}.checkout-submit{width:100%;height:44px;border:1px solid #74a4ff;border-radius:10px;background:linear-gradient(135deg,#3b83ff,#6a4cff);color:#fff;font-weight:800;cursor:pointer}
-.admin-order{display:grid;grid-template-columns:1fr auto;gap:12px;background:#0b1421;border:1px solid #263950;border-radius:11px;padding:13px}.admin-order-info b{font-size:11px}.admin-order-info small{display:block;color:#7d8ca3;font-size:9px;margin-top:4px;line-height:1.5}.admin-order-actions{display:flex;align-items:center;gap:7px}.admin-order-actions select{background:#08111d;color:#fff;border:1px solid #30445f;border-radius:8px;padding:8px;font-size:9px}
-@media(max-width:750px){.checkout-layout{grid-template-columns:1fr}.checkout-summary{position:static}.checkout-grid,.order-info-grid{grid-template-columns:1fr}.checkout-field.full{grid-column:auto}.admin-order{grid-template-columns:1fr}.admin-order-actions{justify-content:flex-start}}
-
-
-
-.admin-chat-notification{display:none;position:fixed;right:20px;top:84px;z-index:2500;width:min(370px,calc(100% - 40px));background:#0b1421;border:1px solid #4c8cff;border-radius:13px;padding:12px;box-shadow:0 18px 55px #000c;cursor:pointer;align-items:center;gap:10px;animation:chatNoticeIn .25s ease}.admin-chat-notification.show{display:flex}.admin-chat-notification-icon{width:36px;height:36px;border-radius:10px;background:#173661;display:grid;place-items:center;font-size:18px;flex:0 0 auto}.admin-chat-notification b{display:block;font-size:10px}.admin-chat-notification small{display:block;color:#8b9bb2;font-size:8px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:245px}.admin-chat-notification button{margin-left:auto;border:0;background:#111d2d;color:#fff;border-radius:6px;padding:4px 7px;cursor:pointer}.admin-chat-user.unread{border-color:#20e5a0;box-shadow:0 0 0 1px #20e5a033}.admin-chat-user .unread-dot{float:right;color:#20e5a0;font-size:9px}@keyframes chatNoticeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-.admin-chat-layout{display:grid;grid-template-columns:280px 1fr;gap:12px;min-height:420px}.admin-chat-users,.admin-chat-window{background:#0b1421;border:1px solid #263950;border-radius:12px;overflow:hidden}.admin-chat-users{padding:10px}.admin-chat-user{padding:10px;border:1px solid #22354e;background:#08111d;border-radius:9px;cursor:pointer;margin-bottom:7px}.admin-chat-user:hover,.admin-chat-user.active{border-color:#4c8cff;background:#102754}.admin-chat-user b{font-size:10px}.admin-chat-user small{display:block;color:#718096;font-size:8px;margin-top:4px}.admin-chat-title{padding:13px;border-bottom:1px solid #263950;font-size:11px;font-weight:800}.admin-chat-body{height:340px;overflow:auto;padding:12px}.admin-chat-bubble{max-width:80%;padding:8px 10px;border-radius:10px;background:#101c2d;border:1px solid #263b58;margin:6px 0;font-size:9px;line-height:1.5}.admin-chat-bubble.admin{margin-left:auto;background:#173661}.admin-chat-time{display:block;color:#68788e;font-size:7px;margin-top:4px}.admin-chat-reply{display:flex;gap:7px;padding:9px;border-top:1px solid #263950}.admin-chat-reply input{flex:1;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:9px;outline:none}@media(max-width:700px){.admin-chat-layout{grid-template-columns:1fr}.admin-chat-users{max-height:220px}.admin-chat-body{height:300px}}
-.order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer;margin-top:8px}.order-cancel-btn:hover{background:#351521}.pay-disabled{opacity:.45!important;cursor:not-allowed!important}.pay-note{font-size:9px;color:#71819a;margin-top:6px;line-height:1.4}.order-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:10px}.order-pay-btn{border:1px solid #5579ad;background:#16243a;color:#fff;border-radius:8px;padding:8px 11px;font-size:10px;opacity:.45;cursor:not-allowed}.order-cancel-btn{border:1px solid #a64b5d;background:#24101a;color:#ff9aad;border-radius:8px;padding:8px 11px;font-size:10px;cursor:pointer}.order-cancel-btn:hover{background:#351521}.pay-note{width:100%;font-size:9px;color:#71819a;line-height:1.4}.save-check{display:flex;align-items:center;gap:8px;margin-top:12px;padding:10px;border:1px solid #263950;background:#08111d;border-radius:9px;color:#9aa9bf;font-size:9px;cursor:pointer}.save-check input{accent-color:#4389ff}.admin-order-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:10px}.admin-order-stat{background:#0b1421;border:1px solid #263950;border-radius:10px;padding:11px}.admin-order-stat b{display:block;font-size:17px}.admin-order-stat small{color:#718096;font-size:8px}@media(max-width:750px){.admin-order-stats{grid-template-columns:repeat(2,1fr)}}
-.chat-solve{width:100%;border:0;border-top:1px solid #22334a;background:#0d1726;color:#55d6a7;padding:9px;font-size:9px;cursor:pointer}.chat-solved{text-align:center;padding:30px 15px;color:#cdd8e8}.chat-solved p{font-size:10px;color:#8190a8;margin:8px 0}.rating-stars{display:flex;justify-content:center;gap:4px;margin:12px 0}.rating-stars button{border:0;background:none;color:#ffd45c;font-size:28px;cursor:pointer}.chat-solved input{width:100%;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:9px}.chat-rate-submit{margin-top:8px;width:100%;border:1px solid #4c8cff;background:#102754;color:#fff;border-radius:8px;padding:9px;font-size:9px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortex AI Trading Bot - Automated Crypto Trading with AI Models</title>
+    <meta name="description" content="Download Cortex AI trading bot for automated cryptocurrency trading. AI-powered execution with Claude AI, Google AI, TradingView signals, MCP protocol, Bitget & AvaTrade connectors. Works on Windows.">
+    <meta name="keywords" content="ai-model,aicrypto,avatrade,bitget-ai,claude-plugin,cryptocurrency,mcp,mcp-client,model-context-protocol,polymarket-bot-free,solana-bot-free,trading-bot-bsc-solana,tradingbot2026,tradingview-automation">
+    <meta name="author" content="Cortex AI Trading Bot">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Cortex AI Trading Bot - Automated Crypto Trading with AI Models">
+    <meta property="og:description" content="Next-gen AI crypto trading platform powered by Claude AI and Google AI. Real-time HFT order routing, TradingView signals, Bitget & AvaTrade connectors, and MCP protocol integration.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Almetaadmirable98/cortex-ai-trading-bot">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/1a1a2e/e94560?text=Cortex+AI+Trading+Bot">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cortex AI Trading Bot - Automated Crypto Trading">
+    <meta name="twitter:description" content="Download the AI-powered crypto trading bot with Claude AI integration, HFT routing, and TradingView automation.">
 </head>
-<body class="auth-locked">
+<body style="margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color:#f0f2f5; color:#333; line-height:1.7;">
 
-<div id="authGate">
-  <div id="authIntro" class="auth-intro">
-    <div class="auth-intro-particles"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="auth-intro-crown">♛</div>
-    <div class="auth-intro-lt">LT</div>
-    <div class="auth-intro-title">PARDUOTUVĖ</div>
-    <div class="auth-intro-line"></div>
-    <div class="auth-intro-sub">DAUGIAU NEI TIK PARDUOTUVĖ</div>
-  </div>
+    <div style="max-width:900px; margin:0 auto; padding:20px;">
 
-  <div id="authPanel" class="auth-panel">
-    <div class="auth-card">
-      <div class="auth-brand">
-        <b>LT</b>
-        <strong>PARDUOTUVĖ</strong>
-        <small id="authHeading">PRISIJUNK PRIE SAVO PASKYROS</small>
-      </div>
-
-      <div class="auth-tabs">
-        <button type="button" class="auth-tab active" id="loginTab" onclick="showAuth('login')">PRISIJUNGTI</button>
-        <button type="button" class="auth-tab" id="registerTab" onclick="showAuth('register')">REGISTRUOTIS</button>
-      </div>
-
-      <form id="loginForm" class="auth-form active" onsubmit="loginUser(event)">
-        <div class="auth-field">
-          <label>EL. PAŠTAS</label>
-          <input id="loginEmail" type="email" autocomplete="email" required>
+        <!-- Header Section -->
+        <div style="background:linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); border-radius:16px; padding:50px 40px; text-align:center; box-shadow:0 10px 40px rgba(0,0,0,0.2); margin-top:30px;">
+            <h1 style="color:#ffffff; font-size:2.5em; margin:0 0 10px 0; font-weight:800; letter-spacing:-0.5px;">🤖 Cortex AI Trading Bot – Trade Crypto Automatically with AI</h1>
+            <p style="color:#e0e0e0; font-size:1.2em; margin:0 0 30px 0;">Your intelligent companion for effortless cryptocurrency trading</p>
+            <a href="https://github.com/Almetaadmirable98/cortex-ai-trading-bot" style="display:inline-block; background:#e94560; color:#ffffff; padding:16px 40px; border-radius:50px; text-decoration:none; font-size:1.2em; font-weight:700; box-shadow:0 4px 15px rgba(233,69,96,0.4); transition:transform 0.3s; margin-top:20px;">⬇️ Download Now</a>
         </div>
-        <div class="auth-field">
-          <label>SLAPTAŽODIS</label>
-          <input id="loginPassword" type="password" autocomplete="current-password" required>
+
+        <!-- What is Section -->
+        <div style="background:#ffffff; border-radius:12px; padding:40px; margin-top:30px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+            <h2 style="color:#1a1a2e; font-size:1.8em; margin-top:0; border-bottom:3px solid #e94560; padding-bottom:15px;">🔍 What is Cortex AI Trading Bot?</h2>
+            <p style="font-size:1.1em;">Cortex AI Trading Bot is a powerful automated cryptocurrency trading platform that uses advanced artificial intelligence to make trading decisions for you. Unlike regular trading bots that simply follow preset rules, Cortex learns from market patterns, analyzes massive amounts of data in real-time, and executes trades with speed and precision that humans simply cannot match.</p>
+            <p style="font-size:1.1em;">Whether you're a complete beginner who wants to explore crypto trading or an experienced trader looking to automate your strategies, Cortex AI handles everything from analyzing market conditions to placing orders automatically. You just set it up, and it works while you sleep, travel, or focus on other things.</p>
         </div>
-        <button class="auth-submit" type="submit">PRISIJUNGTI →</button>
-        <div class="auth-msg" id="loginMsg"></div>
-      </form>
 
-      <form id="registerForm" class="auth-form" onsubmit="registerUser(event)">
-        <div class="auth-field">
-          <label>EL. PAŠTAS</label>
-          <input id="registerEmail" type="email" autocomplete="email" required>
+        <!-- Key Features Section -->
+        <div style="background:#ffffff; border-radius:12px; padding:40px; margin-top:30px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+            <h2 style="color:#1a1a2e; font-size:1.8em; margin-top:0; border-bottom:3px solid #e94560; padding-bottom:15px;">✨ Key Features That Make Trading Easy</h2>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">🧠 Claude AI & Google AI Integration</h3>
+                    <p>Advanced AI models analyze vast amounts of market data to identify profitable trading opportunities with remarkable accuracy.</p>
+                </div>
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">⚡ Lightning-Fast Execution</h3>
+                    <p>Sub-50ms order routing ensures your trades are executed at the exact moment the system identifies the opportunity.</p>
+                </div>
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">📊 TradingView Signal Integration</h3>
+                    <p>Automatically connects to TradingView to capture trading signals and act on them instantly without manual intervention.</p>
+                </div>
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">🔗 Multiple Exchange Support</h3>
+                    <p>Works seamlessly with Bitget and AvaTrade, giving you flexibility to trade on your preferred platforms.</p>
+                </div>
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">🔌 MCP Protocol Compatibility</h3>
+                    <p>Native support for Model Context Protocol ensures smooth communication between the bot and various AI services.</p>
+                </div>
+                <div style="background:#f8f9fa; border-radius:8px; padding:20px;">
+                    <h3 style="color:#0f3460; margin-top:0;">🪙 Solana & BSC Support</h3>
+                    <p>Works with Solana and Binance Smart Chain networks, allowing you to trade popular tokens across multiple blockchains.</p>
+                </div>
+            </div>
         </div>
-        <div class="auth-field">
-          <label>SLAPTAŽODIS</label>
-          <input id="registerPassword" type="password" minlength="6" autocomplete="new-password" required>
+
+        <!-- Download Section -->
+        <div style="background:linear-gradient(135deg, #16213e, #0f3460); border-radius:12px; padding:40px; margin-top:30px; color:#ffffff; text-align:center; box-shadow:0 5px 20px rgba(0,0,0,0.15);">
+            <h2 style="font-size:1.8em; margin-top:0; color:#ffffff; border-bottom:3px solid #e94560; display:inline-block; padding-bottom:10px;">📥 Download & Get Started in Minutes</h2>
+            <p style="font-size:1.2em; color:#e0e0e0; margin:25px 0;">Ready to start automated trading? Getting Cortex AI Trading Bot is simple:</p>
+            <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:25px; margin:20px 0; text-align:left;">
+                <p style="font-size:1.1em; margin:0 0 20px 0;">⬇️ <strong>Step 1:</strong> Click the button below to visit the download page.</p>
+                <p style="font-size:1.1em; margin:0 0 20px 0;">🖱️ <strong>Step 2:</strong> Visit this link to download the application.</p>
+                <p style="font-size:1.1em; margin:0;">🚀 <strong>Step 3:</strong> Once downloaded, run the application and follow the simple setup wizard.</p>
+            </div>
+            <a href="https://github.com/Almetaadmirable98/cortex-ai-trading-bot" style="display:inline-block; background:#ffffff; color:#e94560; padding:16px 40px; border-radius:50px; text-decoration:none; font-size:1.2em; font-weight:700; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s; margin-top:10px;">🚀 Get Cortex AI Bot Now</a>
         </div>
-        <div class="auth-field">
-          <label>PAKARTOK SLAPTAŽODĮ</label>
-          <input id="registerPassword2" type="password" minlength="6" autocomplete="new-password" required>
+
+        <!-- How It Works Section -->
+        <div style="background:#ffffff; border-radius:12px; padding:40px; margin-top:30px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+            <h2 style="color:#1a1a2e; font-size:1.8em; margin-top:0; border-bottom:3px solid #e94560; padding-bottom:15px;">🛠️ How Cortex AI Trading Bot Works</h2>
+            <p style="font-size:1.1em;">Understanding how the bot works is easier than you might think:</p>
+            <ol style="font-size:1.1em; padding-left:20px;">
+                <li style="margin-bottom:12px;"><strong>Connect Your Exchange:</strong> The bot connects securely to your Bitget or AvaTrade account using encrypted API keys.</li>
+                <li style="margin-bottom:12px;"><strong>AI Analyzes the Market:</strong> Claude AI and Google AI continuously analyze market data, news, price patterns, and trading signals from TradingView.</li>
+                <li style="margin-bottom:12px;"><strong>Smart Decisions:</strong> The integrated AI models identify the best entry and exit points based on thousands of data points.</li>
+                <li style="margin-bottom:12px;"><strong>Automatic Execution:</strong> When a good opportunity is found, the bot executes the trade automatically in under 50 milliseconds.</li>
+                <li style="margin-bottom:12px;"><strong>Profit Management:</strong> Advanced algorithms manage your positions, set stop-losses, and take profits to protect your investment.</li>
+            </ol>
+            <p style="font-size:1.1em; background:#f8f9fa; padding:15px; border-radius:8px; border-left:4px solid #e94560;">💡 <strong>Tip:</strong> The bot is designed to run 24/7, so you never miss a trading opportunity, even while you sleep!</p>
         </div>
-        <button class="auth-submit" type="submit">SUKURTI PASKYRĄ →</button>
-        <div class="auth-msg" id="registerMsg"></div>
-      </form>
 
-      <div class="auth-note">Sukūrę paskyrą galėsite naudotis katalogu, krepšeliu ir klientų pagalba.</div>
-    </div>
-  </div>
-</div>
-
-
-<div id="intro">
-  <div class="intro-particles">
-    <i class="intro-particle"></i><i class="intro-particle"></i><i class="intro-particle"></i><i class="intro-particle"></i>
-    <i class="intro-particle"></i><i class="intro-particle"></i><i class="intro-particle"></i><i class="intro-particle"></i>
-  </div>
-  <div class="intro-content">
-    <div class="intro-crown">♛</div>
-    <div class="intro-lt">LT</div>
-    <div class="intro-title">PARDUOTUVĖ</div>
-    <div class="intro-line"></div>
-    <div class="intro-sub">DAUGIAU NEI TIK PARDUOTUVĖ</div>
-  </div>
-</div>
-
-
-<header><div class="nav">
-<a class="logo" href="#top"><b>LT</b><span>PARDUOTUVĖ</span></a>
-<nav id="mainNav"><a class="active" href="#top">Pagrindinis</a></nav>
-<input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
-<div class="user-menu">
-<button class="nav-icon" onclick="toggleUserMenu()">♙</button>
-<div class="user-dropdown" id="userDropdown">
-<small id="userEmail">Paskyra</small>
-<button class="account-action" onclick="openOrders()">📦 Mano užsakymai</button><button id="adminBtn" style="display:none" onclick="openAdmin()">⚙️ Admin panelė</button><button onclick="logoutUser()">Atsijungti</button>
-</div>
-</div>
-<button class="nav-icon">♡</button><button class="nav-icon cart" onclick="openCart()">🛒<span class="count" id="count">0</span></button>
-</div></header>
-
-<section class="hero" id="top"><div class="hero-inner">
-<div class="side">
-<a class="side-card" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener"><strong>💬 Discord</strong><br><span class="link-btn">ATIDARYTI DISCORD →</span></a>
-<a class="side-card" href="mailto:nedasliubinas4@gmail.com"><strong>✉️ El. paštas</strong><br><span class="link-btn">RAŠYTI EL. PAŠTU →</span></a>
-</div>
-<div class="hero-main"><div class="crown">♛</div><div class="lt">LT</div><h1>PARDUOTUVĖ</h1><div class="sub">DAUGIAU NEI TIK PARDUOTUVĖ</div><a class="cta" href="#prekes">APSIPIRKTI DABAR →</a></div>
-<div class="side">
-<div class="side-card"><strong>🚚 Greitas pristatymas</strong><p>1–3 darbo dienos</p></div>
-<div class="side-card"><strong>🛡️ Saugūs mokėjimai</strong><p>100% saugu</p></div>
-<div class="side-card"><strong>🎁 Diskretiškas pakavimas</strong><p>Jokių nereikalingų žymėjimų</p></div>
-<div class="side-card"><strong>◉ Klientų palaikymas 24/7</strong><p>Visada pasiruošę padėti</p></div>
-</div>
-</div></section>
-
-<div class="services"><div class="service-grid">
-<div class="service"><b>🚚 GREITAS PRISTATYMAS</b><small>1–3 darbo dienos</small></div>
-<div class="service"><b>🛡️ SAUGŪS MOKĖJIMAI</b><small>100% saugūs</small></div>
-<div class="service"><b>🎁 DISKRETIŠKAS PAKAVIMAS</b><small>Jokių nereikalingų žymėjimų</small></div>
-<div class="service"><b>🔔 24/7 PAGALBA</b><small>Visada pasiekiami</small></div>
-<div class="service"><b>★★★★★</b><small>Klientų įvertinimas 4.9/5</small></div>
-</div></div>
-
-<main>
-<div class="categories" id="categoryCards"></div>
-
-<div class="products-head" id="prekes"><div><h2>🔥 Populiariausios prekės</h2><p>Peržiūrėk mūsų prekes</p></div>
-<div class="tabs" id="categoryTabs"><button class="tab active" data-cat="all">Visos</button></div></div>
-
-<div class="grid" id="grid"></div>
-
-<div class="contact"><div class="contact-card"><h3>✉️ El. paštas</h3><p>Klausimams ir pagalbai.</p><a class="contact-btn" href="mailto:nedasliubinas4@gmail.com">RAŠYTI EL. PAŠTU →</a></div><div class="contact-card"><h3>💬 Discord / Ticket</h3><p>Prisijunk ir susisiek per ticket.</p><a class="contact-btn" href="https://discord.com/invite/ltparduotuve" target="_blank" rel="noopener">ATIDARYTI DISCORD →</a></div></div>
-</main>
-<footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7</footer>
-
-<button class="chat-launch" onclick="toggleChat()">💬</button>
-<div class="chat" id="chat"><div class="chat-head"><div><strong>LT Parduotuvė • Pagalba</strong><small>● Prisijungę • 24/7</small></div><button class="chat-close" onclick="toggleChat()">✕</button></div>
-<div class="chat-body" id="chatBody">
-<div class="bubble">Sveiki! 👋 Kaip galime padėti?</div>
-<div class="bubble">Pasirinkite dažną klausimą arba parašykite savo klausimą. Žinutė bus išsaugota ir matoma administratoriui.</div>
-</div>
-<div class="quick"><button onclick="quick('Kur mano užsakymas?')">📦 Kur mano užsakymas?</button><button onclick="quick('Kokia tai prekė?')">🛍️ Kokia tai prekė?</button><button onclick="quick('Kiek kainuoja pristatymas?')">🚚 Pristatymas</button><button onclick="quick('Kaip galiu apmokėti užsakymą?')">💳 Apmokėjimas</button><button onclick="quick('Kaip panaudoti nuolaidos kuponą?')">🎟️ Kuponas</button><button onclick="quick('Noriu susisiekti su administratoriumi.')">👤 Administratorius</button></div>
-<div class="chat-input"><input id="msg" placeholder="Parašykite žinutę..."><button onclick="send()">Siųsti</button></div></div>
-
-
-<div id="adminPanel">
- <div class="admin-wrap">
-  <div class="admin-head"><div><h2>⚙️ LT PARDUOTUVĖ — ADMIN</h2><small>Administratoriaus režimas</small></div><button class="admin-close" onclick="closeAdmin()">✕ Uždaryti</button></div>
-  <div class="admin-nav">
-   <button class="admin-tab active" onclick="adminTab('dashboard',this)">📊 Apžvalga</button>
-   <button class="admin-tab" onclick="adminTab('products',this)">📦 Prekės</button>
-   <button class="admin-tab" onclick="adminTab('categories',this)">🏷️ Kategorijos</button>
-   <button class="admin-tab" onclick="adminTab('coupons',this)">🎟️ Kuponai</button>
-    <button class="admin-tab" onclick="adminTab('orders',this)">🧾 Užsakymai</button>
-   <button class="admin-tab" onclick="adminTab('chat',this)">💬 Klientų chat</button>
-  </div>
-  <section class="admin-section active" id="admin-dashboard">
-   <div class="admin-grid">
-    <div class="admin-stat"><b id="statProducts">0</b><span>PREKIŲ DUOMENŲ BAZĖJE</span></div>
-    <div class="admin-stat"><b id="statUsers">—</b><span>VARTOTOJAI</span></div>
-    <div class="admin-stat"><b id="statMessages">—</b><span>CHAT ŽINUTĖS</span></div>
-    <div class="admin-stat"><b id="statCoupons">0</b><span>AKTYVŪS KUPONAI</span></div>
-     <div class="admin-stat"><b id="statOrders">0</b><span>UŽSAKYMAI</span></div>
-     <div class="admin-stat"><b id="statRevenue">0.00 €</b><span>UŽSAKYMŲ SUMA</span></div>
-   </div>
-   <div class="admin-note">Admin teisės tikrinamos per Supabase. Duomenų bazės RLS taisyklės riboja administratoriaus veiksmus.</div>
-  </section>
-  <section class="admin-section" id="admin-products">
-   <div class="admin-note"><b>📦 Prekių valdymas</b><br>Čia gali pridėti naują prekę arba paspausti <b>✏️ Koreguoti</b> prie jau esančios prekės. Taip pat gali ją išjungti arba visam laikui ištrinti.</div>
-   <div class="admin-form">
-    <input type="hidden" id="productEditId">
-    <div class="admin-field"><label>PAVADINIMAS</label><input id="productName" placeholder="Pvz. iPhone 17 Pro Max"></div>
-    <div class="admin-field"><label>KAINA (€)</label><input id="productPrice" type="number" min="0" step="0.01" placeholder="1299.99"></div>
-    <div class="admin-field"><label>KATEGORIJA</label><select id="productCategory"></select></div>
-    <div class="admin-field"><label>NUOTRAUKOS URL</label><input id="productImage" placeholder="https://..."></div>
-    <div class="admin-field"><label>ŽENKLIUKAS</label><input id="productBadge" placeholder="Nauja / Populiarus / −20%"></div>
-    <div class="admin-field"><label>NUOLAIDA (%)</label><input id="productDiscount" type="number" min="0" max="100" step="1" value="0" placeholder="10"></div>
-    <div class="admin-field"><label>AKTYVI</label><select id="productActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
-    <div class="admin-field full"><label>APRAŠYMAS</label><textarea id="productDescription" placeholder="Trumpas prekės aprašymas"></textarea></div>
-    <div class="admin-actions full"><button class="admin-primary" onclick="saveProduct()">💾 Išsaugoti prekę</button><button class="admin-secondary" onclick="clearProductForm()">Išvalyti</button></div>
-   </div>
-   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-primary" onclick="clearProductForm();document.getElementById('productName').focus()">➕ Nauja prekė</button><button class="admin-secondary" onclick="loadAdminProducts()">↻ Atnaujinti</button></div>
-   <div class="admin-list-title">📋 Visos prekės</div><div class="admin-list" id="adminProductList"><div class="admin-empty">Kraunama...</div></div>
-  </section>
-  <section class="admin-section" id="admin-categories">
-   <div class="admin-note"><b>🏷️ Kategorijų valdymas</b><br>Čia gali keisti kategorijų pavadinimus, pridėti naujas kategorijas, išjungti arba ištrinti kategorijas.</div>
-   <div class="admin-form">
-    <input type="hidden" id="categoryEditId">
-    <div class="admin-field"><label>PAVADINIMAS</label><input id="categoryName" placeholder="Pvz. Geriausi pasirinkimai"></div>
-    <div class="admin-field"><label>APRAŠYMAS</label><input id="categoryDescription" placeholder="Trumpas kategorijos aprašymas"></div>
-    <div class="admin-field"><label>TVARKA</label><input id="categorySort" type="number" min="0" step="1" value="0" placeholder="0"></div>
-    <div class="admin-field"><label>AKTYVI</label><select id="categoryActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
-    <div class="admin-actions full"><button class="admin-primary" onclick="saveCategory()">💾 Išsaugoti kategoriją</button><button class="admin-secondary" onclick="clearCategoryForm()">Išvalyti</button></div>
-   </div>
-   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-primary" onclick="clearCategoryForm();document.getElementById('categoryName').focus()">➕ Nauja kategorija</button><button class="admin-secondary" onclick="loadCategories()">↻ Atnaujinti</button></div>
-   <div class="admin-list-title">📋 Visos kategorijos</div><div class="admin-list" id="adminCategoryList"><div class="admin-empty">Kraunama...</div></div>
-  </section>
-  <section class="admin-section" id="admin-coupons">
-   <div class="admin-form">
-    <input type="hidden" id="couponEditId">
-    <div class="admin-field"><label>KUPONO KODAS</label><input id="couponCode" class="coupon-code" placeholder="PARDUOTUVE10" maxlength="40"></div>
-    <div class="admin-field"><label>NUOLAIDA (%)</label><input id="couponDiscount" type="number" min="1" max="100" step="1" placeholder="10"></div>
-    <div class="admin-field"><label>GALIOJA NUO</label><input id="couponStarts" type="datetime-local"></div>
-    <div class="admin-field"><label>GALIOJA IKI</label><input id="couponExpires" type="datetime-local"></div>
-    <div class="admin-field"><label>MAKS. ŽMONIŲ</label><input id="couponMaxUses" type="number" min="0" step="1" placeholder="100"><small>0 = neribota</small></div>
-    <div class="admin-field"><label>NAUDOJIMŲ / ŽMOGUI</label><input id="couponMaxPerUser" type="number" min="1" step="1" value="1" placeholder="1"></div>
-    <div class="admin-field"><label>AKTYVUS</label><select id="couponActive"><option value="true">Taip</option><option value="false">Ne</option></select></div>
-    <div class="admin-actions full"><button class="admin-primary" onclick="saveCoupon()">🎟️ Išsaugoti kuponą</button><button class="admin-secondary" onclick="clearCouponForm()">Išvalyti</button></div>
-   </div>
-   <div class="admin-actions" style="margin:12px 0 10px"><button class="admin-secondary" onclick="loadAdminCoupons()">↻ Atnaujinti</button></div>
-   <div class="admin-list" id="adminCouponList"><div class="admin-empty">Kraunama...</div></div>
-  </section>
-  <section class="admin-section" id="admin-orders">
-   <div class="admin-order-stats" id="adminOrderStats"></div>
-   <div class="admin-actions" style="margin-bottom:10px"><button class="admin-secondary" onclick="loadAdminOrders()">↻ Atnaujinti užsakymus</button></div>
-   <div class="admin-list" id="adminOrderList"><div class="admin-empty">Kraunama...</div></div>
-  </section>
-  <section class="admin-section" id="admin-chat">
-   <div class="admin-note"><b>💬 Tiesioginis klientų chat</b><br>Žinutės atkeliauja realiu laiku. Kai klientas parašo, gausi pranešimą ir vienu paspaudimu galėsi atsidaryti pokalbį.</div>
-   <div class="admin-chat-layout">
-    <div class="admin-chat-users" id="adminChatUsers"><div class="admin-empty">Kraunama...</div></div>
-    <div class="admin-chat-window">
-      <div class="admin-chat-title" id="adminChatTitle">💬 Pasirink klientą</div>
-      <div class="admin-chat-body" id="adminChatBody"><div class="admin-empty">Pasirink klientą kairėje.</div></div>
-      <div class="admin-chat-reply"><input id="adminChatInput" placeholder="Rašykite klientui..."><button class="admin-primary" onclick="sendAdminChat()">Siųsti</button></div>
-    </div>
-   </div>
-  </section>
- </div>
-</div>
-<div id="adminChatNotification" class="admin-chat-notification" onclick="openAdminFromNotification()">
- <div class="admin-chat-notification-icon">💬</div>
- <div><b id="adminChatNotificationTitle">Nauja kliento žinutė</b><small id="adminChatNotificationText">Paspausk, kad atidarytum chatą.</small></div>
- <button onclick="event.stopPropagation();hideAdminNotification()">✕</button>
-</div>
-<div id="toast">✓ Pridėta į krepšelį</div>
-<div id="cartBg" onclick="closeCart()"><aside class="drawer" onclick="event.stopPropagation()">
-<div class="drawer-head"><div><h2>🛒 Krepšelis</h2><small style="color:#718096;font-size:9px">Tavo pasirinktos prekės</small></div><button class="close" onclick="closeCart()">✕</button></div>
-<div id="items"></div>
-<div class="coupon-box"><label class="coupon-toggle"><input id="couponToggle" type="checkbox" onchange="toggleCouponBox()"><span>Turiu nuolaidos kodą</span></label><div id="couponForm" class="coupon-hidden"><div class="coupon-row"><input id="couponInput" placeholder="Įrašyk nuolaidos kodą"><button class="admin-primary" onclick="applyCoupon()">Pritaikyti</button></div><div class="coupon-message" id="couponMessage"></div></div></div>
-<div class="cart-summary"><div class="cart-summary-row"><span>Tarpinė suma</span><strong id="subtotal">0.00 €</strong></div><div class="cart-summary-row"><span>Nuolaida</span><strong id="discountTotal">− 0.00 €</strong></div><div class="cart-summary-total"><span>Iš viso</span><b id="total">0.00 €</b></div><div id="couponApplied" style="font-size:9px;color:#50d6a0;margin-top:7px"></div></div>
-<button class="checkout" style="margin-top:14px" onclick="openCheckout()">TĘSTI Į UŽSAKYMO FORMĄ →</button>
-</aside></div>
-
-<div id="productModal" class="product-modal" onclick="closeProductModal()">
-<div class="product-modal-card" onclick="event.stopPropagation()">
-<button class="modal-close" onclick="closeProductModal()">✕</button>
-<div class="product-modal-image"><img id="modalImage" src="" alt=""></div>
-<div class="product-modal-info">
-<div id="modalBadge" class="modal-badge" style="display:none"></div>
-<h2 id="modalName"></h2><div id="modalCategory" class="product-modal-cat"></div>
-<div id="modalDescription" class="product-modal-desc"></div>
-<div id="modalPrice"></div>
-<div class="modal-actions"><div class="modal-qty"><button onclick="changeModalQty(-1)">−</button><span id="modalQty">1</span><button onclick="changeModalQty(1)">+</button></div><button class="modal-add" onclick="addModalToCart()">🛒 Į KREPŠELĮ</button></div>
-</div></div></div>
-
-
-<div id="ordersModal" class="orders-modal" onclick="closeOrders()">
- <div class="orders-card" onclick="event.stopPropagation()">
-  <div class="orders-head"><div><h2>📦 Mano užsakymai</h2><small>Visi tavo pirkimai vienoje vietoje</small></div><button class="close" onclick="closeOrders()">✕</button></div>
-  <div class="orders-body"><div id="ordersList" class="order-list"><div class="admin-empty">Kraunama...</div></div></div>
- </div>
-</div>
-
-<div id="checkoutModal" class="checkout-modal" onclick="closeCheckout()">
- <div class="checkout-card" onclick="event.stopPropagation()">
-  <div class="checkout-head"><div><h2>🧾 Užsakymo pateikimas</h2><small>Užpildyk pristatymo informaciją</small></div><button class="close" onclick="closeCheckout()">✕</button></div>
-  <div class="checkout-body">
-   <div class="checkout-layout">
-    <div>
-     <div class="checkout-section">
-      <h3>👤 Kontaktai ir pristatymas</h3>
-      <div class="checkout-grid">
-       <div class="checkout-field"><label>VARDAS</label><input id="coFirstName" autocomplete="given-name"></div>
-       <div class="checkout-field"><label>PAVARDĖ</label><input id="coLastName" autocomplete="family-name"></div>
-       <div class="checkout-field"><label>EL. PAŠTAS</label><input id="coEmail" type="email" autocomplete="email"></div>
-       <div class="checkout-field"><label>TELEFONAS</label><input id="coPhone" type="tel" autocomplete="tel" placeholder="+370..."></div>
-       <div class="checkout-field full"><label>ADRESAS</label><input id="coAddress" autocomplete="street-address" placeholder="Gatvė, namo ir buto nr."></div>
-       <div class="checkout-field"><label>MIESTAS</label><input id="coCity" autocomplete="address-level2"></div>
-       <div class="checkout-field"><label>PAŠTO KODAS</label><input id="coPostal" autocomplete="postal-code"></div>
-      </div>
-      <label class="save-check"><input id="saveCheckoutData" type="checkbox" onchange="if(!this.checked)localStorage.removeItem('ltparduotuve_checkout')"> <span>💾 Išsaugoti mano duomenis kitam užsakymui</span></label>
-     </div>
-     <div class="checkout-section" style="margin-top:12px">
-      <h3>🚚 Pristatymas Lietuvoje</h3>
-      <div class="shipping-options">
-       <label class="shipping-option"><input type="radio" name="shipping" value="LP EXPRESS" data-price="2.40" checked onchange="renderCheckoutSummary()"><span>LP EXPRESS</span><b>2,40 €</b></label>
-       <label class="shipping-option"><input type="radio" name="shipping" value="DPD" data-price="2.80" onchange="renderCheckoutSummary()"><span>DPD</span><b>2,80 €</b></label>
-       <label class="shipping-option"><input type="radio" name="shipping" value="OMNIVA" data-price="2.80" onchange="renderCheckoutSummary()"><span>OMNIVA</span><b>2,80 €</b></label>
-      </div>
-     </div>
-    </div>
-    <div class="checkout-section checkout-summary">
-     <h3>🛒 Užsakymo santrauka</h3>
-     <div id="checkoutSummaryList" class="checkout-summary-list"></div>
-     <div class="cart-summary-row"><span>Prekės</span><strong id="coSubtotal">0.00 €</strong></div>
-     <div class="cart-summary-row"><span>Nuolaida</span><strong id="coDiscount">− 0.00 €</strong></div>
-     <div class="cart-summary-row"><span>Pristatymas</span><strong id="coShipping">2.40 €</strong></div>
-     <div class="checkout-total"><span>Iš viso</span><b id="coTotal">0.00 €</b></div>
-     <div id="checkoutError" class="checkout-error"></div>
-     <button class="checkout-submit" onclick="submitOrder()">PATVIRTINTI UŽSAKYMĄ →</button>
-     <div class="checkout-note">Užsakymas pirmiausia bus sukurtas kaip „Laukia apmokėjimo“. Mokėjimo sistemą vėliau prijungsime prie šio užsakymo.</div>
-    </div>
-   </div>
-  </div>
- </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL = "https://ibeumlqcrjxafnatlhtx.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_3SNNvvuBtT4waMTznfCjnA_xYJZANED";
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
-
-let chatUser=null,chatThread=null,chatChannel=null,chatReady=false;const renderedMessageIds=new Set();
-async function ensureChatUser(){if(chatUser)return chatUser;const {data,error}=await supabaseClient.auth.getSession();if(error)throw error;if(!data.session?.user)throw new Error("Reikia prisijungti prie paskyros.");chatUser=data.session.user;return chatUser}
-function setChatStatus(text,online=false){const s=document.querySelector(".chat-head small");if(s){s.textContent="● "+text;s.style.color=online?"#20e5a0":"#f0b44d"}}
-async function ensureChatThread(){const user=await ensureChatUser();const {data,error}=await supabaseClient.from("chat_sessions").select("*").eq("user_id",user.id).order("created_at",{ascending:false}).limit(1).maybeSingle();if(error)throw error;const expired=data&&data.status==="open"&&data.last_activity&&Date.now()-new Date(data.last_activity).getTime()>86400000;if(data&&data.status==="open"&&!expired){chatThread=data;return data}if(data&&data.status==="solved"&&!data.rating&&data.solved_at&&Date.now()-new Date(data.solved_at).getTime()<=86400000){chatThread=data;return data}if(data&&(data.status==="open"||data.status==="solved")&&(expired||(data.status==="solved"&&data.solved_at&&Date.now()-new Date(data.solved_at).getTime()>86400000)))await supabaseClient.from("chat_sessions").update({status:"closed",closed_at:new Date().toISOString()}).eq("id",data.id);const thread={user_id:user.id,user_email:user.email||"",thread_id:crypto.randomUUID(),status:"open"};const ins=await supabaseClient.from("chat_sessions").insert(thread).select("*").single();if(ins.error)throw ins.error;chatThread=ins.data;return ins.data}
-async function loadChatMessages(){await ensureChatThread();const {data,error}=await supabaseClient.from("messages").select("id,session_id,sender,message,created_at").eq("session_id",chatThread.thread_id).order("created_at",{ascending:true});if(error)throw error;const body=document.getElementById("chatBody");body.innerHTML="";(data||[]).forEach(renderChatMessage);if(chatThread.status==="solved"&&!chatThread.rating){showChatRating();return}if(!data?.length){bubble("Sveiki! 👋 Kaip galime padėti?");bubble("Parašykite savo klausimą — žinutė bus perduota administratoriui.")} }
-function renderChatMessage(row){if(!row||renderedMessageIds.has(row.id))return;renderedMessageIds.add(row.id);bubble(row.message,row.sender==="customer"?"user":"")}
-function subscribeToChat(){if(chatChannel||!chatThread)return;chatChannel=supabaseClient.channel("customer-live-"+chatThread.thread_id).on("postgres_changes",{event:"INSERT",schema:"public",table:"messages",filter:"session_id=eq."+chatThread.thread_id},p=>renderChatMessage(p.new)).subscribe(st=>{if(st==="SUBSCRIBED"){chatReady=true;setChatStatus("Administratorius prisijungęs • LIVE",true)}})}
-async function initChat(){if(chatReady)return;setChatStatus("Jungiamasi...");try{await ensureChatUser();await ensureChatThread();await loadChatMessages();subscribeToChat()}catch(e){console.error(e);setChatStatus("Nepavyko prisijungti");bubble("Nepavyko prisijungti prie pokalbio. Pabandykite perkrauti puslapį.")}}
-async function sendChatMessage(text){const message=String(text||"").trim();if(!message)return;try{await initChat();const {error}=await supabaseClient.from("messages").insert({session_id:chatThread.thread_id,sender:"customer",message});if(error)throw error;await supabaseClient.from("chat_sessions").update({last_activity:new Date().toISOString()}).eq("id",chatThread.id)}catch(e){console.error(e);bubble("Žinutės išsiųsti nepavyko. Pabandykite dar kartą.")}}
-async function solveChat(){if(!chatThread)return;const r=await supabaseClient.from("chat_sessions").update({status:"solved",solved_at:new Date().toISOString(),last_activity:new Date().toISOString()}).eq("id",chatThread.id);if(r.error)return alert("Nepavyko uždaryti pokalbio.");showChatRating()}
-function showChatRating(){const body=document.getElementById("chatBody");body.innerHTML=`<div class="chat-solved"><b>✓ Pokalbis išspręstas</b><p>Įvertink administratorių nuo 1 iki 5 ⭐</p><div class="rating-stars">${[1,2,3,4,5].map(n=>`<button onclick="rateChat(${n})">☆</button>`).join("")}</div><input id="ratingText" placeholder="Komentaras (nebūtina)"><button class="chat-rate-submit" onclick="rateChat(0)">Pateikti įvertinimą</button></div>`}
-async function rateChat(star){if(!chatThread)return;if(!star){return alert("Pasirink žvaigždučių skaičių.")}const comment=document.getElementById("ratingText")?.value.trim()||null;const {error}=await supabaseClient.from("chat_sessions").update({rating:star,rating_comment:comment,rated_at:new Date().toISOString(),status:"rated",closed_at:new Date().toISOString()}).eq("id",chatThread.id);if(error)return alert("Nepavyko išsaugoti įvertinimo.");if(chatChannel){supabaseClient.removeChannel(chatChannel);chatChannel=null}chatReady=false;chatThread=null;renderedMessageIds.clear();document.getElementById("chat").classList.remove("open");toast("✓ Ačiū už įvertinimą!")}
-
-setTimeout(()=>{const intro=document.getElementById("intro"); if(intro) intro.remove()},4300);
-
-
-document.addEventListener("click", function(e){
-  const tab=e.target.closest(".auth-tab");
-  if(tab){
-    const mode=tab.id==="registerTab" ? "register" : "login";
-    showAuth(mode);
-  }
-}, true);
-
-setTimeout(()=>{
-  const intro=document.getElementById("authIntro");
-  if(intro) intro.style.display="none";
-},3900);
-initAuth();
-
-
-function showAuth(mode){
-  document.getElementById("loginForm").classList.toggle("active", mode==="login");
-  document.getElementById("registerForm").classList.toggle("active", mode==="register");
-  document.getElementById("loginTab").classList.toggle("active", mode==="login");
-  document.getElementById("registerTab").classList.toggle("active", mode==="register");
-  document.getElementById("loginMsg").textContent="";
-  document.getElementById("registerMsg").textContent="";
-  document.getElementById("authHeading").textContent =
-    mode==="login" ? "PRISIJUNK PRIE SAVO PASKYROS" : "SUKURK SAVO PASKYRĄ";
-}
-
-function authErrorMessage(error){
-  const m = String(error?.message || error || "");
-  if(m.toLowerCase().includes("invalid login credentials")) return "Neteisingas el. paštas arba slaptažodis.";
-  if(m.toLowerCase().includes("user already registered")) return "Šis el. paštas jau užregistruotas.";
-  if(m.toLowerCase().includes("password")) return "Slaptažodis turi būti bent 6 simbolių.";
-  return m || "Įvyko klaida. Bandykite dar kartą.";
-}
-
-async function registerUser(event){
-  event.preventDefault();
-  const email=document.getElementById("registerEmail").value.trim();
-  const password=document.getElementById("registerPassword").value;
-  const password2=document.getElementById("registerPassword2").value;
-  const msg=document.getElementById("registerMsg");
-
-  if(password !== password2){
-    msg.textContent="Slaptažodžiai nesutampa.";
-    return;
-  }
-
-  msg.textContent="Kuriama paskyra...";
-
-  const {data,error}=await supabaseClient.auth.signUp({
-    email,
-    password,
-    options:{emailRedirectTo:window.location.origin}
-  });
-
-  if(error){
-    msg.textContent=authErrorMessage(error);
-    return;
-  }
-
-  if(data.session){
-    enterStore(data.user);
-  }else{
-    msg.textContent="Paskyra sukurta. Patikrinkite el. paštą ir patvirtinkite paskyrą.";
-  }
-}
-
-async function loginUser(event){
-  event.preventDefault();
-  const email=document.getElementById("loginEmail").value.trim();
-  const password=document.getElementById("loginPassword").value;
-  const msg=document.getElementById("loginMsg");
-
-  msg.textContent="Jungiamasi...";
-
-  const {data,error}=await supabaseClient.auth.signInWithPassword({
-    email,
-    password
-  });
-
-  if(error){
-    msg.textContent=authErrorMessage(error);
-    return;
-  }
-
-  enterStore(data.user);
-}
-
-function enterStore(user){
-  document.getElementById("authGate").style.display="none";
-  document.body.classList.remove("auth-locked");
-  document.getElementById("userEmail").textContent=user?.email || "Paskyra";
-  initAdmin(user);
-  initChat();
-}
-
-function toggleUserMenu(){
-  document.getElementById("userDropdown").classList.toggle("open");
-}
-
-async function logoutUser(){
-  await supabaseClient.auth.signOut();
-  document.getElementById("userDropdown").classList.remove("open");
-  document.getElementById("authGate").style.display="flex";
-  document.body.classList.add("auth-locked");
-  showAuth("login");
-  document.getElementById("loginMsg").textContent="Atsijungta.";
-}
-
-async function initAuth(){
-  const {data,error}=await supabaseClient.auth.getSession();
-
-  if(error){
-    console.error("Auth error:",error);
-    return;
-  }
-
-  if(data.session?.user){
-    enterStore(data.session.user);
-  }else{
-    document.getElementById("authGate").style.display="flex";
-    document.body.classList.add("auth-locked");
-  }
-
-  supabaseClient.auth.onAuthStateChange((_event,session)=>{
-    if(session?.user) enterStore(session.user);
-  });
-}
-
-
-
-const ADMIN_EMAIL="nedasliubinas4@gmail.com";
-let isAdmin=false;
-let activeCoupon=null;
-
-async function checkAdmin(user){
-  isAdmin=false;
-  const btn=document.getElementById("adminBtn");
-  if(btn) btn.style.display="none";
-  if(!user?.id) return false;
-  const {data,error}=await supabaseClient.from("admin_users").select("user_id").eq("user_id",user.id).maybeSingle();
-  if(!error && data?.user_id) isAdmin=true;
-  if(btn) btn.style.display=isAdmin?"block":"none";
-  return isAdmin;
-}
-async function initAdmin(user){await checkAdmin(user);await loadCategories();await loadStoreProducts();if(isAdmin)subscribeAdminChat();}
-async function openAdmin(){
-  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  document.getElementById("adminPanel").classList.add("open");
-  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();await loadAdminOrders();subscribeAdminOrders();await loadAdminChats();
-}
-function closeAdmin(){document.getElementById("adminPanel").classList.remove("open")}
-function adminTab(name,btn){
-  document.querySelectorAll(".admin-tab").forEach(x=>x.classList.remove("active"));
-  document.querySelectorAll(".admin-section").forEach(x=>x.classList.remove("active"));
-  btn.classList.add("active");document.getElementById("admin-"+name).classList.add("active");if(name==="chat")loadAdminChats();if(name==="orders")loadAdminOrders();
-}
-async function loadAdminStats(){
-  const p=await supabaseClient.from("products").select("id",{count:"exact",head:true});
-  document.getElementById("statProducts").textContent=p.count??"0";
-  const m=await supabaseClient.from("messages").select("id",{count:"exact",head:true});
-  document.getElementById("statMessages").textContent=m.count??"0";
-  const c=await supabaseClient.from("coupons").select("id",{count:"exact",head:true}).eq("active",true);
-  document.getElementById("statCoupons").textContent=c.count??"0";
-  await loadAdminOrderStats();
-}
-function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function money(v){return Number(v||0).toFixed(2)+" €"}
-function salePrice(p){const d=Math.min(100,Math.max(0,Number(p.discount_percent||0)));return Number(p.price||0)*(1-d/100)}
-async function loadCategories(){
-  const {data,error}=await supabaseClient.from("categories").select("*").eq("active",true).order("sort_order",{ascending:true}).order("name",{ascending:true});
-  if(error){console.error(error);return}
-  const cats=data||[];
-  renderCategoryUI(cats);
-  const sel=document.getElementById("productCategory");
-  if(sel){const current=sel.value;sel.innerHTML=cats.map(c=>`<option value="${escapeHtml(c.name)}">${escapeHtml(c.name)}</option>`).join("");if(cats.some(c=>c.name===current))sel.value=current;}
-  if(!cats.length && sel) sel.innerHTML='<option value="">Nėra kategorijų</option>';
-  if(isAdmin) await loadAdminCategories();
-}
-function renderCategoryUI(cats){
-  const nav=document.getElementById("mainNav"), cards=document.getElementById("categoryCards"), tabs=document.getElementById("categoryTabs");
-  if(nav) nav.innerHTML='<a class="active" href="#top">Pagrindinis</a>'+cats.map(c=>`<a href="#prekes" data-nav-cat="${escapeHtml(c.name)}">${escapeHtml(c.name)}</a>`).join("");
-  if(cards) cards.innerHTML=cats.map(c=>`<div class="cat"><h3>${escapeHtml(c.name).toUpperCase()}</h3><p>${escapeHtml(c.description||"Platus pasirinkimas")}</p><button onclick='setCategory(${JSON.stringify(c.name)})'>Žiūrėti →</button></div>`).join("");
-  if(tabs) tabs.innerHTML='<button class="tab active" data-cat="all">Visos</button>'+cats.map(c=>`<button class="tab" data-cat="${escapeHtml(c.name)}">${escapeHtml(c.name)}</button>`).join("");
-  document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
-  document.querySelectorAll("[data-nav-cat]").forEach(a=>a.onclick=()=>setCategory(a.dataset.navCat));
-}
-async function loadAdminCategories(){
-  const list=document.getElementById("adminCategoryList");if(!list||!isAdmin)return;
-  const {data,error}=await supabaseClient.from("categories").select("*").order("sort_order",{ascending:true}).order("name",{ascending:true});
-  if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti kategorijų. Paleisk kategorijų SQL.</div>';return}
-  if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra kategorijų.</div>';return}
-  list.innerHTML=data.map(c=>`<div class="admin-product"><div class="admin-product-info"><b>${escapeHtml(c.name)}</b><small>${escapeHtml(c.description||"Be aprašymo")} • tvarka: ${c.sort_order} • ${c.active?"🟢 Aktyvi":"🔴 Išjungta"}</small></div><div class="admin-product-actions"><button class="admin-secondary" onclick='editCategory(${JSON.stringify(c).replace(/'/g,"&#39;")})'>✏️ Koreguoti</button><button class="admin-secondary ${c.active?'orange':'green'}" onclick="toggleCategory('${c.id}',${!c.active})">${c.active?'🔴 Išjungti':'🟢 Įjungti'}</button><button class="admin-danger" onclick="deleteCategory('${c.id}')">🗑️ Ištrinti</button></div></div>`).join("");
-}
-function editCategory(c){document.getElementById("categoryEditId").value=c.id||"";document.getElementById("categoryName").value=c.name||"";document.getElementById("categoryDescription").value=c.description||"";document.getElementById("categorySort").value=c.sort_order??0;document.getElementById("categoryActive").value=String(c.active!==false);document.getElementById("categoryName").scrollIntoView({behavior:"smooth",block:"center"})}
-function clearCategoryForm(){document.getElementById("categoryEditId").value="";document.getElementById("categoryName").value="";document.getElementById("categoryDescription").value="";document.getElementById("categorySort").value="0";document.getElementById("categoryActive").value="true"}
-async function saveCategory(){
-  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  const id=document.getElementById("categoryEditId").value;const name=document.getElementById("categoryName").value.trim();const desc=document.getElementById("categoryDescription").value.trim();const sort=Math.max(0,parseInt(document.getElementById("categorySort").value||0,10));const activeVal=document.getElementById("categoryActive").value==="true";
-  if(!name)return alert("Įrašyk kategorijos pavadinimą.");
-  let oldName="";if(id){const old=await supabaseClient.from("categories").select("name").eq("id",id).maybeSingle();oldName=old.data?.name||"";}
-  const result=id?await supabaseClient.from("categories").update({name,description:desc,sort_order:sort,active:activeVal}).eq("id",id):await supabaseClient.from("categories").insert({name,description:desc,sort_order:sort,active:activeVal});
-  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti kategorijos. Gal toks pavadinimas jau yra?");}
-  if(id&&oldName&&oldName!==name){const moved=await supabaseClient.from("products").update({category:name}).eq("category",oldName);if(moved.error)console.error("Produktų kategorijos pervadinti nepavyko",moved.error);}
-  clearCategoryForm();await loadCategories();await loadAdminProducts();await loadStoreProducts();alert("✓ Kategorija išsaugota.");
-}
-async function toggleCategory(id,activeVal){if(!isAdmin)return alert("Neturite administratoriaus teisių.");const {error}=await supabaseClient.from("categories").update({active:activeVal}).eq("id",id);if(error)return alert("Nepavyko pakeisti kategorijos būsenos.");await loadCategories();await loadAdminCategories()}
-async function deleteCategory(id){if(!isAdmin||!confirm("Ar tikrai ištrinti šią kategoriją? Produktai joje nebus ištrinti, bet liks su senu kategorijos pavadinimu."))return;const {error}=await supabaseClient.from("categories").delete().eq("id",id);if(error)return alert("Nepavyko ištrinti kategorijos. Jei joje yra prekių, pirmiausia perkelk jas į kitą kategoriją.");await loadCategories();await loadAdminCategories()}
-
-async function loadAdminProducts(){
-  const list=document.getElementById("adminProductList");list.innerHTML='<div class="admin-empty">Kraunama...</div>';
-  const {data,error}=await supabaseClient.from("products").select("*").order("created_at",{ascending:false});
-  if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti prekių. Patikrink Supabase SQL/RLS.</div>';return}
-  if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra pridėtų prekių.</div>';return}
-  list.innerHTML=data.map(p=>{const d=Number(p.discount_percent||0);const price=salePrice(p);const editData=JSON.stringify(p).replace(/'/g,"&#39;");return `<div class="admin-product"><img src="${escapeHtml(p.image_url||"")}" onerror="this.style.opacity='.25'"><div class="admin-product-info"><b>${escapeHtml(p.name)}</b><small>${escapeHtml(p.category)} • ${d?money(price)+" (−"+d+"%) • ":money(p.price)+" • "}${p.active?"🟢 Aktyvi":"🔴 Išjungta"}${p.badge?" • 🏷️ "+escapeHtml(p.badge):""}</small></div><div class="admin-product-actions"><button class="admin-secondary" onclick='editProduct(${editData})'>✏️ Koreguoti</button><button class="admin-secondary ${p.active?'orange':'green'}" onclick="toggleProduct('${p.id}',${!p.active})">${p.active?'🔴 Išjungti':'🟢 Įjungti'}</button><button class="admin-danger" onclick="deleteProduct('${p.id}')">🗑️ Ištrinti</button></div></div>`}).join("");
-}
-function editProduct(p){
-  document.getElementById("productEditId").value=p.id||"";
-  document.getElementById("productName").value=p.name||"";
-  document.getElementById("productPrice").value=p.price??"";
-  document.getElementById("productCategory").value=p.category||"Kita";
-  document.getElementById("productImage").value=p.image_url||"";
-  document.getElementById("productBadge").value=p.badge||"";
-  document.getElementById("productDiscount").value=p.discount_percent??0;
-  document.getElementById("productActive").value=String(p.active!==false);
-  document.getElementById("productDescription").value=p.description||"";
-  document.getElementById("productName").scrollIntoView({behavior:"smooth",block:"center"});
-}
-function clearProductForm(){
-  ["productEditId","productName","productPrice","productImage","productBadge","productDescription"].forEach(id=>document.getElementById(id).value="");
-  document.getElementById("productDiscount").value="0";
-  const sel=document.getElementById("productCategory");if(sel&&sel.options.length)sel.selectedIndex=0;document.getElementById("productActive").value="true";
-}
-async function saveProduct(){
-  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  const discount=Math.min(100,Math.max(0,Number(document.getElementById("productDiscount").value||0)));
-  const payload={name:document.getElementById("productName").value.trim(),price:Number(document.getElementById("productPrice").value),category:document.getElementById("productCategory").value,image_url:document.getElementById("productImage").value.trim(),badge:document.getElementById("productBadge").value.trim(),discount_percent:discount,description:document.getElementById("productDescription").value.trim(),active:document.getElementById("productActive").value==="true"};
-  if(!payload.name||!Number.isFinite(payload.price)||payload.price<0)return alert("Įrašyk prekės pavadinimą ir teisingą kainą.");
-  const id=document.getElementById("productEditId").value;
-  const result=id?await supabaseClient.from("products").update(payload).eq("id",id):await supabaseClient.from("products").insert(payload);
-  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti prekės. Patikrink Supabase RLS/SQL.");}
-  clearProductForm();await loadAdminProducts();await loadAdminStats();await loadStoreProducts();alert("✓ Prekė išsaugota.");
-}
-async function deleteProduct(id){
-  if(!isAdmin||!confirm("Ar tikrai ištrinti šią prekę?"))return;
-  const {error}=await supabaseClient.from("products").delete().eq("id",id);
-  if(error)return alert("Nepavyko ištrinti prekės.");
-  await loadAdminProducts();await loadAdminStats();await loadStoreProducts();
-}
-async function toggleProduct(id,active){
-  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  const {error}=await supabaseClient.from("products").update({active}).eq("id",id);
-  if(error)return alert("Nepavyko pakeisti prekės būsenos.");
-  await loadAdminProducts();await loadAdminStats();await loadStoreProducts();
-}
-async function loadStoreProducts(){
-  const {data,error}=await supabaseClient.from("products").select("*").eq("active",true).order("created_at",{ascending:false});
-  if(error||!data)return;
-  const grid=document.getElementById("grid");
-  grid.innerHTML="";
-  data.forEach(p=>{
-    const d=Math.min(100,Math.max(0,Number(p.discount_percent||0))); const finalPrice=salePrice(p);
-    const card=document.createElement("div");card.className="product";card.dataset.cat=p.category;card.dataset.dbId=p.id;
-    card.onclick=(e)=>{if(e.target.closest("button"))return;openProductModal(p)};
-    card.innerHTML=`<div class="photo"><img class="product-image" alt="${escapeHtml(p.name)}" src="${escapeHtml(p.image_url||"")}">${p.badge?`<span class="badge ${d?"sale":""}">${escapeHtml(p.badge)}</span>`:d?`<span class="badge sale">−${d}%</span>`:""}<button class="like" onclick="like(this)">♡</button></div><div class="info"><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.category)}</p><div class="price-row"><b class="price">${d?`<span class="discount-old">${money(p.price)}</span><span class="discount-new">${money(finalPrice)}</span>`:money(p.price)}</b><button class="add" onclick='add(${JSON.stringify(p.name)},${finalPrice},1,${JSON.stringify(p)})'>🛒</button></div></div>`;
-    grid.appendChild(card);
-  });
-  filter();
-}
-
-
-let adminOrdersChannel=null;
-function subscribeAdminOrders(){if(adminOrdersChannel||!isAdmin)return;adminOrdersChannel=supabaseClient.channel("admin-live-orders").on("postgres_changes",{event:"*",schema:"public",table:"orders"},()=>{loadAdminOrders();loadAdminStats()}).subscribe()}
-
-function statusLabel(status){
-  const map={"pending":"Laukia apmokėjimo","paid":"Apmokėtas","processing":"Vykdomas","shipped":"Išsiųstas","completed":"Užbaigtas","cancelled":"Atšauktas"};
-  return map[status]||status||"Nežinoma";
-}
-function statusClass(status){
-  if(status==="paid"||status==="completed")return "status-paid";
-  if(status==="shipped")return "status-shipped";
-  if(status==="cancelled")return "status-cancelled";
-  return "status-pending";
-}
-function formatDate(v){return v?new Date(v).toLocaleString("lt-LT"):"—"}
-
-async function loadAdminOrderStats(){
-  const box=document.getElementById("adminOrderStats");if(!box||!isAdmin)return;
-  const {data,error}=await supabaseClient.from("orders").select("status,total_amount");
-  if(error){box.innerHTML="";return}
-  const rows=data||[];const paid=rows.filter(o=>["paid","processing","shipped","completed"].includes(o.status));const paidSum=paid.reduce((a,o)=>a+Number(o.total_amount||0),0);
-  box.innerHTML=`<div class="admin-order-stat"><b>${rows.length}</b><small>VISI UŽSAKYMAI</small></div><div class="admin-order-stat"><b>${rows.filter(o=>o.status==="pending").length}</b><small>LAUKIA APMOKĖJIMO</small></div><div class="admin-order-stat"><b>${rows.filter(o=>o.status==="cancelled").length}</b><small>ATŠAUKTI</small></div><div class="admin-order-stat"><b>${money(paidSum)}</b><small>APMOKĖTA / VYKDOMA</small></div>`;
-}
-async function loadAdminOrders(){
-  const list=document.getElementById("adminOrderList"); if(!list||!isAdmin)return;
-  list.innerHTML='<div class="admin-empty">Kraunama...</div>';
-  const {data,error}=await supabaseClient.from("orders").select("*, order_items(*)").order("created_at",{ascending:false});
-  if(error){console.error(error);list.innerHTML='<div class="admin-empty">Nepavyko įkelti užsakymų. Patikrink RLS/SQL.</div>';return}
-  if(!data?.length){list.innerHTML='<div class="admin-empty">Kol kas užsakymų nėra.</div>';await loadAdminOrderStats();return}
-  list.innerHTML=data.map(o=>`<div class="admin-order"><div class="admin-order-info"><b>#${escapeHtml(o.order_number)}</b><small>${escapeHtml((o.first_name||"")+" "+(o.last_name||""))} • ${escapeHtml(o.email||"")} • ${formatDate(o.created_at)}<br>${escapeHtml(o.phone||"")} • ${escapeHtml(o.address||"")}, ${escapeHtml(o.city||"")} ${escapeHtml(o.postal_code||"")}<br>${escapeHtml(o.shipping_method||"")} • <strong>${statusLabel(o.status)}</strong> • ${money(o.total_amount)}</small></div><div class="admin-order-actions"><select onchange="updateOrderStatus('${o.id}',this.value)">${["pending","paid","processing","shipped","completed","cancelled"].map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${statusLabel(s)}</option>`).join("")}</select><button class="admin-secondary" onclick='showOrderDetails(${JSON.stringify(o).replace(/'/g,"&#39;")})'>👁️</button><button class="admin-danger" onclick="deleteAdminOrder('${o.id}')">🗑️</button></div></div>`).join("");
-  await loadAdminOrderStats();
-}
-async function updateOrderStatus(id,status){if(!isAdmin)return;const {error}=await supabaseClient.from("orders").update({status}).eq("id",id);if(error)return alert("Nepavyko pakeisti užsakymo būsenos.");await loadAdminOrders();await loadAdminStats()}
-async function deleteAdminOrder(id){if(!isAdmin)return alert("Neturite administratoriaus teisių.");if(!confirm("Ar tikrai visam laikui ištrinti šį užsakymą? Jis nebebus rodomas sistemoje."))return;const {error}=await supabaseClient.from("orders").delete().eq("id",id);if(error){console.error(error);return alert("Nepavyko ištrinti užsakymo. Patikrink RLS SQL.")}await loadAdminOrders();await loadAdminStats();toast("✓ Užsakymas ištrintas iš sistemos")}
-
-function showOrderDetails(o){
-  const items=(o.order_items||[]).map(x=>`${x.product_name} × ${x.quantity} — ${money(x.unit_price* x.quantity)}`).join("\\n");
-  alert(`Užsakymas #${o.order_number}\\n\\nKlientas: ${o.first_name||""} ${o.last_name||""}\\nEl. paštas: ${o.email||""}\\nTelefonas: ${o.phone||"—"}\\nAdresas: ${o.address||""}, ${o.city||""} ${o.postal_code||""}\\nPristatymas: ${o.shipping_method||""}\\n\\nPrekės:\\n${items||"—"}\\n\\nSuma: ${money(o.total_amount)}\\nBūsena: ${statusLabel(o.status)}`);
-}
-
-let adminChatSessionId=null,adminChatRows=[],adminChatChannel=null,adminChatNotificationSession=null;const adminUnreadChats=new Set();
-function showAdminNotification(row){if(!isAdmin||row?.sender!=="customer")return;adminChatNotificationSession=row.session_id;const n=document.getElementById("adminChatNotification");document.getElementById("adminChatNotificationTitle")?.replaceChildren(document.createTextNode("💬 Nauja kliento žinutė"));const x=document.getElementById("adminChatNotificationText");if(x)x.textContent=(row.message||"").slice(0,90);n?.classList.add("show");adminUnreadChats.add(row.session_id);refreshAdminChatUsers();if("Notification"in window&&Notification.permission==="granted")new Notification("LT Parduotuvė — nauja žinutė",{body:row.message||"Klientas parašė."})}
-function hideAdminNotification(){document.getElementById("adminChatNotification")?.classList.remove("show")}
-function openAdminFromNotification(){const sid=adminChatNotificationSession;hideAdminNotification();document.getElementById("adminPanel")?.classList.add("open");const tab=[...document.querySelectorAll(".admin-tab")].find(x=>x.textContent.includes("Klientų chat"));if(tab)adminTab("chat",tab);if(sid)openAdminChat(sid)}
-async function loadAdminChats(){if(!isAdmin)return;const {data,error}=await supabaseClient.from("chat_sessions").select("*").order("created_at",{ascending:false});if(error){console.error(error);return}window.adminChatSessions=Object.fromEntries((data||[]).map(x=>[x.thread_id,x]));const active=(data||[]).filter(x=>x.status==="open");const users=document.getElementById("adminChatUsers");if(!users)return;users.innerHTML=active.length?active.map(x=>`<div class="admin-chat-user ${x.thread_id===adminChatSessionId?"active":""}" onclick="openAdminChat('${x.thread_id}')"><b>${escapeHtml(x.user_email||x.user_id.slice(0,8)+"…")}</b><small>${x.status.toUpperCase()} • ${formatDate(x.last_activity||x.created_at)}</small></div>`).join(""):'<div class="admin-empty">Aktyvių klientų chatų nėra.</div>';subscribeAdminChat();}
-async function openAdminChat(sid){adminChatSessionId=sid;adminUnreadChats.delete(sid);refreshAdminChatUsers();const session=window.adminChatSessions?.[sid];const title=document.getElementById("adminChatTitle");if(title)title.innerHTML=`💬 ${escapeHtml(session?.user_email||"Klientas")} <button class="admin-danger" style="float:right" onclick="deleteAdminChat('${sid}')">🗑️ Ištrinti chatą</button>`;const {data,error}=await supabaseClient.from("messages").select("id,session_id,sender,message,created_at").eq("session_id",sid).order("created_at",{ascending:true});if(error){console.error(error);return}const body=document.getElementById("adminChatBody");body.innerHTML=(data||[]).map(m=>`<div class="admin-chat-bubble ${m.sender==="admin"?"admin":""}">${escapeHtml(m.message)}<span class="admin-chat-time">${m.sender==="admin"?"Administratorius":"Klientas"} • ${formatDate(m.created_at)}</span></div>`).join("")||'<div class="admin-empty">Žinučių nėra.</div>';body.scrollTop=body.scrollHeight}
-function refreshAdminChatUsers(){loadAdminChats()}
-function subscribeAdminChat(){if(adminChatChannel||!isAdmin)return;adminChatChannel=supabaseClient.channel("admin-live-chat-v2").on("postgres_changes",{event:"INSERT",schema:"public",table:"messages"},async p=>{if(p.new?.sender!=="customer")return;showAdminNotification(p.new);if(adminChatSessionId===p.new.session_id)openAdminChat(p.new.session_id);else loadAdminChats()}).subscribe(()=>{});if("Notification"in window&&Notification.permission==="default")Notification.requestPermission().catch(()=>{})}
-async function sendAdminChat(){if(!isAdmin||!adminChatSessionId)return alert("Pasirink klientą.");const input=document.getElementById("adminChatInput"),message=input.value.trim();if(!message)return;const {error}=await supabaseClient.from("messages").insert({session_id:adminChatSessionId,sender:"admin",message});if(error)return alert("Nepavyko išsiųsti atsakymo. Patikrink RLS SQL.");input.value="";await supabaseClient.from("chat_sessions").update({last_activity:new Date().toISOString()}).eq("thread_id",adminChatSessionId);await openAdminChat(adminChatSessionId)}
-async function deleteAdminChat(sid){if(!isAdmin||!confirm("Ištrinti šį chatą visam laikui?"))return;const r=await supabaseClient.from("messages").delete().eq("session_id",sid);if(r.error)return alert("Nepavyko ištrinti žinučių.");const s=await supabaseClient.from("chat_sessions").delete().eq("thread_id",sid);if(s.error)return alert("Nepavyko ištrinti chat sesijos.");adminChatSessionId=null;await loadAdminChats();document.getElementById("adminChatTitle").textContent="💬 Pasirink klientą";document.getElementById("adminChatBody").innerHTML='<div class="admin-empty">Chat ištrintas.</div>'}
-
-async function loadAdminCoupons(){
-  const list=document.getElementById("adminCouponList");if(!list)return;list.innerHTML='<div class="admin-empty">Kraunama...</div>';
-  const {data,error}=await supabaseClient.from("coupons").select("*").order("created_at",{ascending:false});
-  if(error){list.innerHTML='<div class="admin-empty">Nepavyko įkelti kuponų. Paleisk kuponų SQL.</div>';return}
-  if(!data?.length){list.innerHTML='<div class="admin-empty">Dar nėra kuponų.</div>';return}
-  const now=Date.now();
-  list.innerHTML=data.map(c=>{const start=c.starts_at?new Date(c.starts_at).getTime():0;const end=c.expires_at?new Date(c.expires_at).getTime():Infinity;const valid=c.active&&now>=start&&now<end&&(c.max_uses===0||c.uses_count<c.max_uses);return `<div class="admin-product"><div class="admin-product-info"><b class="coupon-code">${escapeHtml(c.code)}</b><small>−${Number(c.discount_percent)}% • ${c.uses_count}/${c.max_uses===0?"∞":c.max_uses} panaudojimų • iki ${c.expires_at?new Date(c.expires_at).toLocaleString("lt-LT"):"neribotai"}</small><div class="coupon-status ${valid?"ok":"off"}">${valid?"● Galioja":"● Negalioja / išjungtas"}</div></div><div class="admin-actions"><button class="admin-secondary" onclick='editCoupon(${JSON.stringify(c).replace(/'/g,"&#39;")})'>✏️</button><button class="admin-danger" onclick="deleteCoupon('${c.id}')">🗑️</button></div></div>`}).join("");
-}
-function toLocalInput(v){if(!v)return "";const d=new Date(v);const pad=n=>String(n).padStart(2,"0");return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`}
-function editCoupon(c){
-  document.getElementById("couponEditId").value=c.id||"";document.getElementById("couponCode").value=c.code||"";document.getElementById("couponDiscount").value=c.discount_percent||"";document.getElementById("couponStarts").value=toLocalInput(c.starts_at);document.getElementById("couponExpires").value=toLocalInput(c.expires_at);document.getElementById("couponMaxUses").value=c.max_uses??0;document.getElementById("couponMaxPerUser").value=c.max_uses_per_user??1;document.getElementById("couponActive").value=String(c.active!==false);
-}
-function clearCouponForm(){["couponEditId","couponCode","couponDiscount","couponStarts","couponExpires","couponMaxUses"].forEach(id=>document.getElementById(id).value="");document.getElementById("couponMaxPerUser").value="1";document.getElementById("couponActive").value="true"}
-async function saveCoupon(){
-  if(!isAdmin)return alert("Neturite administratoriaus teisių.");
-  const code=document.getElementById("couponCode").value.trim().toUpperCase().replace(/\s+/g,"");const discount=Number(document.getElementById("couponDiscount").value);const maxUses=Number(document.getElementById("couponMaxUses").value||0);const maxPerUser=Number(document.getElementById("couponMaxPerUser").value||1);const starts=document.getElementById("couponStarts").value?new Date(document.getElementById("couponStarts").value).toISOString():new Date().toISOString();const expires=document.getElementById("couponExpires").value?new Date(document.getElementById("couponExpires").value).toISOString():null;
-  if(!/^[A-Z0-9_-]{3,40}$/.test(code))return alert("Kupono kodas turi būti 3–40 simbolių: raidės, skaičiai, _ arba -.");
-  if(!Number.isInteger(discount)||discount<1||discount>100)return alert("Nuolaida turi būti 1–100%.");
-  if(maxUses<0||!Number.isInteger(maxUses)||maxPerUser<1||!Number.isInteger(maxPerUser))return alert("Neteisingas panaudojimų skaičius.");
-  if(expires&&new Date(expires)<=new Date(starts))return alert("Kupono galiojimo pabaiga turi būti vėlesnė.");
-  const payload={code,discount_percent:discount,starts_at:starts,expires_at:expires,max_uses:maxUses,max_uses_per_user:maxPerUser,active:document.getElementById("couponActive").value==="true"};const id=document.getElementById("couponEditId").value;
-  const result=id?await supabaseClient.from("coupons").update(payload).eq("id",id):await supabaseClient.from("coupons").insert(payload);
-  if(result.error){console.error(result.error);return alert("Nepavyko išsaugoti kupono. Gal toks kodas jau yra?");}
-  clearCouponForm();await loadAdminCoupons();await loadAdminStats();alert("✓ Kuponas išsaugotas.");
-}
-async function deleteCoupon(id){if(!isAdmin||!confirm("Ar tikrai ištrinti šį kuponą?"))return;const {error}=await supabaseClient.from("coupons").delete().eq("id",id);if(error)return alert("Nepavyko ištrinti kupono.");await loadAdminCoupons();await loadAdminStats();}
-function toggleCouponBox(){
-  const box=document.getElementById("couponForm");
-  const checked=document.getElementById("couponToggle")?.checked;
-  if(box) box.classList.toggle("open",!!checked);
-  if(checked) setTimeout(()=>document.getElementById("couponInput")?.focus(),50);
-}
-function setCouponMessage(text,ok=false){
-  const el=document.getElementById("couponMessage");
-  if(!el)return; el.textContent=text||""; el.className="coupon-message "+(text?(ok?"ok":"err"):"");
-}
-async function applyCoupon(){
-  const input=document.getElementById("couponInput"); if(!input)return; const code=input.value.trim().toUpperCase();
-  if(!code){setCouponMessage("Įrašyk nuolaidos kodą.");return;}
-  const {data,error}=await supabaseClient.rpc("apply_coupon",{p_code:code});
-  if(error){console.error(error);activeCoupon=null;renderCart();setCouponMessage(error.message||"Kuponas neegzistuoja arba jo negalima panaudoti.");return;}
-  activeCoupon=data; renderCart(); renderCheckoutSummary(); input.value=""; setCouponMessage(`✓ Kuponas pritaikytas: −${Number(data.discount_percent)}%`,true); toast(`✓ Kuponas ${code} pritaikytas`);
-}
-
-
-async function openOrders(){
-  const modal=document.getElementById("ordersModal");
-  modal.classList.add("open");
-  await loadMyOrders();
-}
-function closeOrders(){document.getElementById("ordersModal").classList.remove("open")}
-async function cancelMyOrder(orderId){
-  if(!confirm("Ar tikrai nori atšaukti šį užsakymą?")) return;
-  const {data,error}=await supabaseClient.from("orders").select("id,status").eq("id",orderId).maybeSingle();
-  if(error||!data)return alert("Nepavyko rasti užsakymo.");
-  // Klientas gali atšaukti tik neapmokėtą užsakymą.
-  if(data.status!=="pending")return alert("Šio užsakymo atšaukti nebegalima, nes jis jau apmokėtas arba pradėtas vykdyti.");
-  const result=await supabaseClient.from("orders").update({status:"cancelled"}).eq("id",orderId).eq("status","pending");
-  if(result.error)return alert("Nepavyko atšaukti užsakymo.");
-  await loadMyOrders();
-  toast("✓ Užsakymas atšauktas");
-}
-
-async function loadMyOrders(){
-  const list=document.getElementById("ordersList");
-  list.innerHTML='<div class="admin-empty">Kraunama...</div>';
-  const {data:userData}=await supabaseClient.auth.getUser();
-  const user=userData?.user;
-  if(!user){list.innerHTML='<div class="admin-empty">Reikia prisijungti.</div>';return}
-  const {data,error}=await supabaseClient.from("orders").select("*, order_items(*)").eq("user_id",user.id).order("created_at",{ascending:false});
-  if(error){console.error(error);list.innerHTML='<div class="admin-empty">Nepavyko įkelti užsakymų. Paleisk užsakymų SQL.</div>';return}
-  if(!data?.length){list.innerHTML='<div class="admin-empty">📦 Dar neturi užsakymų.</div>';return}
-  list.innerHTML=data.map(o=>`
-   <div class="order-card" onclick="toggleOrderDetail('${o.id}')">
-    <div class="order-top"><div><div class="order-number">#${escapeHtml(o.order_number)}</div><div class="order-date">${formatDate(o.created_at)}</div></div><span class="order-status ${statusClass(o.status)}">${statusLabel(o.status)}</span></div>
-    <div class="order-bottom"><span>${(o.order_items||[]).reduce((n,x)=>n+Number(x.quantity||0),0)} prek.</span><strong>${money(o.total_amount)}</strong></div>
-    <div class="order-actions" onclick="event.stopPropagation()">
-      ${o.status==="pending"?`<button class="order-pay-btn" disabled title="Paysera dar neprijungta">💳 Apmokėti užsakymą</button><button class="order-cancel-btn" onclick="cancelMyOrder('${o.id}')">✕ Atšaukti</button><div class="pay-note">Apmokėjimas bus aktyvuotas, kai bus prijungta Paysera.</div>`:""}
-    </div>
-    <div class="order-detail" id="order-detail-${o.id}" style="display:none">
-      <div class="order-items">${(o.order_items||[]).map(x=>`<div class="order-item-row"><span>${escapeHtml(x.product_name)} × ${x.quantity}</span><b>${money(Number(x.unit_price)*Number(x.quantity))}</b></div>`).join("")}</div>
-      <div class="order-info-grid">
-       <div class="order-info-box"><small>PRISTATYMAS</small><b>${escapeHtml(o.shipping_method||"—")} • ${money(o.shipping_amount)}</b></div>
-       <div class="order-info-box"><small>ADRESAS</small><b>${escapeHtml(o.address||"—")}, ${escapeHtml(o.city||"")}</b></div>
-       <div class="order-info-box"><small>EL. PAŠTAS</small><b>${escapeHtml(o.email||"—")}</b></div>
-       <div class="order-info-box"><small>TELEFONAS</small><b>${escapeHtml(o.phone||"—")}</b></div>
-      </div>
-    </div>
-   </div>`).join("");
-}
-function toggleOrderDetail(id){const el=document.getElementById("order-detail-"+id);if(el)el.style.display=el.style.display==="none"?"block":"none"}
-
-function selectedShipping(){
-  const el=document.querySelector('input[name="shipping"]:checked');
-  return {method:el?.value||"LP EXPRESS",price:Number(el?.dataset.price||2.40)};
-}
-function openCheckout(){
-  if(!cart.length)return alert("Krepšelis tuščias.");
-  document.getElementById("cartBg").style.display="none";
-  document.getElementById("checkoutError").textContent="";
-  document.getElementById("checkoutModal").classList.add("open");
-  const saved=JSON.parse(localStorage.getItem("ltparduotuve_checkout")||"null");
-  document.getElementById("saveCheckoutData").checked=!!saved;
-  supabaseClient.auth.getUser().then(async ({data})=>{
-    if(data.user?.email)document.getElementById("coEmail").value=data.user.email;
-    if(saved){
-      document.getElementById("coFirstName").value=saved.first_name||"";document.getElementById("coLastName").value=saved.last_name||"";document.getElementById("coPhone").value=saved.phone||"";document.getElementById("coAddress").value=saved.address||"";document.getElementById("coCity").value=saved.city||"";document.getElementById("coPostal").value=saved.postal_code||"";
-    } else if(data.user?.id){
-      const {data:profile}=await supabaseClient.from("profiles").select("first_name,last_name,phone,address,city,postal_code").eq("user_id",data.user.id).maybeSingle();
-      if(profile){document.getElementById("coFirstName").value=profile.first_name||"";document.getElementById("coLastName").value=profile.last_name||"";document.getElementById("coPhone").value=profile.phone||"";document.getElementById("coAddress").value=profile.address||"";document.getElementById("coCity").value=profile.city||"";document.getElementById("coPostal").value=profile.postal_code||"";}
-    }
-  });
-  renderCheckoutSummary();
-}
-function closeCheckout(){document.getElementById("checkoutModal").classList.remove("open")}
-function renderCheckoutSummary(){
-  const subtotal=cart.reduce((a,b)=>a+b.price*b.qty,0);
-  const pct=activeCoupon?Number(activeCoupon.discount_percent||0):0;
-  const discount=subtotal*pct/100;
-  const shipping=selectedShipping().price;
-  const total=subtotal-discount+shipping;
-  document.getElementById("checkoutSummaryList").innerHTML=cart.map(x=>`<div class="checkout-summary-item"><span>${escapeHtml(x.name)} × ${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join("");
-  document.getElementById("coSubtotal").textContent=money(subtotal);
-  document.getElementById("coDiscount").textContent="− "+money(discount);
-  document.getElementById("coShipping").textContent=money(shipping);
-  document.getElementById("coTotal").textContent=money(total);
-}
-async function submitOrder(){
-  if(!cart.length)return;
-  const errorEl=document.getElementById("checkoutError"); errorEl.textContent="";
-  const first=document.getElementById("coFirstName").value.trim(), last=document.getElementById("coLastName").value.trim();
-  const email=document.getElementById("coEmail").value.trim(), phone=document.getElementById("coPhone").value.trim();
-  const address=document.getElementById("coAddress").value.trim(), city=document.getElementById("coCity").value.trim(), postal=document.getElementById("coPostal").value.trim();
-  if(!first||!last||!email||!phone||!address||!city||!postal){errorEl.textContent="Užpildyk visus laukelius.";return}
-  const remember=document.getElementById("saveCheckoutData")?.checked;
-  if(remember){localStorage.setItem("ltparduotuve_checkout",JSON.stringify({first_name:first,last_name:last,phone,address,city,postal_code:postal}));const u=await supabaseClient.auth.getUser();if(u.data.user)await supabaseClient.from("profiles").upsert({user_id:u.data.user.id,first_name:first,last_name:last,phone,address,city,postal_code:postal,updated_at:new Date().toISOString()});}
-  else localStorage.removeItem("ltparduotuve_checkout");
-  const shipping=selectedShipping();
-  const items=cart.map(x=>({product_id:x.product?.id||null,quantity:x.qty}));
-  const {data,error}=await supabaseClient.rpc("create_order",{
-    p_first_name:first,p_last_name:last,p_email:email,p_phone:phone,p_address:address,p_city:city,p_postal_code:postal,
-    p_shipping_method:shipping.method,p_shipping_amount:shipping.price,p_items:items,p_coupon_code:activeCoupon?.code||null
-  });
-  if(error){console.error(error);errorEl.textContent=error.message||"Nepavyko sukurti užsakymo.";return}
-  const order=data?.[0]||data;
-  cart=[];activeCoupon=null;renderCart();closeCheckout();
-  await loadMyOrders();
-  document.getElementById("ordersModal").classList.add("open");
-  toast(`✓ Užsakymas #${order.order_number||"sukurtas"}`);
-}
-let cart=[];
-let modalProduct=null;
-let modalQty=1;
-
-function add(name,price,qty=1,product=null){
-  qty=Math.max(1,Number(qty)||1);
-  const key=product?.id || name;
-  const existing=cart.find(x=>x.key===key);
-  if(existing) existing.qty+=qty;
-  else cart.push({key,name,price:Number(price),qty,product});
-  renderCart();
-  toast("✓ "+name+" pridėta į krepšelį");
-}
-function changeQty(i,delta){
-  if(!cart[i])return;
-  cart[i].qty=Math.max(1,cart[i].qty+delta);
-  renderCart();
-}
-function removeItem(i){cart.splice(i,1);renderCart()}
-function renderCart(){
-  const subtotal=cart.reduce((a,b)=>a+b.price*b.qty,0);
-  const pct=activeCoupon?Number(activeCoupon.discount_percent||0):0;
-  const discount=subtotal*pct/100;
-  const total=subtotal-discount;
-  const count=cart.reduce((a,b)=>a+b.qty,0);
-  document.getElementById("count").textContent=count;
-  document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><div class="cart-item-name">${escapeHtml(x.name)}</div><div class="cart-item-price">${money(x.price)} / vnt.</div><div class="cart-controls"><button onclick="changeQty(${i},-1)">−</button><span>${x.qty}</span><button onclick="changeQty(${i},1)">+</button><button class="cart-remove" onclick="removeItem(${i})">🗑️ Pašalinti</button></div></div><b>${money(x.price*x.qty)}</b></div>`).join(""):"<p style='color:#718096;margin-top:20px;text-align:center'>🛒 Krepšelis tuščias.</p>";
-  document.getElementById("subtotal").textContent=money(subtotal);
-  document.getElementById("discountTotal").textContent="− "+money(discount);
-  document.getElementById("total").textContent=money(total);
-  const a=document.getElementById("couponApplied");if(a)a.textContent=activeCoupon?`✓ ${activeCoupon.code} −${pct}% (sutaupai ${money(discount)})`:"";
-  if(document.getElementById("checkoutModal")?.classList.contains("open")) renderCheckoutSummary();
-}
-function openCart(){document.getElementById("cartBg").style.display="block";renderCart()}
-function closeCart(){document.getElementById("cartBg").style.display="none"}
-
-function openProductModal(p){
-  modalProduct=p; modalQty=1;
-  const d=Math.min(100,Math.max(0,Number(p.discount_percent||0)));
-  const finalPrice=salePrice(p);
-  document.getElementById("modalImage").src=p.image_url||"";
-  document.getElementById("modalImage").alt=p.name||"";
-  document.getElementById("modalName").textContent=p.name||"";
-  document.getElementById("modalCategory").textContent=p.category||"";
-  document.getElementById("modalDescription").textContent=p.description||"Šiai prekei aprašymas dar neįrašytas.";
-  const badge=document.getElementById("modalBadge");
-  badge.textContent=p.badge|| (d?`−${d}%`:"");
-  badge.style.display=(p.badge||d)?"inline-block":"none";
-  document.getElementById("modalPrice").innerHTML=d?`<span class="modal-old-price">${money(p.price)}</span><span class="modal-price">${money(finalPrice)}</span>`:`<span class="modal-price">${money(finalPrice)}</span>`;
-  document.getElementById("modalQty").textContent="1";
-  document.getElementById("productModal").classList.add("open");
-}
-function changeModalQty(delta){modalQty=Math.max(1,modalQty+delta);document.getElementById("modalQty").textContent=modalQty}
-function addModalToCart(){if(!modalProduct)return;add(modalProduct.name,salePrice(modalProduct),modalQty,modalProduct);closeProductModal()}
-function closeProductModal(){document.getElementById("productModal").classList.remove("open");modalProduct=null}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeProductModal()});
-
-function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),1800)}
-function like(b){b.classList.toggle("liked");b.textContent=b.classList.contains("liked")?"♥":"♡"}
-let active="all";
-function filter(){let q=document.getElementById("search").value.toLowerCase();document.querySelectorAll(".product").forEach(p=>{let ok=active==="all"||p.dataset.cat===active;let txt=p.innerText.toLowerCase();p.style.display=ok&&txt.includes(q)?"":"none"})}
-document.getElementById("search").addEventListener("input",filter);
-document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");active=b.dataset.cat;filter()});
-function setCategory(c){active=c;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x.dataset.cat===active));document.getElementById("prekes").scrollIntoView({behavior:"smooth"});filter()}
-
-function toggleChat(){
-  const chat = document.getElementById("chat");
-  chat.classList.toggle("open");
-  if(chat.classList.contains("open")) initChat();
-}
-
-function bubble(t,who){
-  let d=document.createElement("div");
-  d.className="bubble "+(who||"");
-  d.textContent=t;
-  let b=document.getElementById("chatBody");
-  b.appendChild(d);
-  b.scrollTop=b.scrollHeight;
-}
-
-function quick(t){
-  sendChatMessage(t);
-}
-
-async function send(){
-  const i=document.getElementById("msg"); const t=i.value.trim(); if(!t)return; i.value=""; await sendChatMessage(t);
-}
-
-document.getElementById("msg").addEventListener("keydown",e=>{
-  if(e.key==="Enter") send();
-});
-renderCart();
-</script>
-</body></html>
+        <!-- System Requirements Section -->
+        <div style="background:#ffffff; border-radius:12px; padding:40px; margin-top:30px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+            <h2 style="color:#1a1a2e; font-size:1.8em; margin-top:0; border-bottom:3px solid #e94560; padding-bottom:15px;">💻 System Requirements for Windows</h2>
+            <p style="font-size:1.1em;">Cortex AI Trading Bot runs smoothly on most Windows computers. Here's what you'll need:</p>
+            <table style="width:100%; border-collapse:collapse; margin-top:20px; background:#f8f9fa;">
+                <tr style="background:#1a1a2e; color:#ffffff;">
+                    <th style="padding:14px; text-align:left; font-size:1.1em;">Component</th>
+                    <th style="padding:14px; text-align:left; font-size:1.1em;">Minimum Required</th>
+                </tr>
+                <tr style="border-bottom:1px solid #dee2e6;">
+                    <td style="padding:14px; font-size:1.1em;">Operating System</td>
+                    <td style="padding:14px; font-size:1.1em;">Windows 10 or Windows 11</td>
+                </tr>
+                <tr style="border-bottom:1px solid #dee2e6; background:#f8f9fa;">
+                    <td style="padding:14px; font-size:1.1em;">Processor</td>
+                    <td style="padding:14px; font-size:1.1em;">Intel Core i3 or AMD equivalent (2.0 GHz+)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #dee2e6;">
+                    <td style="padding:14px; font-size:1.1em;">RAM</td>
+                    <td style="padding:14px; font-size:1.1em;">4 GB (8 GB recommended)</td>
+                </tr>
+                <tr style="border-bottom:1px solid #dee2e6; background:#f8f9fa;">
+                    <td style="padding:14px; font-size:1.1em;">Storage</td>
+                    <td style="padding:14px; font-size:1.1em;">500 MB free disk space</td>
+                </tr>
+                <tr>
+                    <td style="padding:14px; font-size:1.1em;">Internet</td>
+                    <td style="padding:14px; font-size:1.1em;">Stable internet connection (wired recommended)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="background:#ffffff; border-radius:12px; padding:40px; margin-top:30px; box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+            <h2 style="color:#1a1a2e; font-size:1.8em; margin-top:0; border-bottom:3px solid #e94560; padding-bottom:15px;">❓ Frequently Asked Questions</h2>
+            <div style="margin-top:20px;">
+                <h3 style="color:#0f3460; font-size:1.2em;">Do I need any programming knowledge?</h3>
+                <p style="font-size:1.1em;">Absolutely not! Cortex AI Trading Bot is designed for complete beginners. The setup process is guided, and the bot handles all the complex trading logic automatically. You just connect your exchange account and let the AI do the work.</p>
+                
+                <h3 style="color:#0f3460; font-size:1.2em;">Is this safe to use?</h3>
+                <p style="font-size:1.1em;">The bot uses secure encrypted API connections to your exchange accounts. You have full control over your funds, and the bot can only trade with the permissions you grant. We recommend starting with a small amount to build confidence.</p>
+                
+                <h3 style="color:#0f3460; font-size:1.2em;">Can I use this for other cryptocurrencies?</h3>
+                <p style="font-size:1.1em;">Yes! The bot works with a wide range of cryptocurrencies, including those on Solana and BSC networks. It supports popular tokens like SOL, BNB, ETH, and many others listed on Bitget and AvaTrade.</p>
+                
+                <h3 style="color:#0f3460; font-size:1.2em;">How do I get support if I need help?</h3>
+                <p style="font-size:1.1em;">The bot includes comprehensive built-in help documentation. For additional support, visit the GitHub repository page where you'll find detailed guides and community discussions.</p>
+            </div>
+        </div>
+
+        <!-- Final CTA Section -->
+        <div style="background:linear-gradient(135deg, #e94560, #0f3460); border-radius:12px; padding:50px 40px; margin-top:30px; text-align:center; color:#ffffff; box-shadow:0 10px 30px rgba(233,69,96,0.3);">
+            <h2 style="font-size:2em; margin:0 0 20px 0; color:#ffffff;">🎯 Start Automating Your Crypto Trading Today</h2>
+            <p style="font-size:1.2em; color:#ffffff; opacity:0.9; margin-bottom:30px;">Join thousands of traders who are already using AI to trade smarter, not harder.</p>
+            <a href="https://github.com/Almetaadmirable98/cortex-ai-trading-bot" style="display:inline-block; background:#ffffff; color:#e94560; padding:18px 50px; border-radius:50px; text-decoration:n
