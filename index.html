@@ -2,1392 +2,184 @@
 <html lang="lt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LT PARDUOTUVĖ</title>
-
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:'Inter',Arial,sans-serif;
-    background:#05070d;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* ================= INTRO ================= */
-
-#intro{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:
-        radial-gradient(circle at center,#172b5a 0%,#080d1c 40%,#03050a 100%);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    animation:introHide 1s ease 3.4s forwards;
-}
-
-.intro-logo{
-    text-align:center;
-    position:relative;
-    z-index:5;
-}
-
-.intro-logo .lt{
-    font-size:100px;
-    font-weight:900;
-    color:#fff;
-    text-shadow:
-        0 0 15px #428cff,
-        0 0 45px #1467ff,
-        0 0 90px #1467ff;
-    animation:logoIn 1s ease forwards;
-}
-
-.intro-logo .name{
-    font-size:45px;
-    font-weight:900;
-    letter-spacing:8px;
-    margin-top:-10px;
-    text-shadow:0 0 30px #317cff;
-}
-
-.intro-logo .line{
-    width:0;
-    height:3px;
-    background:#4c8dff;
-    margin:25px auto;
-    box-shadow:0 0 20px #2978ff;
-    animation:lineIn 1.3s ease .7s forwards;
-}
-
-.intro-logo p{
-    color:#aebde0;
-    letter-spacing:6px;
-    font-size:12px;
-    opacity:0;
-    animation:fadeIn 1s ease 1.4s forwards;
-}
-
-.floating{
-    position:absolute;
-    font-size:55px;
-    opacity:.7;
-    filter:drop-shadow(0 0 15px #3b82ff);
-    animation:float 5s infinite ease-in-out;
-}
-
-.f1{top:15%;left:12%}
-.f2{top:22%;right:14%;animation-delay:1s}
-.f3{bottom:18%;left:18%;animation-delay:2s}
-.f4{bottom:15%;right:18%;animation-delay:.5s}
-
-@keyframes logoIn{
-    from{transform:scale(.3);opacity:0}
-    to{transform:scale(1);opacity:1}
-}
-
-@keyframes lineIn{
-    to{width:320px}
-}
-
-@keyframes fadeIn{
-    to{opacity:1}
-}
-
-@keyframes float{
-    0%,100%{transform:translateY(0) rotate(-5deg)}
-    50%{transform:translateY(-35px) rotate(7deg)}
-}
-
-@keyframes introHide{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
-}
-
-/* ================= BACKGROUND ================= */
-
-body:before{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-3;
-    background:
-        radial-gradient(circle at 20% 20%,#12295a55,transparent 30%),
-        radial-gradient(circle at 80% 40%,#421b7a44,transparent 30%),
-        radial-gradient(circle at 50% 100%,#064e3b33,transparent 30%);
-}
-
-body:after{
-    content:"";
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    pointer-events:none;
-    background:
-        linear-gradient(120deg,transparent 40%,#2785ff0c 50%,transparent 60%);
-    animation:backgroundMove 8s infinite linear;
-}
-
-@keyframes backgroundMove{
-    from{transform:translateX(-30%)}
-    to{transform:translateX(30%)}
-}
-
-/* ================= TOP ================= */
-
-.topbar{
-    background:#03050a;
-    border-bottom:1px solid #1c2940;
-    padding:8px;
-    text-align:center;
-    color:#8799ba;
-    font-size:12px;
-}
-
-header{
-    position:sticky;
-    top:0;
-    z-index:100;
-    height:72px;
-    display:flex;
-    align-items:center;
-    gap:30px;
-    padding:0 4%;
-    background:#050914dd;
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid #1c2940;
-}
-
-.logo{
-    font-size:23px;
-    font-weight:900;
-    white-space:nowrap;
-    text-shadow:0 0 20px #2d79ff;
-}
-
-.logo span{
-    color:#4b91ff;
-}
-
-nav{
-    display:flex;
-    gap:25px;
-    margin-left:20px;
-}
-
-nav a{
-    color:#aebbd0;
-    font-size:14px;
-    text-decoration:none;
-    transition:.2s;
-}
-
-nav a:hover{
-    color:white;
-    text-shadow:0 0 12px #438dff;
-}
-
-.search{
-    margin-left:auto;
-    width:240px;
-    padding:12px 17px;
-    border-radius:25px;
-    border:1px solid #263854;
-    background:#0b111d;
-    color:white;
-    outline:none;
-}
-
-.search:focus{
-    border-color:#3984ff;
-    box-shadow:0 0 20px #1c65ff33;
-}
-
-.cart-button{
-    border:1px solid #3768a8;
-    background:#0b1424;
-    color:white;
-    border-radius:12px;
-    padding:11px 15px;
-    cursor:pointer;
-}
-
-.cart-button span{
-    color:#48a0ff;
-    font-weight:800;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    position:relative;
-    min-height:620px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:90px 5%;
-    overflow:hidden;
-}
-
-.hero:before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:url("background.png") center/cover;
-    opacity:.15;
-    z-index:-1;
-}
-
-.hero-content{
-    max-width:900px;
-}
-
-.hero-badge{
-    display:inline-block;
-    padding:8px 18px;
-    border:1px solid #367cf0;
-    border-radius:30px;
-    color:#75aaff;
-    font-size:12px;
-    letter-spacing:2px;
-    box-shadow:0 0 25px #1765ff22;
-}
-
-.hero h1{
-    margin:25px 0 15px;
-    font-size:clamp(55px,9vw,110px);
-    line-height:.9;
-    font-weight:900;
-    letter-spacing:-6px;
-}
-
-.hero h1 span{
-    color:#4d92ff;
-    text-shadow:
-        0 0 15px #287dff,
-        0 0 50px #287dff66;
-}
-
-.hero p{
-    max-width:650px;
-    margin:auto;
-    color:#9eacc4;
-    font-size:18px;
-}
-
-.hero-buttons{
-    margin-top:35px;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-}
-
-.btn{
-    padding:14px 25px;
-    border-radius:12px;
-    background:#367ff5;
-    color:white;
-    text-decoration:none;
-    font-weight:800;
-    border:1px solid #5d9aff;
-    box-shadow:0 0 25px #1465ff44;
-}
-
-.btn:hover{
-    box-shadow:0 0 35px #1465ff88;
-    transform:translateY(-2px);
-}
-
-.btn.alt{
-    background:#0a101b;
-    border-color:#30496d;
-}
-
-/* ================= SERVICES ================= */
-
-.services{
-    max-width:1200px;
-    margin:-35px auto 0;
-    padding:0 5%;
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    position:relative;
-}
-
-.service{
-    padding:18px;
-    background:#09101bdd;
-    border:1px solid #1c2b43;
-    border-radius:15px;
-    backdrop-filter:blur(12px);
-}
-
-.service b{
-    display:block;
-    margin-bottom:5px;
-}
-
-.service span{
-    color:#74839a;
-    font-size:12px;
-}
-
-/* ================= PRODUCTS ================= */
-
-section{
-    max-width:1250px;
-    margin:auto;
-    padding:80px 5%;
-}
-
-.section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin-bottom:25px;
-}
-
-.section-title h2{
-    font-size:34px;
-}
-
-.section-title p{
-    color:#78879d;
-}
-
-.filters{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
-}
-
-.filter{
-    background:#0a101a;
-    color:#aebbd0;
-    border:1px solid #27364d;
-    border-radius:25px;
-    padding:9px 16px;
-    cursor:pointer;
-}
-
-.filter.active,
-.filter:hover{
-    color:white;
-    border-color:#438cff;
-    box-shadow:0 0 15px #2174ff22;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
-
-.product{
-    background:linear-gradient(180deg,#101923,#080d14);
-    border:1px solid #1c2c43;
-    border-radius:17px;
-    padding:12px;
-    transition:.25s;
-    position:relative;
-    overflow:hidden;
-}
-
-.product:hover{
-    transform:translateY(-7px);
-    border-color:#3987ff;
-    box-shadow:0 15px 45px #1166ff18;
-}
-
-.product img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:12px;
-    background:#0e1622;
-}
-
-.product h3{
-    margin:14px 3px 5px;
-    font-size:17px;
-}
-
-.desc{
-    color:#748399;
-    font-size:13px;
-    margin:0 3px 10px;
-}
-
-.price{
-    color:#42a1ff;
-    font-size:21px;
-    font-weight:900;
-    margin:0 3px 13px;
-}
-
-.add{
-    width:100%;
-    padding:12px;
-    border-radius:10px;
-    border:1px solid #3986ff;
-    background:#0b1c35;
-    color:#fff;
-    font-weight:800;
-    cursor:pointer;
-}
-
-.add:hover{
-    background:#1b62c4;
-    box-shadow:0 0 20px #277bff44;
-}
-
-/* ================= CONTACT ================= */
-
-.contact-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:18px;
-}
-
-.contact{
-    background:#09101add;
-    border:1px solid #1c2b43;
-    border-radius:17px;
-    padding:28px;
-}
-
-.contact p{
-    color:#8795aa;
-    margin:10px 0 18px;
-}
-
-.contact a{
-    color:#58a1ff;
-    font-weight:800;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    border-top:1px solid #18263b;
-    padding:30px;
-    text-align:center;
-    color:#69778b;
-}
-
-/* ================= CART ================= */
-
-.backdrop{
-    position:fixed;
-    inset:0;
-    background:#000b;
-    z-index:500;
-    display:none;
-}
-
-.drawer{
-    position:absolute;
-    right:0;
-    top:0;
-    height:100%;
-    width:min(440px,100%);
-    background:#080e17;
-    border-left:1px solid #263a58;
-    padding:25px;
-    overflow:auto;
-}
-
-.drawer-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.close{
-    background:#101a29;
-    color:white;
-    border:1px solid #2b405f;
-    border-radius:8px;
-    padding:8px 11px;
-}
-
-.cart-item{
-    padding:15px 0;
-    border-bottom:1px solid #1b293b;
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.total{
-    font-size:23px;
-    font-weight:900;
-    margin:25px 0;
-}
-
-.checkout{
-    width:100%;
-    border:0;
-    padding:14px;
-    border-radius:11px;
-    background:#367ff5;
-    color:white;
-    font-weight:900;
-    cursor:pointer;
-}
-
-/* ================= TOAST ================= */
-
-.toast{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:600;
-    background:#0b1420;
-    border:1px solid #377fd9;
-    border-radius:12px;
-    padding:14px 18px;
-    transform:translateY(130px);
-    transition:.3s;
-}
-
-.toast.show{
-    transform:translateY(0);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1000px){
-
-    .grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .services{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    nav{
-        display:none;
-    }
-
-}
-
-@media(max-width:600px){
-
-    header{
-        padding:0 4%;
-    }
-
-    .search{
-        width:130px;
-    }
-
-    .hero h1{
-        letter-spacing:-3px;
-    }
-
-    .grid,
-    .services,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero-buttons{
-        flex-direction:column;
-    }
-
-    .btn{
-        width:100%;
-    }
-
-}
+:root{--bg:#06080f;--panel:#0d111b;--panel2:#111725;--line:#202a3d;--blue:#397dff;--violet:#8657ff;--text:#f5f7fb;--muted:#8b96aa}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-5;background:radial-gradient(circle at 15% 15%,#1c4dff22,transparent 27%),radial-gradient(circle at 85% 30%,#914cff18,transparent 28%),radial-gradient(circle at 50% 100%,#005eff15,transparent 35%)}
+body:after{content:"";position:fixed;inset:0;z-index:-4;opacity:.22;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,transparent,black 20%,black 70%,transparent);animation:gridMove 18s linear infinite}
+@keyframes gridMove{to{background-position:70px 70px}}
+a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
+#intro{position:fixed;inset:0;z-index:9999;background:#03050b;display:grid;place-items:center;animation:introOut .8s ease 3s forwards}
+#intro .orb{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,#1e63ff55,transparent 62%);filter:blur(10px);animation:orb 2.5s ease-in-out infinite}
+#intro .brand{position:relative;text-align:center}
+#intro .brand small{display:block;color:#7ea9ff;letter-spacing:8px;font-weight:800;font-size:12px;opacity:0;animation:up .7s .2s forwards}
+#intro .brand h1{font-size:clamp(55px,11vw,125px);letter-spacing:-7px;line-height:.8;margin:20px 0;color:white;text-shadow:0 0 20px #397dff,0 0 70px #397dff77;transform:scale(.7);opacity:0;animation:logo 1s .45s forwards}
+#intro .brand h1 span{color:#4e8bff}
+#intro .brand .bar{height:3px;width:0;margin:auto;background:linear-gradient(90deg,var(--blue),var(--violet));box-shadow:0 0 30px #397dff;animation:bar 1s 1.2s forwards}
+#intro .brand p{margin-top:20px;color:#77849a;letter-spacing:4px;font-size:11px;opacity:0;animation:up .7s 1.5s forwards}
+@keyframes logo{to{transform:scale(1);opacity:1}}@keyframes bar{to{width:330px}}@keyframes up{to{opacity:1;transform:translateY(0)}}@keyframes orb{50%{transform:scale(1.2);opacity:.7}}@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+header{position:sticky;top:0;z-index:100;background:#070a11e8;border-bottom:1px solid var(--line);backdrop-filter:blur(20px)}
+.top{height:76px;display:flex;align-items:center;gap:25px;padding:0 5%}.logo{font-size:22px;font-weight:900;letter-spacing:-1px;white-space:nowrap}.logo span{color:#4c8cff;text-shadow:0 0 20px #397dff}
+nav{display:flex;gap:23px;margin-left:25px}nav a{font-size:13px;color:#9da8bb}nav a:hover{color:white}
+.search{margin-left:auto;width:235px;border:1px solid #28344a;background:#0b101a;color:white;padding:11px 15px;border-radius:12px;outline:none}.search:focus{border-color:#397dff;box-shadow:0 0 20px #397dff22}
+.cart{border:1px solid #344765;background:#0d1420;color:white;border-radius:12px;padding:11px 14px}.cart b{color:#65a1ff}
+.notice{border-top:1px solid #182237;background:#080c14;padding:8px;text-align:center;font-size:11px;color:#76849b}
+.hero{max-width:1400px;margin:auto;min-height:590px;padding:70px 5%;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:url("background.png") center/cover;opacity:.2;mask-image:linear-gradient(90deg,black,transparent 80%)}
+.hero:after{content:"";position:absolute;width:600px;height:600px;right:-150px;top:-80px;border-radius:50%;background:radial-gradient(circle,#326fff33,transparent 65%);filter:blur(5px)}
+.hero-content{position:relative;z-index:2;max-width:760px}.eyebrow{color:#6ea2ff;font-size:11px;font-weight:800;letter-spacing:3px}.hero h2{font-size:clamp(48px,7vw,92px);line-height:.9;letter-spacing:-6px;margin:18px 0}.hero h2 span{background:linear-gradient(90deg,#fff,#5794ff,#a066ff);-webkit-background-clip:text;color:transparent}.hero p{color:#8f9bb0;max-width:600px;font-size:16px;line-height:1.7}.hero-btns{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}.btn{padding:13px 19px;border-radius:11px;background:linear-gradient(135deg,#367eff,#674cff);border:1px solid #6597ff;color:white;font-weight:800;box-shadow:0 0 30px #397dff22}.btn.alt{background:#0b1019;border-color:#2c394e;box-shadow:none}
+.floating{position:absolute;z-index:1;border:1px solid #ffffff14;background:#ffffff08;backdrop-filter:blur(10px);border-radius:18px;padding:20px;font-size:34px;box-shadow:0 15px 50px #0006;animation:float 5s ease-in-out infinite}.f1{right:18%;top:15%}.f2{right:8%;bottom:20%;animation-delay:1s}.f3{right:30%;bottom:12%;animation-delay:2s}@keyframes float{50%{transform:translateY(-18px) rotate(4deg)}}
+.quick{max-width:1200px;margin:-35px auto 0;position:relative;z-index:5;padding:0 5%;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.quick .q{background:#0c121de8;border:1px solid #202d42;border-radius:15px;padding:18px;backdrop-filter:blur(15px)}.q strong{display:block;font-size:13px}.q span{color:#707d91;font-size:11px}
+section{max-width:1250px;margin:auto;padding:80px 5%}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px}.section-head h2{font-size:32px}.section-head p{color:#738097;font-size:13px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}.filter{background:#0b1019;color:#8e9ab0;border:1px solid #26344a;padding:9px 15px;border-radius:24px}.filter.active,.filter:hover{color:white;border-color:#4b8cff;background:#101b30}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:linear-gradient(180deg,#101724,#0a0e16);border:1px solid #1f2b3f;border-radius:17px;padding:10px;transition:.25s;position:relative}.product:hover{transform:translateY(-6px);border-color:#397dff;box-shadow:0 20px 55px #397dff16}.pic{height:225px;width:100%;object-fit:cover;border-radius:12px;display:block;background:#101723}.tag{position:absolute;top:20px;left:20px;background:#397dff;color:white;border-radius:8px;padding:5px 8px;font-size:9px;font-weight:800}.product h3{font-size:15px;margin:13px 3px 4px}.desc{font-size:11px;color:#718097;margin:0 3px 12px}.bottom{display:flex;align-items:center;justify-content:space-between;margin:0 3px}.price{font-size:19px;font-weight:900}.add{border:1px solid #3c82ff;background:#0e1d34;color:#75aaff;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:800}.add:hover{background:#1b4e99;color:white}
+.banners{display:grid;grid-template-columns:1.4fr .6fr;gap:14px}.banner{min-height:210px;border:1px solid #202d42;border-radius:18px;padding:28px;display:flex;align-items:end;position:relative;overflow:hidden;background:linear-gradient(120deg,#101a31,#0a0e16)}.banner:after{content:"";position:absolute;width:280px;height:280px;right:-80px;top:-80px;background:radial-gradient(circle,#397dff44,transparent 65%)}.banner h3{font-size:27px;position:relative;z-index:2}.banner p{color:#8490a4;position:relative;z-index:2;margin-top:7px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.contact{border:1px solid #202d42;border-radius:17px;background:#0c121c;padding:26px}.contact p{color:#7d8a9f;margin:9px 0 16px}.contact a{color:#69a0ff;font-weight:800}
+footer{border-top:1px solid #172235;padding:30px;text-align:center;color:#65738a;font-size:12px}
+.backdrop{position:fixed;inset:0;background:#000b;z-index:500;display:none}.drawer{position:absolute;right:0;top:0;width:min(430px,100%);height:100%;overflow:auto;background:#080e17;border-left:1px solid #293b56;padding:24px}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.close{background:#101a29;color:white;border:1px solid #2a3b55;border-radius:8px;padding:8px 10px}.cart-item{padding:14px 0;border-bottom:1px solid #192638;display:flex;justify-content:space-between;gap:10px}.total{font-size:22px;font-weight:900;margin:23px 0}.checkout{width:100%;border:0;background:linear-gradient(135deg,#397fff,#714cff);color:white;border-radius:10px;padding:13px;font-weight:900}
+.toast{position:fixed;right:20px;bottom:20px;z-index:600;background:#0d1726;border:1px solid #397dff;padding:13px 17px;border-radius:11px;transform:translateY(130px);transition:.25s}.toast.show{transform:translateY(0)}
+@media(max-width:1000px){nav{display:none}.grid{grid-template-columns:repeat(2,1fr)}.quick{grid-template-columns:repeat(2,1fr)}.banners{grid-template-columns:1fr}}
+@media(max-width:600px){.search{width:130px}.grid,.quick,.contact-grid{grid-template-columns:1fr}.hero h2{letter-spacing:-3px}.floating{display:none}}
 </style>
 </head>
-
 <body>
 
-<!-- INTRO -->
-
 <div id="intro">
-
-    <div class="floating f1">🎧</div>
-    <div class="floating f2">⌚</div>
-    <div class="floating f3">👟</div>
-    <div class="floating f4">📱</div>
-
-    <div class="intro-logo">
-
-        <div class="lt">LT</div>
-
-        <div class="name">
-            PARDUOTUVĖ
-        </div>
-
-        <div class="line"></div>
-
-        <p>DAUGIAU NEI TIK PARDUOTUVĖ</p>
-
-    </div>
-
+<div class="orb"></div>
+<div class="brand">
+<small>WELCOME TO</small>
+<h1><span>LT</span> PARDUOTUVĖ</h1>
+<div class="bar"></div>
+<p>MODERN • FAST • 24/7</p>
 </div>
-
-
-<div class="topbar">
-    ⚡ LT PARDUOTUVĖ • GREITAS APTARNAVIMAS • PAGALBA 24/7
 </div>
-
 
 <header>
-
-    <a class="logo" href="#top">
-        <span>LT</span> PARDUOTUVĖ
-    </a>
-
-    <nav>
-
-        <a href="#top">Pagrindinis</a>
-        <a href="#prekes">Prekės</a>
-        <a href="#kategorijos">Kategorijos</a>
-        <a href="#kontaktai">Kontaktai</a>
-
-    </nav>
-
-    <input
-        id="search"
-        class="search"
-        placeholder="Ieškoti prekių..."
-    >
-
-    <button
-        class="cart-button"
-        onclick="openCart()"
-    >
-        🛒 <span id="count">0</span>
-    </button>
-
+<div class="top">
+<a class="logo" href="#top"><span>LT</span> PARDUOTUVĖ</a>
+<nav><a href="#top">Pagrindinis</a><a href="#prekes">Parduotuvė</a><a href="#kategorijos">Kategorijos</a><a href="#kontaktai">Kontaktai</a></nav>
+<input id="search" class="search" placeholder="🔎 Ieškoti prekių...">
+<button class="cart" onclick="openCart()">🛒 <b id="count">0</b></button>
+</div>
+<div class="notice">⚡ PAGALBA 24/7 &nbsp; • &nbsp; 📧 nedasliubinas4@gmail.com &nbsp; • &nbsp; 🎫 Discord ticket sistema</div>
 </header>
 
-
 <main id="top">
-
-
 <section class="hero">
-
-    <div class="hero-content">
-
-        <span class="hero-badge">
-            LT PARDUOTUVĖ • 2026
-        </span>
-
-        <h1>
-            DAUGIAU NEI TIK
-            <span>PARDUOTUVĖ</span>
-        </h1>
-
-        <p>
-            Atrask modernų prekių katalogą vienoje vietoje.
-            Rūbai, elektronika, aksesuarai ir dar daugiau.
-        </p>
-
-        <div class="hero-buttons">
-
-            <a
-                class="btn"
-                href="#prekes"
-            >
-                APSIPIRKTI DABAR →
-            </a>
-
-            <a
-                class="btn alt"
-                href="#kontaktai"
-            >
-                SUSISIEKTI
-            </a>
-
-        </div>
-
-    </div>
-
+<div class="hero-content">
+<div class="eyebrow">LT PARDUOTUVĖ / 2026 EDITION</div>
+<h2>ATRASK<br><span>KAŽKĄ NAUJO.</span></h2>
+<p>Moderni internetinė parduotuvė, kurioje rasi elektronikos, rūbų, aksesuarų ir kitų prekių. Greita, patogu ir sukurta šiuolaikiniam apsipirkimui.</p>
+<div class="hero-btns"><a class="btn" href="#prekes">PERŽIŪRĖTI PREKES →</a><a class="btn alt" href="#kontaktai">SUSISIEKTI</a></div>
+</div>
+<div class="floating f1">⌚</div><div class="floating f2">🎧</div><div class="floating f3">👟</div>
 </section>
 
-
-<div class="services">
-
-    <div class="service">
-        ⚡
-        <b>Greitas aptarnavimas</b>
-        <span>Visada pasiruošę padėti</span>
-    </div>
-
-    <div class="service">
-        🛡️
-        <b>Patikimumas</b>
-        <span>Patogi parduotuvė</span>
-    </div>
-
-    <div class="service">
-        💎
-        <b>Platus pasirinkimas</b>
-        <span>Įvairios kategorijos</span>
-    </div>
-
-    <div class="service">
-        💬
-        <b>Pagalba 24/7</b>
-        <span>El. paštu ir Discord</span>
-    </div>
-
+<div class="quick">
+<div class="q"><strong>⚡ Greitas aptarnavimas</strong><span>Patogus susisiekimas</span></div>
+<div class="q"><strong>🛡️ Saugus apsipirkimas</strong><span>Aiškus katalogas</span></div>
+<div class="q"><strong>💎 Naujos prekės</strong><span>Reguliariai atnaujinamas pasirinkimas</span></div>
+<div class="q"><strong>💬 Pagalba 24/7</strong><span>Email + Discord</span></div>
 </div>
-
 
 <section id="prekes">
+<div class="section-head"><div><h2>Populiarios prekės</h2><p>Pasirink kategoriją arba naudok paiešką.</p></div></div>
+<div class="filters" id="kategorijos">
+<button class="filter active" data-cat="all">Visos</button>
+<button class="filter" data-cat="rubai">Rūbai</button>
+<button class="filter" data-cat="elektronika">Elektronika</button>
+<button class="filter" data-cat="aksesuarai">Aksesuarai</button>
+<button class="filter" data-cat="namai">Namai</button>
+</div>
 
-    <div class="section-title">
+<div class="grid">
 
-        <div>
+<article class="product" data-cat="rubai" data-name="Premium džemperis"><span class="tag">NEW</span><img class="pic" src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"><h3>Premium džemperis</h3><p class="desc">Modernus kasdienis stilius</p><div class="bottom"><b class="price">39.99 €</b><button class="add" onclick="add('Premium džemperis',39.99)">+ Krepšelis</button></div></article>
 
-            <h2>
-                🔥 Populiariausios prekės
-            </h2>
+<article class="product" data-cat="rubai" data-name="Oversize marškinėliai"><img class="pic" src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"><h3>Oversize marškinėliai</h3><p class="desc">Laisvalaikio modelis</p><div class="bottom"><b class="price">24.99 €</b><button class="add" onclick="add('Oversize marškinėliai',24.99)">+ Krepšelis</button></div></article>
 
-            <p>
-                Peržiūrėk mūsų pasirinkimą
-            </p>
+<article class="product" data-cat="rubai" data-name="Miesto striukė"><span class="tag">HOT</span><img class="pic" src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=800&q=80"><h3>Miesto striukė</h3><p class="desc">Universalus stilius</p><div class="bottom"><b class="price">69.99 €</b><button class="add" onclick="add('Miesto striukė',69.99)">+ Krepšelis</button></div></article>
 
-        </div>
+<article class="product" data-cat="elektronika" data-name="Belaidės ausinės"><span class="tag">TOP</span><img class="pic" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"><h3>Belaidės ausinės</h3><p class="desc">Muzikai ir kasdienai</p><div class="bottom"><b class="price">49.99 €</b><button class="add" onclick="add('Belaidės ausinės',49.99)">+ Krepšelis</button></div></article>
 
-    </div>
+<article class="product" data-cat="elektronika" data-name="Išmanusis laikrodis"><img class="pic" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"><h3>Išmanusis laikrodis</h3><p class="desc">Moderniam gyvenimui</p><div class="bottom"><b class="price">89.99 €</b><button class="add" onclick="add('Išmanusis laikrodis',89.99)">+ Krepšelis</button></div></article>
 
+<article class="product" data-cat="elektronika" data-name="Bluetooth kolonėlė"><img class="pic" src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"><h3>Bluetooth kolonėlė</h3><p class="desc">Garsas namams ir kelionėms</p><div class="bottom"><b class="price">59.99 €</b><button class="add" onclick="add('Bluetooth kolonėlė',59.99)">+ Krepšelis</button></div></article>
 
-    <div
-        class="filters"
-        id="kategorijos"
-    >
+<article class="product" data-cat="elektronika" data-name="USB-C įkroviklis"><img class="pic" src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80"><h3>USB-C įkroviklis</h3><p class="desc">Kompaktiškas ir patogus</p><div class="bottom"><b class="price">19.99 €</b><button class="add" onclick="add('USB-C įkroviklis',19.99)">+ Krepšelis</button></div></article>
 
-        <button
-            class="filter active"
-            data-cat="all"
-        >
-            Visos
-        </button>
+<article class="product" data-cat="aksesuarai" data-name="Miesto kuprinė"><span class="tag">NEW</span><img class="pic" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"><h3>Miesto kuprinė</h3><p class="desc">Kasdienai ir kelionėms</p><div class="bottom"><b class="price">34.99 €</b><button class="add" onclick="add('Miesto kuprinė',34.99)">+ Krepšelis</button></div></article>
 
-        <button
-            class="filter"
-            data-cat="rubai"
-        >
-            Rūbai
-        </button>
+<article class="product" data-cat="aksesuarai" data-name="Klasikinė piniginė"><img class="pic" src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80"><h3>Klasikinė piniginė</h3><p class="desc">Minimalistinis aksesuaras</p><div class="bottom"><b class="price">29.99 €</b><button class="add" onclick="add('Klasikinė piniginė',29.99)">+ Krepšelis</button></div></article>
 
-        <button
-            class="filter"
-            data-cat="elektronika"
-        >
-            Elektronika
-        </button>
+<article class="product" data-cat="aksesuarai" data-name="Akiniai nuo saulės"><img class="pic" src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800&q=80"><h3>Akiniai nuo saulės</h3><p class="desc">Modernus aksesuaras</p><div class="bottom"><b class="price">27.99 €</b><button class="add" onclick="add('Akiniai nuo saulės',27.99)">+ Krepšelis</button></div></article>
 
-        <button
-            class="filter"
-            data-cat="aksesuarai"
-        >
-            Aksesuarai
-        </button>
+<article class="product" data-cat="namai" data-name="Stalo lempa"><img class="pic" src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"><h3>Stalo lempa</h3><p class="desc">Moderniai darbo vietai</p><div class="bottom"><b class="price">32.99 €</b><button class="add" onclick="add('Stalo lempa',32.99)">+ Krepšelis</button></div></article>
 
-        <button
-            class="filter"
-            data-cat="namai"
-        >
-            Namai
-        </button>
+<article class="product" data-cat="namai" data-name="Terminis puodelis"><img class="pic" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80"><h3>Terminis puodelis</h3><p class="desc">Kasdieniam naudojimui</p><div class="bottom"><b class="price">21.99 €</b><button class="add" onclick="add('Terminis puodelis',21.99)">+ Krepšelis</button></div></article>
 
-    </div>
-
-
-    <div
-        class="grid"
-        id="grid"
-    >
-
-
-        <article
-            class="product"
-            data-cat="rubai"
-            data-name="Premium džemperis"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Premium džemperis
-            </h3>
-
-            <p class="desc">
-                Modernus kasdienis stilius
-            </p>
-
-            <div class="price">
-                39.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Premium džemperis',39.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="rubai"
-            data-name="Oversize marškinėliai"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Oversize marškinėliai
-            </h3>
-
-            <p class="desc">
-                Patogus laisvalaikio modelis
-            </p>
-
-            <div class="price">
-                24.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Oversize marškinėliai',24.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="elektronika"
-            data-name="Belaidės ausinės"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Belaidės ausinės
-            </h3>
-
-            <p class="desc">
-                Muzikai ir kasdienai
-            </p>
-
-            <div class="price">
-                49.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Belaidės ausinės',49.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="elektronika"
-            data-name="Išmanusis laikrodis"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Išmanusis laikrodis
-            </h3>
-
-            <p class="desc">
-                Moderniam gyvenimo būdui
-            </p>
-
-            <div class="price">
-                89.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Išmanusis laikrodis',89.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="elektronika"
-            data-name="Bluetooth kolonėlė"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Bluetooth kolonėlė
-            </h3>
-
-            <p class="desc">
-                Garsas visur
-            </p>
-
-            <div class="price">
-                59.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Bluetooth kolonėlė',59.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="aksesuarai"
-            data-name="Miesto kuprinė"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Miesto kuprinė
-            </h3>
-
-            <p class="desc">
-                Kasdienai ir kelionėms
-            </p>
-
-            <div class="price">
-                34.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Miesto kuprinė',34.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="aksesuarai"
-            data-name="Klasikinė piniginė"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Klasikinė piniginė
-            </h3>
-
-            <p class="desc">
-                Minimalistinis aksesuaras
-            </p>
-
-            <div class="price">
-                29.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Klasikinė piniginė',29.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-        <article
-            class="product"
-            data-cat="namai"
-            data-name="Stalo lempa"
-        >
-
-            <img
-                src="https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"
-            >
-
-            <h3>
-                Stalo lempa
-            </h3>
-
-            <p class="desc">
-                Moderniai darbo vietai
-            </p>
-
-            <div class="price">
-                32.99 €
-            </div>
-
-            <button
-                class="add"
-                onclick="add('Stalo lempa',32.99)"
-            >
-                🛒 Į krepšelį
-            </button>
-
-        </article>
-
-
-    </div>
-
+</div>
 </section>
 
+<section>
+<div class="banners">
+<div class="banner"><div><h3>Modernus pasirinkimas.</h3><p>Vienoje vietoje surinktos populiarios kategorijos.</p></div></div>
+<div class="banner"><div><h3>Pagalba 24/7</h3><p>Visada gali susisiekti.</p></div></div>
+</div>
+</section>
 
 <section id="kontaktai">
-
-    <div class="contact-grid">
-
-        <div class="contact">
-
-            <h2>
-                📧 Susisiekite
-            </h2>
-
-            <p>
-                Turite klausimų? Parašykite mums.
-            </p>
-
-            <a href="mailto:nedasliubinas4@gmail.com">
-                nedasliubinas4@gmail.com
-            </a>
-
-        </div>
-
-
-        <div class="contact">
-
-            <h2>
-                🎫 Discord / Ticket
-            </h2>
-
-            <p>
-                Prisijunkite prie Discord ir susisiekite per ticket.
-            </p>
-
-            <a
-                class="btn"
-                href="https://dsc.gg/ltparduotuve"
-                target="_blank"
-            >
-                ATIDARYTI DISCORD
-            </a>
-
-        </div>
-
-    </div>
-
+<div class="contact-grid">
+<div class="contact"><h2>📧 El. paštas</h2><p>Klausimams ir pagalbai.</p><a href="mailto:nedasliubinas4@gmail.com">nedasliubinas4@gmail.com</a></div>
+<div class="contact"><h2>🎫 Discord Ticket</h2><p>Prisijunk ir susisiek per ticket sistemą.</p><a class="btn" href="https://dsc.gg/ltparduotuve" target="_blank">ATIDARYTI DISCORD</a></div>
+</div>
 </section>
-
 </main>
 
+<footer>© 2026 LT PARDUOTUVĖ • Pagalba 24/7 • nedasliubinas4@gmail.com</footer>
 
-<footer>
+<div class="toast" id="toast">✓ Prekė įdėta į krepšelį</div>
 
-    © 2026 LT Parduotuvė • Pagalba 24/7
-
-</footer>
-
-
-<!-- KREPŠELIS -->
-
-<div
-    class="backdrop"
-    id="cartBg"
-    onclick="closeCart()"
->
-
-    <aside
-        class="drawer"
-        onclick="event.stopPropagation()"
-    >
-
-        <div class="drawer-head">
-
-            <h2>
-                🛒 Krepšelis
-            </h2>
-
-            <button
-                class="close"
-                onclick="closeCart()"
-            >
-                ✕
-            </button>
-
-        </div>
-
-        <div id="items"></div>
-
-        <div class="total">
-
-            Iš viso:
-            <span id="total">
-                0.00 €
-            </span>
-
-        </div>
-
-        <button
-            class="checkout"
-            onclick="alert('Apmokėjimo sistema dar neprijungta.')"
-        >
-            TĘSTI Į APMOKĖJIMĄ
-        </button>
-
-    </aside>
-
+<div class="backdrop" id="cartBg" onclick="closeCart()">
+<aside class="drawer" onclick="event.stopPropagation()">
+<div class="drawer-head"><h2>🛒 Krepšelis</h2><button class="close" onclick="closeCart()">✕</button></div>
+<div id="items"></div>
+<div class="total">Iš viso: <span id="total">0.00 €</span></div>
+<button class="checkout" onclick="alert('Apmokėjimo sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ</button>
+</aside>
 </div>
-
-
-<div
-    class="toast"
-    id="toast"
->
-    ✓ Prekė įdėta į krepšelį
-</div>
-
 
 <script>
-
-let cart = [];
-
-let category = "all";
-
-
-const products =
-    [...document.querySelectorAll(".product")];
-
+let cart=[],cat="all";
+const products=[...document.querySelectorAll(".product")];
 
 function add(name,price){
-
-    cart.push({
-        name:name,
-        price:price
-    });
-
-    renderCart();
-
-    const toast =
-        document.getElementById("toast");
-
-    toast.classList.add("show");
-
-    setTimeout(()=>{
-        toast.classList.remove("show");
-    },1800);
-
+ cart.push({name,price});
+ renderCart();
+ document.getElementById("toast").classList.add("show");
+ setTimeout(()=>document.getElementById("toast").classList.remove("show"),1700);
 }
-
-
 function renderCart(){
-
-    document.getElementById("count").textContent =
-        cart.length;
-
-
-    const items =
-        document.getElementById("items");
-
-
-    if(cart.length === 0){
-
-        items.innerHTML =
-            '<p style="color:#77869c">Krepšelis tuščias.</p>';
-
-    }else{
-
-        items.innerHTML =
-            cart.map((item,index)=>`
-
-                <div class="cart-item">
-
-                    <span>
-                        ${item.name}
-                    </span>
-
-                    <b>
-                        ${item.price.toFixed(2)} €
-
-                        <button
-                            class="close"
-                            onclick="removeItem(${index})"
-                        >
-                            ✕
-                        </button>
-
-                    </b>
-
-                </div>
-
-            `).join("");
-
-    }
-
-
-    const total =
-        cart.reduce(
-            (sum,item)=>sum+item.price,
-            0
-        );
-
-
-    document.getElementById("total").textContent =
-        total.toFixed(2)+" €";
-
+ document.getElementById("count").textContent=cart.length;
+ document.getElementById("items").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><b>${x.price.toFixed(2)} € <button class="close" onclick="removeItem(${i})">✕</button></b></div>`).join(""):'<p style="color:#738097">Krepšelis tuščias.</p>';
+ document.getElementById("total").textContent=cart.reduce((s,x)=>s+x.price,0).toFixed(2)+" €";
 }
-
-
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    renderCart();
-
-}
-
-
-function openCart(){
-
-    document.getElementById("cartBg").style.display =
-        "block";
-
-}
-
-
-function closeCart(){
-
-    document.getElementById("cartBg").style.display =
-        "none";
-
-}
-
-
+function removeItem(i){cart.splice(i,1);renderCart()}
+function openCart(){document.getElementById("cartBg").style.display="block"}
+function closeCart(){document.getElementById("cartBg").style.display="none"}
 function filterProducts(){
-
-    const query =
-        document.getElementById("search").value.toLowerCase();
-
-
-    products.forEach(product=>{
-
-        const name =
-            product.dataset.name.toLowerCase();
-
-        const matchesSearch =
-            name.includes(query);
-
-        const matchesCategory =
-            category === "all" ||
-            product.dataset.cat === category;
-
-
-        product.style.display =
-            matchesSearch && matchesCategory
-            ? ""
-            : "none";
-
-    });
-
+ const q=document.getElementById("search").value.toLowerCase();
+ products.forEach(p=>p.style.display=(cat==="all"||p.dataset.cat===cat)&&p.dataset.name.toLowerCase().includes(q)?"":"none");
 }
-
-
-document
-.getElementById("search")
-.addEventListener(
-    "input",
-    filterProducts
-);
-
-
-document
-.querySelectorAll(".filter")
-.forEach(button=>{
-
-    button.addEventListener("click",()=>{
-
-        document
-        .querySelectorAll(".filter")
-        .forEach(x=>{
-            x.classList.remove("active");
-        });
-
-
-        button.classList.add("active");
-
-
-        category =
-            button.dataset.cat;
-
-
-        filterProducts();
-
-    });
-
-});
-
-
+document.getElementById("search").addEventListener("input",filterProducts);
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active");cat=b.dataset.cat;filterProducts();
+}));
 renderCart();
-
 </script>
-
 </body>
 </html>
