@@ -164,6 +164,27 @@ body.auth-locked{overflow:hidden}
  .product-modal-info{padding:22px}
  .product-modal-info h2{font-size:23px}
 }
+
+/* === ORDERS + CHECKOUT === */
+.account-action{margin-top:6px}
+.orders-modal,.checkout-modal{display:none;position:fixed;inset:0;z-index:900;background:#000c;padding:18px;align-items:center;justify-content:center}
+.orders-modal.open,.checkout-modal.open{display:flex}
+.orders-card,.checkout-card{width:min(980px,100%);max-height:92vh;overflow:auto;background:#080f1a;border:1px solid #3b5578;border-radius:20px;box-shadow:0 30px 100px #000e}
+.orders-head,.checkout-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid #263950}
+.orders-head h2,.checkout-head h2{font-size:18px}.orders-head small,.checkout-head small{display:block;color:#7e8da5;font-size:9px;margin-top:4px}
+.orders-body,.checkout-body{padding:20px}
+.order-list{display:grid;gap:10px}.order-card{background:#0b1421;border:1px solid #263950;border-radius:13px;padding:15px;cursor:pointer;transition:.2s}.order-card:hover{border-color:#4c8cff;transform:translateY(-1px)}
+.order-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.order-number{font-size:13px;font-weight:900}.order-date{color:#7e8da5;font-size:9px;margin-top:4px}
+.order-status{padding:6px 9px;border-radius:20px;font-size:9px;font-weight:800;background:#18263b;border:1px solid #344b69;white-space:nowrap}
+.status-paid{color:#50d6a0;border-color:#247a61;background:#0d2b24}.status-pending{color:#f0c66b}.status-shipped{color:#7fb0ff}.status-cancelled{color:#ff8585;border-color:#793b45;background:#29141a}
+.order-bottom{display:flex;justify-content:space-between;margin-top:12px;color:#8290a8;font-size:10px}.order-bottom strong{color:#fff;font-size:14px}
+.order-detail{margin-top:14px;padding-top:14px;border-top:1px solid #263950}.order-items{display:grid;gap:7px;margin:10px 0}.order-item-row{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #17263a;font-size:10px}.order-item-row span{color:#aebbd0}.order-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.order-info-box{background:#08111d;border:1px solid #22354e;border-radius:9px;padding:10px}.order-info-box small{display:block;color:#718096;font-size:8px;margin-bottom:4px}.order-info-box b{font-size:10px}
+.checkout-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.checkout-section{background:#0b1421;border:1px solid #263950;border-radius:13px;padding:16px}.checkout-section h3{font-size:12px;margin-bottom:13px}.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.checkout-field label{display:block;color:#9eabc0;font-size:9px;margin-bottom:5px}.checkout-field input{width:100%;height:40px;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:0 11px;outline:none;font-size:10px}.checkout-field input:focus{border-color:#4c8cff}.checkout-field.full{grid-column:1/-1}.shipping-options{display:grid;gap:8px}.shipping-option{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid #293d58;background:#08111d;border-radius:9px;cursor:pointer}.shipping-option:has(input:checked){border-color:#4c8cff;background:#102754}.shipping-option input{accent-color:#4389ff}.shipping-option span{font-size:10px}.shipping-option b{margin-left:auto;font-size:10px;color:#22e5a0}.checkout-summary{position:sticky;top:0}.checkout-summary-list{display:grid;gap:7px;max-height:260px;overflow:auto}.checkout-summary-item{display:flex;justify-content:space-between;gap:8px;font-size:10px;padding:7px 0;border-bottom:1px solid #17263a}.checkout-total{display:flex;justify-content:space-between;padding-top:12px;margin-top:10px;border-top:1px solid #30445f;font-size:12px}.checkout-total b{font-size:21px;color:#22e5a0}.checkout-note{color:#718096;font-size:9px;line-height:1.5;margin-top:12px}.checkout-error{min-height:15px;color:#ff7373;font-size:9px;margin:8px 0}.checkout-submit{width:100%;height:44px;border:1px solid #74a4ff;border-radius:10px;background:linear-gradient(135deg,#3b83ff,#6a4cff);color:#fff;font-weight:800;cursor:pointer}
+.admin-order{display:grid;grid-template-columns:1fr auto;gap:12px;background:#0b1421;border:1px solid #263950;border-radius:11px;padding:13px}.admin-order-info b{font-size:11px}.admin-order-info small{display:block;color:#7d8ca3;font-size:9px;margin-top:4px;line-height:1.5}.admin-order-actions{display:flex;align-items:center;gap:7px}.admin-order-actions select{background:#08111d;color:#fff;border:1px solid #30445f;border-radius:8px;padding:8px;font-size:9px}
+@media(max-width:750px){.checkout-layout{grid-template-columns:1fr}.checkout-summary{position:static}.checkout-grid,.order-info-grid{grid-template-columns:1fr}.checkout-field.full{grid-column:auto}.admin-order{grid-template-columns:1fr}.admin-order-actions{justify-content:flex-start}}
+
+
+.admin-chat-layout{display:grid;grid-template-columns:280px 1fr;gap:12px;min-height:420px}.admin-chat-users,.admin-chat-window{background:#0b1421;border:1px solid #263950;border-radius:12px;overflow:hidden}.admin-chat-users{padding:10px}.admin-chat-user{padding:10px;border:1px solid #22354e;background:#08111d;border-radius:9px;cursor:pointer;margin-bottom:7px}.admin-chat-user:hover,.admin-chat-user.active{border-color:#4c8cff;background:#102754}.admin-chat-user b{font-size:10px}.admin-chat-user small{display:block;color:#718096;font-size:8px;margin-top:4px}.admin-chat-title{padding:13px;border-bottom:1px solid #263950;font-size:11px;font-weight:800}.admin-chat-body{height:340px;overflow:auto;padding:12px}.admin-chat-bubble{max-width:80%;padding:8px 10px;border-radius:10px;background:#101c2d;border:1px solid #263b58;margin:6px 0;font-size:9px;line-height:1.5}.admin-chat-bubble.admin{margin-left:auto;background:#173661}.admin-chat-time{display:block;color:#68788e;font-size:7px;margin-top:4px}.admin-chat-reply{display:flex;gap:7px;padding:9px;border-top:1px solid #263950}.admin-chat-reply input{flex:1;background:#08111d;border:1px solid #2b3e5a;color:#fff;border-radius:8px;padding:9px;font-size:9px;outline:none}@media(max-width:700px){.admin-chat-layout{grid-template-columns:1fr}.admin-chat-users{max-height:220px}.admin-chat-body{height:300px}}
 </style>
 </head>
 <body class="auth-locked">
@@ -250,7 +271,7 @@ body.auth-locked{overflow:hidden}
 <button class="nav-icon" onclick="toggleUserMenu()">♙</button>
 <div class="user-dropdown" id="userDropdown">
 <small id="userEmail">Paskyra</small>
-<button id="adminBtn" style="display:none" onclick="openAdmin()">⚙️ Admin panelė</button><button onclick="logoutUser()">Atsijungti</button>
+<button class="account-action" onclick="openOrders()">📦 Mano užsakymai</button><button id="adminBtn" style="display:none" onclick="openAdmin()">⚙️ Admin panelė</button><button onclick="logoutUser()">Atsijungti</button>
 </div>
 </div>
 <button class="nav-icon">♡</button><button class="nav-icon cart" onclick="openCart()">🛒<span class="count" id="count">0</span></button>
@@ -308,6 +329,7 @@ body.auth-locked{overflow:hidden}
    <button class="admin-tab" onclick="adminTab('products',this)">📦 Prekės</button>
    <button class="admin-tab" onclick="adminTab('categories',this)">🏷️ Kategorijos</button>
    <button class="admin-tab" onclick="adminTab('coupons',this)">🎟️ Kuponai</button>
+    <button class="admin-tab" onclick="adminTab('orders',this)">🧾 Užsakymai</button>
    <button class="admin-tab" onclick="adminTab('chat',this)">💬 Klientų chat</button>
   </div>
   <section class="admin-section active" id="admin-dashboard">
@@ -316,6 +338,8 @@ body.auth-locked{overflow:hidden}
     <div class="admin-stat"><b id="statUsers">—</b><span>VARTOTOJAI</span></div>
     <div class="admin-stat"><b id="statMessages">—</b><span>CHAT ŽINUTĖS</span></div>
     <div class="admin-stat"><b id="statCoupons">0</b><span>AKTYVŪS KUPONAI</span></div>
+     <div class="admin-stat"><b id="statOrders">0</b><span>UŽSAKYMAI</span></div>
+     <div class="admin-stat"><b id="statRevenue">0.00 €</b><span>UŽSAKYMŲ SUMA</span></div>
    </div>
    <div class="admin-note">Admin teisės tikrinamos per Supabase. Duomenų bazės RLS taisyklės riboja administratoriaus veiksmus.</div>
   </section>
@@ -376,7 +400,7 @@ body.auth-locked{overflow:hidden}
 <div id="items"></div>
 <div class="coupon-box"><label class="coupon-toggle"><input id="couponToggle" type="checkbox" onchange="toggleCouponBox()"><span>Turiu nuolaidos kodą</span></label><div id="couponForm" class="coupon-hidden"><div class="coupon-row"><input id="couponInput" placeholder="Įrašyk nuolaidos kodą"><button class="admin-primary" onclick="applyCoupon()">Pritaikyti</button></div><div class="coupon-message" id="couponMessage"></div></div></div>
 <div class="cart-summary"><div class="cart-summary-row"><span>Tarpinė suma</span><strong id="subtotal">0.00 €</strong></div><div class="cart-summary-row"><span>Nuolaida</span><strong id="discountTotal">− 0.00 €</strong></div><div class="cart-summary-total"><span>Iš viso</span><b id="total">0.00 €</b></div><div id="couponApplied" style="font-size:9px;color:#50d6a0;margin-top:7px"></div></div>
-<button class="checkout" style="margin-top:14px" onclick="alert('Apmokėjimo langas paruoštas, bet mokėjimų sistema dar neprijungta.')">TĘSTI Į APMOKĖJIMĄ →</button>
+<button class="checkout" style="margin-top:14px" onclick="openCheckout()">TĘSTI Į UŽSAKYMO FORMĄ →</button>
 </aside></div>
 
 <div id="productModal" class="product-modal" onclick="closeProductModal()">
@@ -390,6 +414,57 @@ body.auth-locked{overflow:hidden}
 <div id="modalPrice"></div>
 <div class="modal-actions"><div class="modal-qty"><button onclick="changeModalQty(-1)">−</button><span id="modalQty">1</span><button onclick="changeModalQty(1)">+</button></div><button class="modal-add" onclick="addModalToCart()">🛒 Į KREPŠELĮ</button></div>
 </div></div></div>
+
+
+<div id="ordersModal" class="orders-modal" onclick="closeOrders()">
+ <div class="orders-card" onclick="event.stopPropagation()">
+  <div class="orders-head"><div><h2>📦 Mano užsakymai</h2><small>Visi tavo pirkimai vienoje vietoje</small></div><button class="close" onclick="closeOrders()">✕</button></div>
+  <div class="orders-body"><div id="ordersList" class="order-list"><div class="admin-empty">Kraunama...</div></div></div>
+ </div>
+</div>
+
+<div id="checkoutModal" class="checkout-modal" onclick="closeCheckout()">
+ <div class="checkout-card" onclick="event.stopPropagation()">
+  <div class="checkout-head"><div><h2>🧾 Užsakymo pateikimas</h2><small>Užpildyk pristatymo informaciją</small></div><button class="close" onclick="closeCheckout()">✕</button></div>
+  <div class="checkout-body">
+   <div class="checkout-layout">
+    <div>
+     <div class="checkout-section">
+      <h3>👤 Kontaktai ir pristatymas</h3>
+      <div class="checkout-grid">
+       <div class="checkout-field"><label>VARDAS</label><input id="coFirstName" autocomplete="given-name"></div>
+       <div class="checkout-field"><label>PAVARDĖ</label><input id="coLastName" autocomplete="family-name"></div>
+       <div class="checkout-field"><label>EL. PAŠTAS</label><input id="coEmail" type="email" autocomplete="email"></div>
+       <div class="checkout-field"><label>TELEFONAS</label><input id="coPhone" type="tel" autocomplete="tel" placeholder="+370..."></div>
+       <div class="checkout-field full"><label>ADRESAS</label><input id="coAddress" autocomplete="street-address" placeholder="Gatvė, namo ir buto nr."></div>
+       <div class="checkout-field"><label>MIESTAS</label><input id="coCity" autocomplete="address-level2"></div>
+       <div class="checkout-field"><label>PAŠTO KODAS</label><input id="coPostal" autocomplete="postal-code"></div>
+      </div>
+     </div>
+     <div class="checkout-section" style="margin-top:12px">
+      <h3>🚚 Pristatymas Lietuvoje</h3>
+      <div class="shipping-options">
+       <label class="shipping-option"><input type="radio" name="shipping" value="LP EXPRESS" data-price="2.40" checked onchange="renderCheckoutSummary()"><span>LP EXPRESS</span><b>2,40 €</b></label>
+       <label class="shipping-option"><input type="radio" name="shipping" value="DPD" data-price="2.80" onchange="renderCheckoutSummary()"><span>DPD</span><b>2,80 €</b></label>
+       <label class="shipping-option"><input type="radio" name="shipping" value="OMNIVA" data-price="2.80" onchange="renderCheckoutSummary()"><span>OMNIVA</span><b>2,80 €</b></label>
+      </div>
+     </div>
+    </div>
+    <div class="checkout-section checkout-summary">
+     <h3>🛒 Užsakymo santrauka</h3>
+     <div id="checkoutSummaryList" class="checkout-summary-list"></div>
+     <div class="cart-summary-row"><span>Prekės</span><strong id="coSubtotal">0.00 €</strong></div>
+     <div class="cart-summary-row"><span>Nuolaida</span><strong id="coDiscount">− 0.00 €</strong></div>
+     <div class="cart-summary-row"><span>Pristatymas</span><strong id="coShipping">2.40 €</strong></div>
+     <div class="checkout-total"><span>Iš viso</span><b id="coTotal">0.00 €</b></div>
+     <div id="checkoutError" class="checkout-error"></div>
+     <button class="checkout-submit" onclick="submitOrder()">PATVIRTINTI UŽSAKYMĄ →</button>
+     <div class="checkout-note">Užsakymas pirmiausia bus sukurtas kaip „Laukia apmokėjimo“. Mokėjimo sistemą vėliau prijungsime prie šio užsakymo.</div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -670,13 +745,13 @@ async function initAdmin(user){await checkAdmin(user);await loadCategories();awa
 async function openAdmin(){
   if(!isAdmin)return alert("Neturite administratoriaus teisių.");
   document.getElementById("adminPanel").classList.add("open");
-  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();
+  await loadAdminStats();await loadCategories();await loadAdminProducts();await loadAdminCoupons();await loadAdminOrders();await loadAdminChats();
 }
 function closeAdmin(){document.getElementById("adminPanel").classList.remove("open")}
 function adminTab(name,btn){
   document.querySelectorAll(".admin-tab").forEach(x=>x.classList.remove("active"));
   document.querySelectorAll(".admin-section").forEach(x=>x.classList.remove("active"));
-  btn.classList.add("active");document.getElementById("admin-"+name).classList.add("active");
+  btn.classList.add("active");document.getElementById("admin-"+name).classList.add("active");if(name==="chat")loadAdminChats();if(name==="orders")loadAdminOrders();
 }
 async function loadAdminStats(){
   const p=await supabaseClient.from("products").select("id",{count:"exact",head:true});
@@ -685,6 +760,10 @@ async function loadAdminStats(){
   document.getElementById("statMessages").textContent=m.count??"0";
   const c=await supabaseClient.from("coupons").select("id",{count:"exact",head:true}).eq("active",true);
   document.getElementById("statCoupons").textContent=c.count??"0";
+  const o=await supabaseClient.from("orders").select("id,total_amount",{count:"exact"});
+  document.getElementById("statOrders").textContent=o.count??"0";
+  const revenue=(o.data||[]).reduce((sum,x)=>sum+Number(x.total_amount||0),0);
+  document.getElementById("statRevenue").textContent=money(revenue);
 }
 function escapeHtml(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function money(v){return Number(v||0).toFixed(2)+" €"}
@@ -790,6 +869,85 @@ async function loadStoreProducts(){
   filter();
 }
 
+
+function statusLabel(status){
+  const map={"pending":"Laukia apmokėjimo","paid":"Apmokėtas","processing":"Vykdomas","shipped":"Išsiųstas","completed":"Užbaigtas","cancelled":"Atšauktas"};
+  return map[status]||status||"Nežinoma";
+}
+function statusClass(status){
+  if(status==="paid"||status==="completed")return "status-paid";
+  if(status==="shipped")return "status-shipped";
+  if(status==="cancelled")return "status-cancelled";
+  return "status-pending";
+}
+function formatDate(v){return v?new Date(v).toLocaleString("lt-LT"):"—"}
+
+async function loadAdminOrders(){
+  const list=document.getElementById("adminOrderList"); if(!list||!isAdmin)return;
+  list.innerHTML='<div class="admin-empty">Kraunama...</div>';
+  const {data,error}=await supabaseClient.from("orders").select("*, order_items(*)").order("created_at",{ascending:false});
+  if(error){console.error(error);list.innerHTML='<div class="admin-empty">Nepavyko įkelti užsakymų. Paleisk užsakymų SQL.</div>';return}
+  if(!data?.length){list.innerHTML='<div class="admin-empty">Kol kas užsakymų nėra.</div>';return}
+  list.innerHTML=data.map(o=>`<div class="admin-order">
+    <div class="admin-order-info">
+      <b>#${escapeHtml(o.order_number)}</b>
+      <small>${escapeHtml((o.first_name||"")+" "+(o.last_name||""))} • ${escapeHtml(o.email||"")} • ${formatDate(o.created_at)}<br>
+      ${escapeHtml(o.shipping_method||"")} • ${escapeHtml(o.city||"")} • ${money(o.total_amount)}</small>
+    </div>
+    <div class="admin-order-actions">
+      <select onchange="updateOrderStatus('${o.id}',this.value)">
+       ${["pending","paid","processing","shipped","completed","cancelled"].map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${statusLabel(s)}</option>`).join("")}
+      </select>
+      <button class="admin-secondary" onclick='showOrderDetails(${JSON.stringify(o).replace(/'/g,"&#39;")})'>👁️</button>
+    </div>
+  </div>`).join("");
+}
+async function updateOrderStatus(id,status){
+  if(!isAdmin)return;
+  const {error}=await supabaseClient.from("orders").update({status}).eq("id",id);
+  if(error)return alert("Nepavyko pakeisti užsakymo būsenos.");
+  await loadAdminOrders(); await loadAdminStats();
+}
+function showOrderDetails(o){
+  const items=(o.order_items||[]).map(x=>`${x.product_name} × ${x.quantity} — ${money(x.unit_price* x.quantity)}`).join("\\n");
+  alert(`Užsakymas #${o.order_number}\\n\\nKlientas: ${o.first_name||""} ${o.last_name||""}\\nEl. paštas: ${o.email||""}\\nTelefonas: ${o.phone||"—"}\\nAdresas: ${o.address||""}, ${o.city||""} ${o.postal_code||""}\\nPristatymas: ${o.shipping_method||""}\\n\\nPrekės:\\n${items||"—"}\\n\\nSuma: ${money(o.total_amount)}\\nBūsena: ${statusLabel(o.status)}`);
+}
+
+let adminChatSessionId=null;
+let adminChatRows=[];
+
+async function loadAdminChats(){
+  const users=document.getElementById("adminChatUsers"); if(!users||!isAdmin)return;
+  const {data,error}=await supabaseClient.from("messages").select("id,session_id,sender,message,created_at").order("created_at",{ascending:true});
+  if(error){console.error(error);users.innerHTML='<div class="admin-empty">Nepavyko įkelti chatų. Patikrink RLS SQL.</div>';return}
+  const groups={};
+  (data||[]).forEach(m=>{if(!groups[m.session_id])groups[m.session_id]=[];groups[m.session_id].push(m)});
+  const ids=Object.keys(groups);
+  if(!ids.length){users.innerHTML='<div class="admin-empty">Klientų žinučių nėra.</div>';return}
+  users.innerHTML=ids.map(id=>{
+    const rows=groups[id], last=rows[rows.length-1];
+    return `<div class="admin-chat-user ${id===adminChatSessionId?"active":""}" onclick="openAdminChat(${JSON.stringify(id)})"><b>${escapeHtml(id.slice(0,8))}…</b><small>${escapeHtml(last.message.slice(0,70))}<br>${formatDate(last.created_at)}</small></div>`;
+  }).join("");
+  window.adminChatGroups=groups;
+  if(!adminChatSessionId) openAdminChat(ids[0]);
+}
+function openAdminChat(sessionId){
+  adminChatSessionId=sessionId;
+  const groups=window.adminChatGroups||{};
+  const rows=groups[sessionId]||[];
+  document.getElementById("adminChatTitle").textContent="💬 Klientas • "+sessionId;
+  document.getElementById("adminChatBody").innerHTML=rows.map(m=>`<div class="admin-chat-bubble ${m.sender==="admin"?"admin":""}">${escapeHtml(m.message)}<span class="admin-chat-time">${m.sender==="admin"?"Administratorius":"Klientas"} • ${formatDate(m.created_at)}</span></div>`).join("");
+  document.querySelectorAll(".admin-chat-user").forEach(x=>x.classList.toggle("active",x.getAttribute("onclick")?.includes(sessionId)));
+  const b=document.getElementById("adminChatBody");b.scrollTop=b.scrollHeight;
+}
+async function sendAdminChat(){
+  if(!isAdmin||!adminChatSessionId)return alert("Pasirink klientą.");
+  const input=document.getElementById("adminChatInput"); const message=input.value.trim(); if(!message)return;
+  const {error}=await supabaseClient.from("messages").insert({session_id:adminChatSessionId,sender:"admin",message});
+  if(error){console.error(error);return alert("Nepavyko išsiųsti atsakymo. Patikrink RLS SQL.");}
+  input.value=""; await loadAdminChats(); openAdminChat(adminChatSessionId);
+}
+document.getElementById("adminChatInput")?.addEventListener("keydown",e=>{if(e.key==="Enter")sendAdminChat()});
 async function loadAdminCoupons(){
   const list=document.getElementById("adminCouponList");if(!list)return;list.innerHTML='<div class="admin-empty">Kraunama...</div>';
   const {data,error}=await supabaseClient.from("coupons").select("*").order("created_at",{ascending:false});
@@ -831,9 +989,100 @@ async function applyCoupon(){
   if(!code){setCouponMessage("Įrašyk nuolaidos kodą.");return;}
   const {data,error}=await supabaseClient.rpc("apply_coupon",{p_code:code});
   if(error){console.error(error);activeCoupon=null;renderCart();setCouponMessage(error.message||"Kuponas neegzistuoja arba jo negalima panaudoti.");return;}
-  activeCoupon=data; renderCart(); input.value=""; setCouponMessage(`✓ Kuponas pritaikytas: −${Number(data.discount_percent)}%`,true); toast(`✓ Kuponas ${code} pritaikytas`);
+  activeCoupon=data; renderCart(); renderCheckoutSummary(); input.value=""; setCouponMessage(`✓ Kuponas pritaikytas: −${Number(data.discount_percent)}%`,true); toast(`✓ Kuponas ${code} pritaikytas`);
 }
 
+
+async function openOrders(){
+  const modal=document.getElementById("ordersModal");
+  modal.classList.add("open");
+  await loadMyOrders();
+}
+function closeOrders(){document.getElementById("ordersModal").classList.remove("open")}
+async function loadMyOrders(){
+  const list=document.getElementById("ordersList");
+  list.innerHTML='<div class="admin-empty">Kraunama...</div>';
+  const {data:userData}=await supabaseClient.auth.getUser();
+  const user=userData?.user;
+  if(!user){list.innerHTML='<div class="admin-empty">Reikia prisijungti.</div>';return}
+  const {data,error}=await supabaseClient.from("orders").select("*, order_items(*)").eq("user_id",user.id).order("created_at",{ascending:false});
+  if(error){console.error(error);list.innerHTML='<div class="admin-empty">Nepavyko įkelti užsakymų. Paleisk užsakymų SQL.</div>';return}
+  if(!data?.length){list.innerHTML='<div class="admin-empty">📦 Dar neturi užsakymų.</div>';return}
+  list.innerHTML=data.map(o=>`
+   <div class="order-card" onclick="toggleOrderDetail('${o.id}')">
+    <div class="order-top"><div><div class="order-number">#${escapeHtml(o.order_number)}</div><div class="order-date">${formatDate(o.created_at)}</div></div><span class="order-status ${statusClass(o.status)}">${statusLabel(o.status)}</span></div>
+    <div class="order-bottom"><span>${(o.order_items||[]).reduce((n,x)=>n+Number(x.quantity||0),0)} prek.</span><strong>${money(o.total_amount)}</strong></div>
+    <div class="order-detail" id="order-detail-${o.id}" style="display:none">
+      <div class="order-items">${(o.order_items||[]).map(x=>`<div class="order-item-row"><span>${escapeHtml(x.product_name)} × ${x.quantity}</span><b>${money(Number(x.unit_price)*Number(x.quantity))}</b></div>`).join("")}</div>
+      <div class="order-info-grid">
+       <div class="order-info-box"><small>PRISTATYMAS</small><b>${escapeHtml(o.shipping_method||"—")} • ${money(o.shipping_amount)}</b></div>
+       <div class="order-info-box"><small>ADRESAS</small><b>${escapeHtml(o.address||"—")}, ${escapeHtml(o.city||"")}</b></div>
+       <div class="order-info-box"><small>EL. PAŠTAS</small><b>${escapeHtml(o.email||"—")}</b></div>
+       <div class="order-info-box"><small>TELEFONAS</small><b>${escapeHtml(o.phone||"—")}</b></div>
+      </div>
+    </div>
+   </div>`).join("");
+}
+function toggleOrderDetail(id){const el=document.getElementById("order-detail-"+id);if(el)el.style.display=el.style.display==="none"?"block":"none"}
+
+function selectedShipping(){
+  const el=document.querySelector('input[name="shipping"]:checked');
+  return {method:el?.value||"LP EXPRESS",price:Number(el?.dataset.price||2.40)};
+}
+function openCheckout(){
+  if(!cart.length)return alert("Krepšelis tuščias.");
+  document.getElementById("cartBg").style.display="none";
+  document.getElementById("checkoutError").textContent="";
+  document.getElementById("checkoutModal").classList.add("open");
+  supabaseClient.auth.getUser().then(async ({data})=>{
+    if(data.user?.email)document.getElementById("coEmail").value=data.user.email;
+    if(data.user?.id){
+      const {data:profile}=await supabaseClient.from("profiles").select("first_name,last_name,phone,address,city,postal_code").eq("user_id",data.user.id).maybeSingle();
+      if(profile){
+        document.getElementById("coFirstName").value=profile.first_name||"";
+        document.getElementById("coLastName").value=profile.last_name||"";
+        document.getElementById("coPhone").value=profile.phone||"";
+        document.getElementById("coAddress").value=profile.address||"";
+        document.getElementById("coCity").value=profile.city||"";
+        document.getElementById("coPostal").value=profile.postal_code||"";
+      }
+    }
+  });
+  renderCheckoutSummary();
+}
+function closeCheckout(){document.getElementById("checkoutModal").classList.remove("open")}
+function renderCheckoutSummary(){
+  const subtotal=cart.reduce((a,b)=>a+b.price*b.qty,0);
+  const pct=activeCoupon?Number(activeCoupon.discount_percent||0):0;
+  const discount=subtotal*pct/100;
+  const shipping=selectedShipping().price;
+  const total=subtotal-discount+shipping;
+  document.getElementById("checkoutSummaryList").innerHTML=cart.map(x=>`<div class="checkout-summary-item"><span>${escapeHtml(x.name)} × ${x.qty}</span><b>${money(x.price*x.qty)}</b></div>`).join("");
+  document.getElementById("coSubtotal").textContent=money(subtotal);
+  document.getElementById("coDiscount").textContent="− "+money(discount);
+  document.getElementById("coShipping").textContent=money(shipping);
+  document.getElementById("coTotal").textContent=money(total);
+}
+async function submitOrder(){
+  if(!cart.length)return;
+  const errorEl=document.getElementById("checkoutError"); errorEl.textContent="";
+  const first=document.getElementById("coFirstName").value.trim(), last=document.getElementById("coLastName").value.trim();
+  const email=document.getElementById("coEmail").value.trim(), phone=document.getElementById("coPhone").value.trim();
+  const address=document.getElementById("coAddress").value.trim(), city=document.getElementById("coCity").value.trim(), postal=document.getElementById("coPostal").value.trim();
+  if(!first||!last||!email||!phone||!address||!city||!postal){errorEl.textContent="Užpildyk visus laukelius.";return}
+  const shipping=selectedShipping();
+  const items=cart.map(x=>({product_id:x.product?.id||null,quantity:x.qty}));
+  const {data,error}=await supabaseClient.rpc("create_order",{
+    p_first_name:first,p_last_name:last,p_email:email,p_phone:phone,p_address:address,p_city:city,p_postal_code:postal,
+    p_shipping_method:shipping.method,p_shipping_amount:shipping.price,p_items:items,p_coupon_code:activeCoupon?.code||null
+  });
+  if(error){console.error(error);errorEl.textContent=error.message||"Nepavyko sukurti užsakymo.";return}
+  const order=data?.[0]||data;
+  cart=[];activeCoupon=null;renderCart();closeCheckout();
+  await loadMyOrders();
+  document.getElementById("ordersModal").classList.add("open");
+  toast(`✓ Užsakymas #${order.order_number||"sukurtas"}`);
+}
 let cart=[];
 let modalProduct=null;
 let modalQty=1;
@@ -865,6 +1114,7 @@ function renderCart(){
   document.getElementById("discountTotal").textContent="− "+money(discount);
   document.getElementById("total").textContent=money(total);
   const a=document.getElementById("couponApplied");if(a)a.textContent=activeCoupon?`✓ ${activeCoupon.code} −${pct}% (sutaupai ${money(discount)})`:"";
+  if(document.getElementById("checkoutModal")?.classList.contains("open")) renderCheckoutSummary();
 }
 function openCart(){document.getElementById("cartBg").style.display="block";renderCart()}
 function closeCart(){document.getElementById("cartBg").style.display="none"}
