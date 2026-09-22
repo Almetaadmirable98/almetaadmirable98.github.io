@@ -197,6 +197,12 @@ font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;poi
 @keyframes lightSweep{from{transform:translateX(-2%) scale(1)}to{transform:translateX(2%) scale(1.03)}}
 @keyframes chipFloat{50%{transform:translateY(-9px);border-color:#6d9fff44}}
 
+
+.contact-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#397dff,#684cff);border:1px solid #6b9dff;color:#fff!important;padding:11px 16px;border-radius:10px;font-size:11px;font-weight:800;box-shadow:0 0 22px #397dff22;transition:.2s}
+.contact-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px #397dff55}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease,filter .45s ease;background:linear-gradient(145deg,#182844,#080d15)}
+.product:hover .photo img{transform:scale(1.06);filter:brightness(1.08)}
+
 </style>
 </head>
 <body>
@@ -297,18 +303,18 @@ font-size:9px;letter-spacing:1px;animation:chipFloat 6s ease-in-out infinite;poi
 <div class="grid" id="grid">
 <script>
 const data=[
-["Nike Tech Fleece Hoodie","Rūbai","89.99 €","🧥","populiarus"],
-["Air Force 1 '07","Rūbai","119.99 €","👟","populiarus"],
-["iPhone 15 128GB","Elektronika","699.99 €","📱","sale"],
-["Apple AirPods Pro 2","Elektronika","249.99 €","🎧","nauja"],
-["Apple Watch Series 9","Elektronika","249.99 €","⌚","populiarus"],
-["Bluetooth kolonėlė","Elektronika","159.99 €","🔊","populiarus"],
-["The North Face Hoodie","Rūbai","79.99 €","🧥","nauja"],
-["PlayStation 5","Elektronika","499.99 €","🎮","populiarus"],
-["Miesto kuprinė","Aksesuarai","34.99 €","🎒","nauja"],
-["Klasikinė piniginė","Aksesuarai","29.99 €","👛","populiarus"],
-["Stalo lempa","Kita","32.99 €","💡","nauja"],
-["Terminis puodelis","Kita","21.99 €","☕","populiarus"]
+["Nike Tech Fleece Hoodie","Rūbai","89.99 €","https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85","populiarus"],
+["Oversize marškinėliai","Rūbai","34.99 €","https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85","populiarus"],
+["Miesto striukė","Rūbai","79.99 €","https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?auto=format&fit=crop&w=700&q=85","sale"],
+["Klasikiniai sportbačiai","Rūbai","119.99 €","https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85","nauja"],
+["The North Face Hoodie","Rūbai","79.99 €","https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85","nauja"],
+["Belaidės ausinės","Elektronika","59.99 €","https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=85","populiarus"],
+["Išmanusis laikrodis","Elektronika","249.99 €","https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=85","populiarus"],
+["iPhone 15 128GB","Elektronika","699.99 €","https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=700&q=85","nauja"],
+["Miesto kuprinė","Aksesuarai","34.99 €","https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=85","nauja"],
+["Klasikinė piniginė","Aksesuarai","29.99 €","https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=85","populiarus"],
+["Stalo lempa","Kita","32.99 €","https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=85","nauja"],
+["Terminis puodelis","Kita","21.99 €","https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=700&q=85","populiarus"]
 ];
 document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowerCase()}">
 <div class="photo">${x[3]}<span class="badge ${x[4]=='nauja'?'new':x[4]=='sale'?'sale':''}">${x[4]=='sale'?'−20%':x[4]=='nauja'?'Nauja':'Populiarus'}</span><button class="like-btn" aria-label="Pamėgti prekę" onclick="toggleLike(this)">♡</button></div>
@@ -317,8 +323,16 @@ document.write(data.map((x,i)=>`<article class="product" data-cat="${x[1].toLowe
 </div>
 
 <div class="contact" id="kontaktai">
-<div class="contact-card"><h3>📧 El. paštas</h3><p>Klausimams ir pagalbai.</p><a href="mailto:nedasliubinas4@gmail.com">nedasliubinas4@gmail.com</a></div>
-<div class="contact-card"><h3>🎫 Discord / Ticket</h3><p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p><a href="https://dsc.gg/ltparduotuve" target="_blank">dsc.gg/ltparduotuve →</a></div>
+<div class="contact-card">
+<h3>📧 El. paštas</h3>
+<p>Klausimams ir pagalbai.</p>
+<a class="contact-btn" href="mailto:nedasliubinas4@gmail.com">✉️ RAŠYTI EL. PAŠTU →</a>
+</div>
+<div class="contact-card">
+<h3>🎫 Discord / Ticket</h3>
+<p>Prisijunk prie Discord ir susisiek per ticket sistemą.</p>
+<a class="contact-btn" href="https://dsc.gg/ltparduotuve" target="_blank" rel="noopener">💬 ATIDARYTI DISCORD →</a>
+</div>
 </div>
 </main>
 
